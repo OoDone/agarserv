@@ -308,7 +308,7 @@
             ws.onmessage = null;
             ws.onclose = null;
             try {
-                ws.close()
+		    //ws.close()
             } catch (b) {}
             ws = null
         }
