@@ -298,7 +298,7 @@
     function showConnecting() {
         if (ma) {
             wjQuery("#connecting").show();
-            wsConnect((useHttps ? "ws://" : "ws://") + CONNECTION_URL)
+            wsConnect((useHttps ? "wss://" : "ws://") + CONNECTION_URL)
         }
     }
 
@@ -313,7 +313,7 @@
             ws = null
         }
         var c = CONNECTION_URL;
-        wsUrl = (useHttps ? "ws://" : "ws://") + c;
+        wsUrl = (useHttps ? "wss://" : "ws://") + c;
         nodesOnScreen = [];
         playerCells = [];
         nodes = {};
