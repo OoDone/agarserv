@@ -189,13 +189,13 @@ GameServer.prototype.start = function () {
         perMessageDeflate: false,
         maxPayload: 4096
     };
-    const port = process.env.PORT || 8080
+    const port2 = process.env.PORT || 8080
     Logger.info("WebSocket: " + this.config.serverWsModule);
     this.WebSocket = require(this.config.serverWsModule);
     this.wsServer = new this.WebSocket.Server(wsOptions);
     this.wsServer.on('error', this.onServerSocketError.bind(this));
     this.wsServer.on('connection', this.onClientSocketOpen.bind(this));
-    this.httpServer.listen(port, this.config.serverBind, this.onHttpServerOpen.bind(this));
+    this.httpServer.listen(port2, this.config.serverBind, this.onHttpServerOpen.bind(this));
 
     // Start stats port (if needed)
     if (this.config.serverStatsPort > 0) {
@@ -208,7 +208,7 @@ GameServer.prototype.onHttpServerOpen = function () {
     setTimeout(this.timerLoopBind, 1);
 
     // Done
-    Logger.info("Listening on port " + port);
+    Logger.info("Listening on port " + process.env.PORT || 8080);
     Logger.info("Current game mode is " + this.gameMode.name);
 
     // Player bots (Experimental)
