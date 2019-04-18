@@ -1,7 +1,7 @@
 "use strict";
 
-const server_bind = "127.0.0.1";
-const server_port = 3456;
+const server_bind = "0.0.0.0";
+const server_port = 4000;
 const vkapi_token = ; //Get token in group settings
 const admin_vkid = ; //Your VK id
 
