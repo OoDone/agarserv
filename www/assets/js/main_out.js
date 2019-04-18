@@ -1,5 +1,5 @@
 (function(wHandle, wjQuery) {
-    var CONNECTION_URL = "agarioserv.herokuapp.com:3000", // Default Connection
+    var CONNECTION_URL = "0.0.0.0", // Default Connection
         SKIN_URL = "./skins/"; // Skin Directory
 
     wHandle.setserver = function(arg) {
@@ -298,7 +298,7 @@
     function showConnecting() {
         if (ma) {
             wjQuery("#connecting").show();
-            wsConnect((useHttps ? "wss://" : "ws://") + CONNECTION_URL)
+            wsConnect((useHttps ? "ws://" : "ws://") + CONNECTION_URL)
         }
     }
 
@@ -313,7 +313,7 @@
             ws = null
         }
         var c = CONNECTION_URL;
-        wsUrl = (useHttps ? "wss://" : "ws://") + c;
+        wsUrl = (useHttps ? "ws://" : "ws://") + c;
         nodesOnScreen = [];
         playerCells = [];
         nodes = {};
