@@ -209,7 +209,7 @@ GameServer.prototype.onHttpServerOpen = function () {
     // Done
     Logger.info("Listening on port " + this.config.serverPort);
     Logger.info("Current game mode is " + this.gameMode.name);
-    Logger.info(`Listening on ${ PORT }`));
+    Logger.info(`Listening on ${ PORT }`);
 
     // Player bots (Experimental)
     if (this.config.serverBots) {
