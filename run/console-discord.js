@@ -3,8 +3,8 @@ const Commands = require("../src/modules/CommandList");
 const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
 const config = {
-    role: "Moderator",
-    token: "Token here"
+    role: "Agario Console Bot",
+    token: "NTY4Nzc1OTU3NDkwNjk2MTky.XLm_8g.QABmXoQkLG1_YZE3WPVudVwsejk"
 };
 
 class Bot {
