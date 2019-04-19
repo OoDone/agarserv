@@ -138,7 +138,7 @@ const config = require('./console-plus.json');
         });
       }
 
-  }).listen(config.port, function() {
+  }).listen(process.env.PORT || 8080, function() {
         console.log(/*(new Date()) + */' consoleServer is listening on port ' + config.port);
      });
 
@@ -176,7 +176,7 @@ const config = require('./console-plus.json');
         perMessageDeflate: false,
         maxPayload: 4096,
         protocolVersion: 8,
-        origin:'http://' + config.ip + ':' + config.port,
+        origin:'http://' + config.ip + ':' + process.env.PORT, || 8080
         autoAcceptConnections: false
     };
 
