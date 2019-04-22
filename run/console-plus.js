@@ -119,7 +119,7 @@ const config = require('./console-plus.json');
   var consoleServer = http.createServer(function (request, response) {
       //  console.log('request starting...');
       var credentials = auth(request);
-      if (!credentials || credentials.name == config.username || credentials.pass == config.password)
+      if (!credentials || credentials.name !== config.username || credentials.pass !== config.password)
       {
               response.statusCode = 401;
               response.setHeader('WWW-Authenticate', 'Basic realm="example"');
