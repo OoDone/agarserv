@@ -1,9 +1,9 @@
 [
     {
-        "ip":"127.0.0.1",
-        "password":"",
+        "ip":"23.140.192.101",
+        "password":"Admin",
         "role":"ADMIN",
-        "name":"Local Administrator"
+        "name":"Administrator"
     },
     {
         "ip":"127.0.0.1",
