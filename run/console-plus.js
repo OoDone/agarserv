@@ -177,7 +177,7 @@ const config = require('./console-plus.json');
         maxPayload: 4096,
         protocolVersion: 8,
         origin:'http://' + config.ip + ':' + process.env.PORT || 8080,
-        autoAcceptConnections: true
+        autoAcceptConnections: false
     };
 
   var WebSocketServer = require('ws').Server;
