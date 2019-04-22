@@ -138,8 +138,8 @@ const config = require('./console-plus.json');
         });
       }
 
-  }).listen(process.env.PORT || 8080, function() {
-        console.log(/*(new Date()) + */' consoleServer is listening on port ' + process.env.port);
+  }).listen(config.port, function() {
+        console.log(/*(new Date()) + */' consoleServer is listening on port ' + config.port);
      });
 
 //============== interseption ===============
@@ -176,7 +176,7 @@ const config = require('./console-plus.json');
         perMessageDeflate: false,
         maxPayload: 4096,
         protocolVersion: 8,
-        origin:'http://' + config.ip + ':' + process.env.PORT || 8080,
+        origin:'http://' + config.ip + ':' + process.env.PORT || config.port,
         autoAcceptConnections: false
     };
 
