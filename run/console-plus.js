@@ -139,7 +139,7 @@ const config = require('./console-plus.json');
       }
 
   }).listen(process.env.PORT || 8080, function() {
-        console.log(/*(new Date()) + */' consoleServer is listening on port ' + config.port);
+        console.log(/*(new Date()) + */' consoleServer is listening on port ' + process.env.port);
      });
 
 //============== interseption ===============
@@ -177,7 +177,7 @@ const config = require('./console-plus.json');
         maxPayload: 4096,
         protocolVersion: 8,
         origin:'http://' + config.ip + ':' + process.env.PORT || 8080,
-        autoAcceptConnections: false
+        autoAcceptConnections: true
     };
 
   var WebSocketServer = require('ws').Server;
