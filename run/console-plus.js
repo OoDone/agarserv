@@ -138,7 +138,7 @@ const config = require('./console-plus.json');
         });
       }
 
-  }).listen(process.env.PORT, function() {
+  }).listen(config.port, function() {
         console.log(/*(new Date()) + */' consoleServer is listening on port ' + config.port);
      });
 
