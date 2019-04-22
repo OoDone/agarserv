@@ -1,6 +1,6 @@
 {
   "username":"admin",
   "password":"test",
-  "ip":"0.0.0.0",
+  "ip":"",
   "port":8080
 }
