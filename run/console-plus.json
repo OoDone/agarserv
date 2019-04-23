@@ -1,6 +1,6 @@
 {
   "username":"admin",
   "password":"test",
-  "ip":"agarioserv.herokuapp.com/run/console-plus.html",
-  "port":8080
+  "ip":"agarioserv.herokuapp.com",
+  "port":50
 }
