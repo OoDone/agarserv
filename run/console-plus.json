@@ -2,5 +2,5 @@
   "username":"admin",
   "password":"test",
   "ip":"agarioserv.herokuapp.com",
-  "port":50
+  "port":443
 }
