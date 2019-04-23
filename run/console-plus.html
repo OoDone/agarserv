@@ -175,7 +175,7 @@
          declare('ansi2html', ansi2html) // ansi2html colors
        })()
 
-      var ws = new WebSocket('ws://'+Host, 'echo-protocol');
+      var ws = new WebSocket('wss://'+Host, 'echo-protocol');
       ws.addEventListener("message", function(e) {
           console.log("get "+e.data);
           var msg = e.data;
