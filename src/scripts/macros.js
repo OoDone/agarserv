@@ -3,14 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.1
 // @description  Sets show mass and dark theme to true, provides a tricksplit with E or 4, triplesplit with 3, doublesplit with D or 2, faster feeding with Q, and split with 1
-// @author       Jack Burch + Tom Burris
-// @match        http://abs0rb.me/*
-// @match        http*://agar.io/*
-// @match        http://agarabi.com/*
-// @match        http://agarly.com/*
-// @match        http://en.agar.bio/*
-// @match        http://agar.pro/*
-// @match        http://agar.biz/*
+// @author       Jacob
 // @grant        none
 // @run-at       document-end
 // ==/UserScript==
