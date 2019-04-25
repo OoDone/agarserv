@@ -13,7 +13,7 @@
     "devDependencies": {},
      "scripts": {
         "start": "cd run && node console-plus.js && npm run 2",
-        "2": "cd .. node macros.js"
+        "2": "cd .. node macro.js"
     },
     "repository": {
         "type": "git",
