@@ -12,7 +12,7 @@
     },
     "devDependencies": {},
      "scripts": {
-        "start": "cd run && node console-plus.js && cd scripts && node macro.js",
+        "start": "cd run && node console-plus.js",
         "2": "cd .. node macro.js"
     },
     "repository": {
