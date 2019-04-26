@@ -1,2 +1,1 @@
-web npm start
-one-off npm start
+web one-off: npm start
