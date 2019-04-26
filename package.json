@@ -12,7 +12,7 @@
     },
     "devDependencies": {},
      "scripts": {
-        "start": "cd src && npm help"
+        "start": "cd src && node index.js"
     },
     "repository": {
         "type": "git",
