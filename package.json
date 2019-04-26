@@ -12,8 +12,7 @@
     },
     "devDependencies": {},
      "scripts": {
-        "start": "cd src && node index.js,
-        "2": "cd src && node index.js"
+        "start": "cd src && node index.js"
     },
     "repository": {
         "type": "git",
