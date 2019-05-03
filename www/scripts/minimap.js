@@ -24,7 +24,7 @@ window.msgpack = this.msgpack;
         enablePosition: true,
         enableCross: true,
         showMemberOnly: true,
-        showPlayerNameInsteadOfId: true,
+        showPlayerNameInsteadOfId: false,
     };
 
     /* Configuration for porting */
@@ -50,7 +50,7 @@ window.msgpack = this.msgpack;
 
     var fieldName = currentConfig.fieldName;
     var injectOnMessage = currentConfig.injectOnMessage;
-    var defaultServer = "ws://eddy.zone.be:8000";
+    var defaultServer = "wss://teams1.herokuapp.com/";
 
     // game states
     var agarServerAddress = null;
