@@ -1,1 +1,1 @@
-web cd src && node test.js 
+worker npm start
