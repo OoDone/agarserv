@@ -1,2 +1,1 @@
-web npm start
-web Playerlist
+web npm start && Playerlist
