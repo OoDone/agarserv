@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Eat cells smaller than you and avoid getting eaten by bigger ones!">
+    <meta name="keywords" content="agario, agar, io, cell, cells, virus, bacteria, blob, game, games, web game, html5, fun, flash">
+    <meta name="robots" content="index, follow">
+    <meta property="og:image" content="http://agar.io/img/1200x630.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Agario</title>
+    <link id="favicon" rel="icon" type="image/png" href="assets/img/favicon.png" />
+    <link href='assets/css/fonts.googleapis.css' rel='stylesheet' type='text/css'>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/index.css" rel="stylesheet">
+    <script src="assets/js/jquery-1.11.3.min.js"></script>
+    <script src="assets/js/main_out.js"></script>
+    <script src="scripts/macro.js"></script>
+    <script>
+    </script>
+</head>
+<body>
+    <div class="modal fade" id="inPageModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="inPageModalTitle" class="modal-title">Failed to load!</h4>
+                </div>
+                <div id="inPageModalBody" class="modal-body">
+                    <p>Failed to load, please check your connection!</p>
+                    <div class="center">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="overlays">
+        <div id="helloDialog">
+            <form role="form">
+                <div class="form-group">
+                    <h2 id="title">Agario</h2>
+                </div>
+                <div class="form-group">
+                    <input id="nick" class="form-control save" data-box-id="0" placeholder="Nick" maxlength="18" />
+                    <select id="gamemode" class="form-control" onchange="setServer($(this).val());" required>
+                        <option selected disabled>Servers:</option>
+                        <option value="freeforall1.herokuapp.com">FFA</option>
+                        <option value="agarioserv2.herokuapp.com">Instant Merge</option>
+                        <option value="megaagar1.herokuapp.com">Mega</option>
+                        <option value="teams1.herokuapp.com">Teams</option>
+                        <option value="instantteams.herokuapp.com">Instant-teams</option>
+                        <option value="messaround.herokuapp.com">Messaround</option>
+                    </select>
+                    <br clear="both" />
+                </div>
+                <div class="form-group">
+                    <!--div class="mb-10">
+                        <a data-toggle="modal" data-target="#inPageModal" onclick="openSkinsList();" class="btn-primary btn btn-info" role="button" style="width: 100%;">Skins Gallery</a>
+                    </div-->
+                    <button type="button" id="play-btn" onclick="play(document.getElementById('nick').value); return false;" class="btn btn-play btn-primary btn-needs-server">Play</button>
+                    <button onclick="$('#settings, #instructions').toggle(); return false;" class="btn btn-info btn-settings" id="settings-btn"><i class="glyphicon glyphicon-cog"></i></button>
+                    <br clear="both" />
+                </div>
+                <div id="settings" class="checkbox" style="display:none;">
+                    <div class="form-group" id="mainform">
+                        <button id="spectate-btn" onclick="spectate(); return false;" style="width: 100%" class="btn btn-warning btn-spectate btn-needs-server">Spectate
+                        </button>
+                        <br clear="both" />
+                    </div>
+                    <div style="margin: 6px;">
+                        <label><input type="checkbox" class="save" data-box-id="1" onchange="setSkins(!$(this).is(':checked'));"> No skins</label>
+                        <label><input type="checkbox" class="save" data-box-id="2" onchange="setNames(!$(this).is(':checked'));"> No names</label>
+                        <label><input type="checkbox" class="save" data-box-id="3" onchange="setDarkTheme($(this).is(':checked'));"> Dark theme</label>
+                        <label><input type="checkbox" class="save" data-box-id="4" onchange="setColors($(this).is(':checked'));"> No colors</label>
+                        <label><input type="checkbox" class="save" data-box-id="5" onchange="setShowMass($(this).is(':checked'));"> Show mass</label>
+                        <label><input type="checkbox" class="save" data-box-id="7" onchange="setChatHide($(this).is(':checked'));"> Hide chat</label>
+                        <label><input type="checkbox" class="save" data-box-id="8" onchange="setMinimap($(this).is(':checked'));"> Hide minimap</label>
+                        <label><input type="checkbox" class="save" data-box-id="9" onchange="setCellBorder($(this).is(':checked'));" checked> Cell borders</label>
+                        <label><input type="checkbox" class="save" data-box-id="10" onchange="setGrid($(this).is(':checked'));"> Hide grid</label>
+                        <label><input type="checkbox" class="save" data-box-id="11" onchange="setZoom($(this).is(':checked'));"> Infinite zoom</label>
+                        <label><input type="checkbox" class="save" data-box-id="12" onchange="setTransparency($(this).is(':checked'));"> Transparent cells</label>
+                        <label><input type="checkbox" class="save" data-box-id="13" onchange="setMapBorders($(this).is(':checked'));"> Map borders</label>
+                        <label><input type="checkbox" class="save" data-box-id="14" onchange="setSectors($(this).is(':checked'));"> Map sectors</label>
+                        <label><input type="checkbox" class="save" data-box-id="15" onchange="setCellPos($(this).is(':checked'));"> Cell position</label>
+                        <label><input type="checkbox" class="save" data-box-id="16" onchange="setTextOutline($(this).is(':checked'));" checked> Text outline</label>
+                        <label><input type="checkbox" class="save" data-box-id="17" onchange="setFood($(this).is(':checked'));"> Hide food</label>
+                        <table style="visibility:hidden">
+                            <tr style="visibility:hidden">
+                                <td><label>LB Text Color (you)</label>
+                                    <input class="form-control" id="lbColor" placeholder="Default HEX = FAA" value="" style="width:180px;"></td>
+                                <td><label>Name Text Color</label>
+                                    <input class="form-control" id="nameColor" placeholder="Default HEX = FFF" value="" style="width:180px;"></td>
+                            </tr>
+                            <tr style="visibility:hidden">
+                                <td><label>Cell Border Color</label>
+                                    <input class="form-control" id="cellBorderColor" placeholder="Default HEX = 000" value="" style="width:180px;"></td>
+                                <td><label>Cell Border Size</label>
+                                    <input class="form-control" id="cellBorderSize" placeholder="Default = 0 | Max = 50" value="" type="number" min="1" max="50" style="width:180px;"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </form>
+            <div id="instructions">
+                <hr/>
+                <center>
+                    <span class="text-muted">
+            			Move your <b>Mouse</b> to control your cell<br/>
+            			Press <b>Space</b> to split<br/>
+            			Press <b>W</b> to eject mass<br/>
+            			Press <b>2</b> to split 2x times<br/>
+            			Press <b>3</b> to split 3x times<br/>
+            			Press <b>4</b> or <b>shift</b> to split 4x times<br/>
+            		    Press <b>Q</b> to control your minions<br/>
+                	</span>
+                </center>
+            </div>
+            <div id="footer">
+                <hr/>
+                <!--p><b>Important Links:</b></p-->
+                <a href="https://github.com/je5143" class="text-muted" target="_blank">by JE5143</a><br>
+            </div>
+        </div>
+    </div>
+    <div id="connecting">
+        <div style="width: 350px; background-color: #0099ff; margin: 100px auto; border-radius: 15px; padding: 5px 15px 5px 15px;">
+            <h2>Connecting</h2>
+            <p> If you cannot connect to the server, check if you have some antivirus or firewall blocking the connection.</p>
+        </div>
+    </div>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <input type="text" id="chat_textbox" placeholder="Press enter to chat" maxlength="200" />
+    <div style="font-family:'Ubuntu'">&nbsp;</div>
+    <script src="assets/js/bootstrap.min.js"></script>
+</body>
+</html>
