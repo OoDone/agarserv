@@ -108,8 +108,8 @@ var playerCommands = {
 
             // ID with 3 digits length
             var id = fillChar((client.pID), ' ', 6, true);
+            this.writeline("test: " + id);
         }
-        this.writeline("test: " + id);
         //console.log(id);
     },
     skin: function (args) {
