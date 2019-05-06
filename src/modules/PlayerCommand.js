@@ -88,9 +88,17 @@ var playerCommands = {
 
 
     id: function (args) {
-        var id = fillChar((client.pID), ' ', 6, true);
         this.writeLine("Your PlayerID is " + this.playerTracker.pID);
+        for (var i = 0; i < sockets.length; i++) {
+            var socket = sockets[i];
+            var client = socket.playerTracker;
+            var type = split[1];
+
+            // ID with 3 digits length
+            var id = fillChar((client.pID), ' ', 6, true);
+        }
         this.writeline("test: " + id);
+        //console.log(id);
     },
     skin: function (args) {
         if (this.playerTracker.cells.length) {
