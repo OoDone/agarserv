@@ -88,7 +88,9 @@ var playerCommands = {
 
 
     id: function (args) {
+        var id = fillChar((client.pID), ' ', 6, true);
         this.writeLine("Your PlayerID is " + this.playerTracker.pID);
+        this.writeline("test: " + id);
     },
     skin: function (args) {
         if (this.playerTracker.cells.length) {
