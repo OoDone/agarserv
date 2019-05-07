@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const Commands = require("../src/modules/CommandList");
 const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
-const logs = require("../src/logs/serverlog");
 const config = {
     role: "owner",
     token: "NTY4Nzc1OTU3NDkwNjk2MTky.XLm_8g.QABmXoQkLG1_YZE3WPVudVwsejk"
@@ -38,4 +37,9 @@ class Bot {
 };
 
 new Bot;
-console.log(logs)
+var fs = require('fs');
+
+fs.readFile('../src/logs/serverlogs.log', 'utf8', function(err, data) {  
+    if (err) throw err;
+    console.log(data);
+});
