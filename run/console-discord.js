@@ -31,7 +31,7 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-            message.channel.send(Data)
+            message.channel.send(Data);
         } else {
             return;
         }
