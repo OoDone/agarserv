@@ -6,10 +6,10 @@
         "name":"Administrator"
     },
     {
-        "ip":"127.0.0.1",
-        "password":"",
+        "ip":"",
+        "password":"AgarMod!",
         "role":"MODER",
-        "name":"Local Moderator"
+        "name":"Moderator"
     },
     {
         "ip":"127.0.0.1",
