@@ -12,9 +12,9 @@
         "name":"Moderator"
     },
     {
-        "ip":"127.0.0.1",
-        "password":"",
-        "role":"USER",
-        "name":"Local User"
+        "ip":"",
+        "password":"AgarMember!",
+        "role":"Member",
+        "name":"MEMBER"
     }
 ]
