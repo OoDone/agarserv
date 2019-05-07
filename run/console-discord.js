@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const Commands = require("../src/modules/CommandList");
 const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
+const logs = require("../src/logs/serverlog.log");
 const config = {
     role: "owner",
     token: "NTY4Nzc1OTU3NDkwNjk2MTky.XLm_8g.QABmXoQkLG1_YZE3WPVudVwsejk"
@@ -37,4 +38,4 @@ class Bot {
 };
 
 new Bot;
-console.log(process.stdout.write)
+console.log(logs)
