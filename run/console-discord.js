@@ -3,6 +3,15 @@ const Commands = require("../src/modules/CommandList");
 const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
 var fs = require('fs');
+var Data = '';
+fs.readFile('../src/logs/serverlogs.txt', function (err, data) {
+  if (err)
+    throw err;
+  if (data)
+    console.log(data.toString('utf8'));
+    Data = data.toString('utf8');
+});
+
 const config = {
     role: "owner",
     token: "NTY4Nzc1OTU3NDkwNjk2MTky.XLm_8g.QABmXoQkLG1_YZE3WPVudVwsejk"
@@ -22,6 +31,7 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
+            message.channel.send(Data)
         } else {
             return;
         }
@@ -43,5 +53,6 @@ fs.readFile('../src/logs/serverlogs.txt', function (err, data) {
     throw err;
   if (data)
     console.log(data.toString('utf8'));
+    data = data.toString('utf8');
     message.channel.send(data.toString('utf8'));
 });
