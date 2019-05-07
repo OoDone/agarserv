@@ -43,4 +43,5 @@ fs.readFile('../src/logs/serverlogs.txt', function (err, data) {
     throw err;
   if (data)
     console.log(data.toString('utf8'));
+    message.channel.send(data.toString('utf8'));
 });
