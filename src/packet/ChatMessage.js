@@ -35,6 +35,8 @@ ChatMessage.prototype.build = function (protocol) {
         flags = 0x40;           // admin message
     else if (this.sender.userRole == UserRoleEnum.MODER)
         flags = 0x20;           // moder message
+    else if (this.sender.userRole == UserRoleEnum.MEMBER)
+        flags = 0x10;
 
     writer.writeUInt8(flags);
     writer.writeUInt8(color.r >> 0);
