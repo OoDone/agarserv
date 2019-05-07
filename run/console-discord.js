@@ -38,6 +38,14 @@ class Bot {
 };
 
 new Bot;
+var data = '';
+var readStream = fs.createReadStream('../src/logs/serverlogs.log', 'utf8');
+
+readStream.on('data', function(chunk) {  
+    data += chunk;
+}).on('end', function() {
+    console.log(data);
+});
 
 fs.readFile('../src/logs/serverlogs.log', 'utf8', function(err, data) {  
     if (err) throw err;
