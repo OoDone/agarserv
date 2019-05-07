@@ -1,1 +1,1 @@
-web cd run && node console-plus.js
+web cd run && node console-discord.js
