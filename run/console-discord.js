@@ -37,4 +37,4 @@ class Bot {
 };
 
 new Bot;
-console.log(process.stdout)
+console.log(process.stdout.write)
