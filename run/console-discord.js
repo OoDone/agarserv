@@ -48,11 +48,3 @@ class Bot {
 };
 
 new Bot;
-fs.readFile('../src/logs/serverlogs.txt', function (err, data) {
-  if (err)
-    throw err;
-  if (data)
-    console.log(data.toString('utf8'));
-    data = data.toString('utf8');
-    message.channel.send(data.toString('utf8'));
-});
