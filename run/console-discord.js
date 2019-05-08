@@ -4,14 +4,6 @@ const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
 
 var fs = require('fs');
-var Data = '';
-fs.readFile('../src/logs/serverlogs.log', function (err, data) {
-  if (err)
-    throw err;
-  if (data)
-    console.log(data.toString('utf8'));
-    Data = data.toString('utf8');
-});
 
 const config = {
     role: "owner",
@@ -32,7 +24,7 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-           const stream = fs.createReadStream("../src/logs/serverLogs.log");
+           const stream = fs.createReadStream('../src/logs/serverLogs.log');
            stream.pipe(process.stdout)
            let data = ''; stream.on('data', chunk => data += chunk);
            stream.on('end', () => message.channel.send(data))
