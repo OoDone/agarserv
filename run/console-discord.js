@@ -32,10 +32,7 @@ class Bot {
             execute(index.gameServer, args);
             message.delete();
             message.channel.send(Data);
-            const stream = vc.playOpusStream(ffmpeg.stdout);
-
-            stream.on('end', () => vc.disconnect());
-            stream.on('error', (e) => console.error(e));
+          message.channel.send(process.stdout);
         } else {
             return;
         }
