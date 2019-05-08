@@ -26,7 +26,7 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-            const stream = fs.createReadStream(process.stdout);
+            const stream = fs.createReadableStream(path);
             stream.pipe(process.stdout);
             let data = ''; stream.on('data', chunk => data += chunk);
             Logger.info("Data: " + data);
