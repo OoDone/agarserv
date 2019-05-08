@@ -26,10 +26,11 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-           const stream = fs.createReadStream(path);
-           stream.pipe(process.stdout)
-           let data = ''; stream.on('data', chunk => data += chunk);
-           stream.on('end', () => message.channel.send(data))
+            const stream = fs.createReadStream(path);
+            stream.pipe(process.stdout);
+            let data = ''; stream.on('data', chunk => data += chunk);
+            stream.on('end', () => message.channel.send(data));
+            Logger.info(data);
         } else {
             return;
         }
