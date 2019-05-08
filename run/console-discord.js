@@ -2,6 +2,12 @@ const Discord = require("discord.js");
 const Commands = require("../src/modules/CommandList");
 const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 var fs = require('fs');
 var Data = '';
 fs.readFile('../src/logs/serverlogs.log', function (err, data) {
@@ -32,7 +38,9 @@ class Bot {
             execute(index.gameServer, args);
             message.delete();
             message.channel.send(Data);
-          message.channel.send(process.stdout);
+            rl.on('line', (cmd) => {
+              console.log(`You just typed: ${cmd}`);
+            });
         } else {
             return;
         }
