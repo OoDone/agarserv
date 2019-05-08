@@ -3,6 +3,7 @@ const Commands = require("../src/modules/CommandList");
 const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
 
+
 var fs = require('fs');
 
 const config = {
@@ -21,10 +22,11 @@ class Bot {
     onMessage(message) {
         const args = message.content.split(/\s+/g);
         var execute = Commands.list[args[0]];
+        var path = "../src/logs/serverlogs.log";
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-           const stream = fs.createReadStream('../src/logs/serverLogs.log');
+           const stream = fs.createReadStream(path);
            stream.pipe(process.stdout)
            let data = ''; stream.on('data', chunk => data += chunk);
            stream.on('end', () => message.channel.send(data))
