@@ -22,11 +22,11 @@ class Bot {
     onMessage(message) {
         const args = message.content.split(/\s+/g);
         var execute = Commands.list[args[0]];
-        var path = "process.stdout";
+        var path = "";
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-            const stream = fs.createReadStream(path);
+            const stream = fs.createReadStream(process.stdout);
             stream.pipe(process.stdout);
             let data = ''; stream.on('data', chunk => data += chunk);
             Logger.info("Data: " + data);
