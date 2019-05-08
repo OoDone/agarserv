@@ -4,7 +4,7 @@ const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
 var fs = require('fs');
 var Data = '';
-fs.readFile('../src/logs/serverlogs.txt', function (err, data) {
+fs.readFile('../src/logs/serverlogs.log', function (err, data) {
   if (err)
     throw err;
   if (data)
