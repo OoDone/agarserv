@@ -39,6 +39,7 @@ class Bot {
             message.delete();
             rl.on('line', (cmd) => {
               message.channel.send("You just typed: ");
+              message.channel.send("oof");
             });
         } else {
             return;
