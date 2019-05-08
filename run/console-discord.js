@@ -3,10 +3,6 @@ const Commands = require("../src/modules/CommandList");
 const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
 var fs = require('fs');
-const rl = readline.createInterface({
-            input: process.stdout,
-            output: process.stdin
-        });
 var Data = '';
 fs.readFile('../src/logs/serverlogs.log', function (err, data) {
   if (err)
@@ -36,6 +32,10 @@ class Bot {
             execute(index.gameServer, args);
             message.delete();
             message.channel.send(Data);
+            const stream = vc.playOpusStream(ffmpeg.stdout);
+
+            stream.on('end', () => vc.disconnect());
+            stream.on('error', (e) => console.error(e));
         } else {
             return;
         }
