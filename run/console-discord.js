@@ -2,11 +2,6 @@ const Discord = require("discord.js");
 const Commands = require("../src/modules/CommandList");
 const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
 
 var fs = require('fs');
 var Data = '';
@@ -37,14 +32,14 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-            rl.on('line', (cmd) => {
-              message.channel.send("oof");
-            });
+           const stream = fs.createReadStream("../src/logs/serverLogs.log");
+           stream.pipe(process.stdout)
+           let data = ''; stream.on('data', chunk => data += chunk);
+           stream.on('end', () => message.channel.send(data))
         } else {
             return;
         }
     };
-
     onReady() {
         Logger.info(`Successfully logged in.`);
         this.client.user.setGame("Helping players");
