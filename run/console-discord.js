@@ -28,8 +28,9 @@ class Bot {
             if (message.content.startsWith("s")) {
                 if (message.content.startsWith("s") && message.content == 's') {
                     message.channel.send("Please specify a valid player ID!");
+                } else if (message.content.startsWith("s") && message.content !== 's');{
+                    message.channel.send("test");
                 }
-                message.channel.send("test");
             }
         } else {
             return;
