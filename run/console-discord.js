@@ -29,7 +29,7 @@ class Bot {
                 if (message.content == 's') {
                     message.channel.send("Please specify a valid player ID!");
                 } else if (message.content !== 's') {
-                    message.channel.send("test");
+                    message.channel.send("set players speed!");
                 }
             }
         } else {
