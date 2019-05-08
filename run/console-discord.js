@@ -27,6 +27,7 @@ class Bot {
             message.delete();
             if (message.content == 's') {
                 message.channel.send("test");
+                message.channel.send(Commands.list[help]);
             }
         } else {
             return;
