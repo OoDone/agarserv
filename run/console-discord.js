@@ -3,6 +3,10 @@ const Commands = require("../src/modules/CommandList");
 const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
 var fs = require('fs');
+const rl = readline.createInterface({
+            input: process.stdout,
+            output: process.stdin
+        });
 var Data = '';
 fs.readFile('../src/logs/serverlogs.log', function (err, data) {
   if (err)
@@ -10,18 +14,6 @@ fs.readFile('../src/logs/serverlogs.log', function (err, data) {
   if (data)
     console.log(data.toString('utf8'));
     Data = data.toString('utf8');
-});
-var spawn = require('child_process').spawn;
-var proc = spawn('test.exe');
-proc.stdout.on('data', function(data) {
-  process.stdout.write(data);
-  console.log("it fucking works!")
-});
-proc.stderr.on('data', function(data) {
-  process.stderr.write(data);
-});
-proc.on('close', function(code, signal) {
-  console.log('test.exe closed');
 });
 
 const config = {
