@@ -25,9 +25,8 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-            if (message.content == 's') {
+            if (message.content.Contains("s")) {
                 message.channel.send("test");
-                message.channel.send(Commands.list[1]);
             }
         } else {
             return;
