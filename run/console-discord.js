@@ -39,7 +39,7 @@ class Bot {
             message.delete();
             message.channel.send(Data);
             rl.on('line', (cmd) => {
-              console.log(`You just typed: ${cmd}`);
+              Logger.info(`You just typed: ${cmd}`);
             });
         } else {
             return;
