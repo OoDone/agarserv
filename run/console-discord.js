@@ -26,7 +26,7 @@ class Bot {
             execute(index.gameServer, args);
             message.delete();
             if (message.content.startsWith("s")) {
-                if (message.content.startsWith("s") && message.content == 's') {
+                if (message.content == 's') {
                     message.channel.send("Please specify a valid player ID!");
                 } else if (message.content !== 's');{
                     message.channel.send("test");
