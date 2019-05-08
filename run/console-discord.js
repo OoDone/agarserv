@@ -22,7 +22,7 @@ class Bot {
     onMessage(message) {
         const args = message.content.split(/\s+/g);
         var execute = Commands.list[args[0]];
-        var path = "../src/logs/serverlogs.log";
+        var path = "../src/logs/ServerLogs.log";
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
@@ -36,7 +36,7 @@ class Bot {
     };
     onReady() {
         Logger.info(`Successfully logged in.`);
-        this.client.user.setGame("Helping players");
+        this.client.user.setGame("Agario");
     };
 
     onError(error) {
