@@ -11,6 +11,18 @@ fs.readFile('../src/logs/serverlogs.log', function (err, data) {
     console.log(data.toString('utf8'));
     Data = data.toString('utf8');
 });
+var spawn = require('child_process').spawn;
+var proc = spawn('test.exe');
+proc.stdout.on('data', function(data) {
+  process.stdout.write(data);
+  console.log("it fucking works!")
+});
+proc.stderr.on('data', function(data) {
+  process.stderr.write(data);
+});
+proc.on('close', function(code, signal) {
+  console.log('test.exe closed');
+});
 
 const config = {
     role: "owner",
