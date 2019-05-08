@@ -29,8 +29,8 @@ class Bot {
             const stream = fs.createReadStream(path);
             stream.pipe(process.stdout);
             let data = ''; stream.on('data', chunk => data += chunk);
-            stream.on('end', () => message.channel.send(data));
             Logger.info(data);
+            stream.on('end', () => message.channel.send(data));
         } else {
             return;
         }
