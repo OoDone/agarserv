@@ -5,21 +5,14 @@ var figlet = require('figlet');
 var GameMode = require('../gamemodes');
 var Logger = require('./Logger');
 var Entity = require('../entity');
-var speed2;
-const Discord = require("discord.js");
+const Discord = require(".../.../run/discord.js")
+
 function Commands() {
     this.list = {}; // Empty
 }
-function speed2() {
-    this.list = {
-        speed2 = {
-            message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
-        };
-    }; // Empty
-}
+
 
 module.exports = Commands;
-module.exports = speed2;
 
 // Utils
 var fillChar = function (data, char, fieldLength, rTL) {
@@ -643,6 +636,7 @@ Commands.list = {
         }
         if (client == null) return void Logger.warn("That player ID is non-existant!");
         Logger.info("Set base speed of " + getName(client._name) + " to " + speed);
+        message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
     },
     merge: function (gameServer, split) {
         // Validation checks
