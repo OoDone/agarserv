@@ -5,7 +5,6 @@ var figlet = require('figlet');
 var GameMode = require('../gamemodes');
 var Logger = require('./Logger');
 var Entity = require('../entity');
-const Discord = require("discord.js")
 var speed2;
 
 function Commands() {
@@ -14,14 +13,12 @@ function Commands() {
 function speed2() {
     this.list = {
         speed2 = {
+            const Discord = require("Discord.js");
             message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
         };
     }; // Empty
 }
 
-speed2.list = {
-    
-}
 module.exports = Commands;
 module.exports = speed2;
 
