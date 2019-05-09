@@ -167,7 +167,7 @@ Commands.list = {
 
         // Error! ID is NaN
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player id!");
+            global.minion1 = "Please specify a valid player id!";
             return;
         }
 
@@ -179,7 +179,7 @@ Commands.list = {
 
                 // Prevent the user from giving minions, to minions
                 if (client.isMi) {
-                    Logger.warn("You cannot give minions to a minion!");
+                    global.minion1 = "You cannot give minions to a minion!";
                     return;
                 };
 
@@ -187,7 +187,7 @@ Commands.list = {
                 if (client.minionControl === true && isNaN(add)) {
                     client.minionControl = false;
                     client.miQ = 0;
-                    Logger.print("Successfully removed minions for " + getName(client._name));
+                    global.minion1 = "Successfully removed minions for " + getName(client._name);
                     // Add minions
                 } else {
                     client.minionControl = true;
@@ -196,7 +196,7 @@ Commands.list = {
                     for (var i = 0; i < add; i++) {
                         gameServer.bots.addMinion(client, name);
                     }
-                    Logger.print("Added " + add + " minions for " + getName(client._name));
+                    global.minion1 = "Added " + add + " minions for " + getName(client._name);
                 }
                 break;
             }
