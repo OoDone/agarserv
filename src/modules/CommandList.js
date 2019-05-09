@@ -71,8 +71,8 @@ Commands.list = {
             "│ ban [PlayerID │ IP]          │ Bans a player(s) IP                       │\n" +
             "│ unban [IP]                   │ Unbans an IP                              │\n" +
             "│ banlist                      │ Get list of banned IPs.                   │\n" +
-            "│ mute [PlayerID]              │ Mute player from chat by client ID        │\n" +
-            "│ unmute [PlayerID]            │ Unmute player from chat by client ID      │\n" +
+            "│ mute [PlayerID]              │ Mute player from chat by client ID        │"
+        global.help3 = "│ unmute [PlayerID]            │ Unmute player from chat by client ID       │\n" +
             "| lms                          | Starts/ends last man standing             |\n" +
             "| chat                         | Sends a server message to all clients     |\n" +
             "│                                                                          │\n" +
