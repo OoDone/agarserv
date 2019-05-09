@@ -611,12 +611,12 @@ Commands.list = {
         var id = parseInt(split[1]);
         var speed = parseInt(split[2]);
         if (isNaN(id)) {
-            global.speed2 = "Please specify a valid player ID!"
+            global.speed2 = "Please specify a valid player ID!";
             return;
         }
 
         if (isNaN(speed)) {
-            global.speed2 = "Please specify a valid speed!"
+            global.speed2 = "Please specify a valid speed!";
             return;
         }
 
