@@ -54,6 +54,8 @@ class Bot {
                 }
             } else if (message.content.startsWith("minion")) {
                 message.channel.send(minion1);
+            } else if (message.content.startsWith("ban")) {
+                message.channel.send(ban2);
             }
 
         } else {
