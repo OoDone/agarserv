@@ -313,8 +313,8 @@ Commands.list = {
             gameServer.leaderboardType = 48;
         };
         if (reset != "reset") {
-            Logger.print("Successfully changed leaderboard values");
-            Logger.print('Do "board reset" to reset leaderboard');
+            global.board1 = "Successfully changed leaderboard values" + 
+            'Do "board reset" to reset leaderboard';
         } else {
             // Gets the current gamemode
             var gm = GameMode.get(gameServer.gameMode.ID);
@@ -322,7 +322,7 @@ Commands.list = {
             // Replace functions
             gameServer.gameMode.packetLB = gm.packetLB;
             gameServer.gameMode.updateLB = gm.updateLB;
-            Logger.print("Successfully reset leaderboard");
+            global.board1 = "Successfully reset leaderboard";
         }
     },
     change: function (gameServer, split) {
