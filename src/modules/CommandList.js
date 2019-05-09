@@ -211,7 +211,7 @@ Commands.list = {
         for (var i = 0; i < add; i++) {
             gameServer.bots.addBot();
         }
-        Logger.print("Added " + add + " player bots");
+        global.addbot1 = "Added " + add + " player bots";
     },
     ban: function (gameServer, split) {
         // Error message
@@ -219,7 +219,7 @@ Commands.list = {
 
         if (split[1] === null || typeof split[1] == "undefined") {
             // If no input is given; added to avoid error
-            Logger.warn(logInvalid);
+            global.ban2 = logInvalid;
             return;
         }
 
@@ -236,7 +236,7 @@ Commands.list = {
                 }
                 // If not numerical or if it's not between 0 and 255
                 if (isNaN(ipParts[i]) || ipParts[i] < 0 || ipParts[i] >= 256) {
-                    Logger.warn(logInvalid);
+                    global.ban2 = logInvalid;
                     return;
                 }
             }
@@ -247,7 +247,7 @@ Commands.list = {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
             // If not numerical
-            Logger.warn(logInvalid);
+            global.ban2 = logInvalid;
             return;
         }
         var ip = null;
@@ -261,7 +261,7 @@ Commands.list = {
             }
         }
         if (ip) ban(gameServer, split, ip);
-        else Logger.warn("Player ID " + id + " not found!");
+        else global.ban2 = "Player ID " + id + " not found!";
     },
     banlist: function (gameServer, split) {
         Logger.print("Showing " + gameServer.ipBanList.length + " banned IPs: ");
