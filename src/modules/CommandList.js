@@ -401,7 +401,9 @@ Commands.list = {
                 break;
             }
         }
-        if (client == null) return void global.color1 = "That player ID is non-existant!";
+        if (client == null) {
+            return void global.color1 = "That player ID is non-existant!";
+        }
         global.color1 = "```Changed " + getName(client._name) + "'s color to: " + color.r + ", " + color.g + ", " + color.b + "```";
     },
     exit: function (gameServer, split) {
