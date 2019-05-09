@@ -220,7 +220,7 @@ Commands.list = {
 
         if (split[1] === null || typeof split[1] == "undefined") {
             // If no input is given; added to avoid error
-            global.ban2 = logInvalid;
+            global.ban2 = "```Please specify a valid player ID or IP address!```";
             return;
         }
 
@@ -237,7 +237,7 @@ Commands.list = {
                 }
                 // If not numerical or if it's not between 0 and 255
                 if (isNaN(ipParts[i]) || ipParts[i] < 0 || ipParts[i] >= 256) {
-                    global.ban2 = logInvalid;
+                    global.ban2 = "```Please specify a valid player ID or IP address!```";
                     return;
                 }
             }
@@ -248,7 +248,7 @@ Commands.list = {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
             // If not numerical
-            global.ban2 = logInvalid;
+            global.ban2 = "```Please specify a valid player ID or IP address!```";
             return;
         }
         var ip = null;
