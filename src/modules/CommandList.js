@@ -6,14 +6,13 @@ var GameMode = require('../gamemodes');
 var Logger = require('./Logger');
 var Entity = require('../entity');
 var speed2;
-
+const Discord = require("discord.js");
 function Commands() {
     this.list = {}; // Empty
 }
 function speed2() {
     this.list = {
         speed2 = {
-            const Discord = require("Discord.js");
             message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
         };
     }; // Empty
