@@ -488,21 +488,21 @@ Commands.list = {
     },
     unmute: function (gameServer, args) {
         if (!args || args.length < 2) {
-            Logger.warn("Please specify a valid player ID!");
+            global.unmute1 = "Please specify a valid player ID!";
             return;
         }
         var id = parseInt(args[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.unmute1 = "Please specify a valid player ID!";
             return;
         }
         var player = playerById(id, gameServer);
         if (player === null) {
-            Logger.warn("That player ID (" + id + ") is non-existant!");
+            global.unmute1 = "That player ID (" + id + ") is non-existant!";
             return;
         }
         if (!player.isMuted) {
-            Logger.warn("Player with id=" + id + " already not muted!");
+            global.unmute1 = "Player with id=" + id + " already not muted!";
             return;
         }
         Logger.print("Player \"" + getName(player._name) + "\" was unmuted");
