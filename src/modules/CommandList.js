@@ -587,7 +587,7 @@ Commands.list = {
                 for (var j in client.cells) {
                     client.cells[j].setSize(size);
                 }
-                global.mass1 = "Set mass of " + getName(client._name) + " to " + (size * size / 100).toFixed(3));
+                global.mass1 = "Set mass of " + getName(client._name) + " to " + (size * size / 100).toFixed(3);
                 break;
             }
         }
