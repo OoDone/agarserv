@@ -75,6 +75,14 @@ class Bot {
                 message.channel.send(clear3);
             } else if (message.content.startsWith("color")) {
                 message.channel.send(color1);
+            } else if (message.content.startsWith("exit")) {
+                message.channel.send(exit1);
+            } else if (message.content.startsWith("restart")) {
+                message.channel.send(restart1);
+            } else if (message.content.startsWith("kick")) {
+                message.channel.send(kick1);
+            } else if (message.content.startsWith("mute")) {
+                message.channel.send(mute1);
             }
         } else {
             return;
