@@ -26,11 +26,11 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-            if (message.content.startsWith("s ")) {
+            if ((message.content.startsWith("s ")) (message.content.startsWith("S "))) {
                 message.channel.send(speed2);
-            } else if (message.content == "s") {
+            } else if (message.content == "s" || "S") {
                 message.channel.send(speed2);
-            } else if (message.content.startsWith("help")) {
+            } else if (message.contentstartsWith.toLowerCase("help")) {
                 message.channel.send(help2);
                 message.channel.send(help21);
                 message.channel.send(help22);
