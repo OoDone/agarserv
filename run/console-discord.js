@@ -52,6 +52,8 @@ class Bot {
                     message.channel.send(reset4);
                     reset4t = false;
                 }
+            } else if (message.content.startsWith("minion")) {
+                message.channel.send(minion1);
             }
 
         } else {
