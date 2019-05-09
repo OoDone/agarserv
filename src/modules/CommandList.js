@@ -265,8 +265,8 @@ Commands.list = {
         else global.ban2 = "```Player ID " + id + " not found!```";
     },
     banlist: function (gameServer, split) {
-        global.banlist1 = "```Showing " + gameServer.ipBanList.length + " banned IPs: ```";
-        global.banlist2 = "``` IP              | IP ```";
+        global.banlist1 = "```Showing " + gameServer.ipBanList.length + " banned IPs:  \n" +
+        " IP              | IP ```";
         global.banlist3 = "```───────────────────────────────────```";
 
         for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
