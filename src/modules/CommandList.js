@@ -5,7 +5,7 @@ var figlet = require('figlet');
 var GameMode = require('../gamemodes');
 var Logger = require('./Logger');
 var Entity = require('../entity');
-const Discord = require("discord.js")
+const Discord = require('..../run/discord.js')
 
 function Commands() {
     this.list = {}; // Empty
