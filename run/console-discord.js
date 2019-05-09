@@ -83,6 +83,8 @@ class Bot {
                 message.channel.send(kick1);
             } else if (message.content.startsWith("mute")) {
                 message.channel.send(mute1);
+            } else if (message.content.startsWith("unmute")) {
+                message.channel.send(unmute1);
             }
         } else {
             return;
