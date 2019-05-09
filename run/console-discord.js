@@ -26,12 +26,11 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-            message.channel.send(speed2);
             if (message.content.startsWith("s")) {
                 if (message.content == 's') {
                     message.channel.send("Please specify a valid player ID!");
                 } else if (message.content !== 's') {
-                    message.channel.send("set players speed!");
+                    message.channel.send(speed2);
                 }
             }
             if (message.content.startsWith("pl")) {
