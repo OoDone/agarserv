@@ -266,11 +266,11 @@ Commands.list = {
     },
     banlist: function (gameServer, split) {
         global.banlist1 = "```Showing " + gameServer.ipBanList.length + " banned IPs: ";
-        global.banlist1 = " IP              | IP ";
-        global.banlist1 = "───────────────────────────────────```";
+        global.banlist2 = " IP              | IP ";
+        global.banlist3 = "───────────────────────────────────```";
 
         for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
-            global.banlist1 = "``` " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
+            global.banlist4 = "``` " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
                 (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "```";
         }
     },
