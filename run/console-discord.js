@@ -58,10 +58,15 @@ class Bot {
                 message.channel.send(ban2);
             } else if (message.content.startsWith("banlist")) {
                 message.channel.send(banlist1);
+                message.channel.send(banlist2);
+                message.channel.send(banlist4);
+                message.channel.send(banlist3);
             } else if (message.content.startsWith("addbot")) {
                 message.channel.send(addbot1);
             } else if (message.content.startsWith("kickbot")) {
                 message.channel.send(kickbot1);
+            } else if (message.content.startsWith("board")) {
+                message.channel.send(board1);
             }
         } else {
             return;
