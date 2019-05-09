@@ -31,7 +31,7 @@ class Bot {
                 message.channel.send(speed2);
             } else if (message.content == "s" || "S") {
                 message.channel.send(speed2);
-            } else if (message2 == "help") {
+            } else if (message2 = "help") {
                 message.channel.send(help2);
                 message.channel.send(help21);
                 message.channel.send(help22);
