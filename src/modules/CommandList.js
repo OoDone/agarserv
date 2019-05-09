@@ -16,7 +16,7 @@ function speed2() {
 }
 
 speed2.list = {
-    speed2 = message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
+    speed2 = message.channel.send("Set base speed of " + getName(client._name) + " to " + speed)
 }
 module.exports = Commands;
 module.exports = Speed2;
