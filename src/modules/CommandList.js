@@ -11,7 +11,13 @@ var speed2;
 function Commands() {
     this.list = {}; // Empty
 }
+function speed2() {
+    this.list = {}; // Empty
+}
 
+speed2.list = {
+    speed2 = message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
+}
 module.exports = Commands;
 module.exports = Speed2;
 
@@ -636,7 +642,7 @@ Commands.list = {
             }
         }
         if (client == null) return void Logger.warn("That player ID is non-existant!");
-        speed2 = message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
+        Logger.info("Set base speed of " + getName(client._name) + " to " + speed);
     },
     merge: function (gameServer, split) {
         // Validation checks
