@@ -79,7 +79,7 @@ class Bot {
                 message.channel.send(exit1);
             } else if (message.content.startsWith("restart")) {
                 message.channel.send(restart1);
-            } else if (message.content.startsWith("kick")) {
+            } else if ((message.content.startsWith("kick")) && (!message.content.startsWith("kickall"))) {
                 message.channel.send(kick1);
             } else if (message.content.startsWith("mute")) {
                 message.channel.send(mute1);
