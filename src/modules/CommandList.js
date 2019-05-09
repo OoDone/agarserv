@@ -131,7 +131,7 @@ Commands.list = {
             "- Viruses:      " + fillChar(gameServer.nodesVirus.length, " ", 4, true) + " / " + gameServer.config.virusMaxAmount + "\n" +
             "Moving nodes:   " + fillChar(gameServer.movingNodes.length, " ", 4, true) + "\n" +
             "Quad nodes:     " + fillChar(scanNodeCount(gameServer.quadTree), " ", 4, true) + "\n" +
-            "Quad items:     " + fillChar(scanItemCount(gameServer.quadTree), " ```", 4, true);
+            "Quad items:     " + fillChar(scanItemCount(gameServer.quadTree), " ", 4, true) + "```";
     },
     reset: function (gameServer, split) {
         var ent = split[1];
@@ -211,11 +211,11 @@ Commands.list = {
         for (var i = 0; i < add; i++) {
             gameServer.bots.addBot();
         }
-        global.addbot1 = "Added " + add + " player bots";
+        global.addbot1 = "```Added " + add + " player bots```";
     },
     ban: function (gameServer, split) {
         // Error message
-        var logInvalid = "Please specify a valid player ID or IP address!";
+        var logInvalid = "```Please specify a valid player ID or IP address!```";
 
         if (split[1] === null || typeof split[1] == "undefined") {
             // If no input is given; added to avoid error
@@ -261,7 +261,7 @@ Commands.list = {
             }
         }
         if (ip) ban(gameServer, split, ip);
-        else global.ban2 = "Player ID " + id + " not found!";
+        else global.ban2 = "```Player ID " + id + " not found!```";
     },
     banlist: function (gameServer, split) {
         Logger.print("Showing " + gameServer.ipBanList.length + " banned IPs: ");
