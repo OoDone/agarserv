@@ -31,6 +31,7 @@ class Bot {
             } else if (message.content == 'help') {
                 message.channel.send(help2);
                 message.channel.send(help21);
+                message.channel.send(help22);
             }
             if (message.content.startsWith("pl")) {
                 if (message.content == 'pl') {
