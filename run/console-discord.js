@@ -39,10 +39,19 @@ class Bot {
             } else if (message.content.startsWith("shortcuts")) {
                 message.channel.send(shortcut2);
             } else if (message.content.startsWith("reset")) {
-                message.channel.send(reset1);
-                message.channel.send(reset2);
-                message.channel.send(reset3);
-                message.channel.send(reset4);
+                if (reset1t = true) {
+                    message.channel.send(reset1);
+                    reset1t = false;
+                } else if reset2t == true) {
+                    message.channel.send(reset2);
+                    reset2t = false;
+                } else if reset3t == true) {
+                    message.channel.send(reset3);
+                    reset3t = false;
+                } else if reset4t == true) {
+                    message.channel.send(reset4);
+                    reset4t = false;
+                }
             }
 
         } else {
