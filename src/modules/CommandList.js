@@ -142,7 +142,6 @@ Commands.list = {
         if (ent != "ejected" && ent != "food" && ent != "virus") {
             global.reset1 = "Removed " + gameServer.nodes.length + " nodes";
             reset1t = true;
-            for (; gameServer.nodesEje
             for (; gameServer.nodes.length;) gameServer.removeNode(gameServer.nodes[0]);
         }
         if (ent == "ejected") {
