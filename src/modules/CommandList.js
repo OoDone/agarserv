@@ -90,7 +90,7 @@ Commands.list = {
             "└──────────────────────────────────────────────────────────────────────────┘";
     },
     shortcuts: function (gameServer, split) {
-        Logger.print("                       ┌────────────────────────────┐                       \n" +
+        global.shortcut2 = "                       ┌────────────────────────────┐                       \n" +
             "                       │ LIST OF COMMAND SHORTCUTS  │                       \n" +
             "┌──────────────────────┴──────┬─────────────────────┴──────────────────────┐\n" +
             "│ st                          │ Alias for status of server                 │\n" +
@@ -109,7 +109,7 @@ Commands.list = {
             "│ n                           │ Alias for name                             │\n" +
             "│ rep                         │ Alias for replace                          │\n" +
             "| e                           | Alias for explode                          |\n" +
-            "└─────────────────────────────┴────────────────────────────────────────────┘");
+            "└─────────────────────────────┴────────────────────────────────────────────┘";
     },
     chat: function (gameServer, split) {
         for (var i = 0; i < gameServer.clients.length; i++) {
