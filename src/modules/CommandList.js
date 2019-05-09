@@ -135,37 +135,29 @@ Commands.list = {
     },
     reset: function (gameServer, split) {
         var ent = split[1];
+        global.reset2t = false;
+        global.reset3t = false;
+        global.reset4t = false;
+        global.reset1t = false;
         if (ent != "ejected" && ent != "food" && ent != "virus") {
             global.reset1 = "Removed " + gameServer.nodes.length + " nodes";
-            global.reset1t = true;
-            global.reset2t = false;
-            global.reset3t = false;
-            global.reset4t = false;
+            reset1t = true;
             for (; gameServer.nodesEje
             for (; gameServer.nodes.length;) gameServer.removeNode(gameServer.nodes[0]);
         }
         if (ent == "ejected") {
             global.reset2 = "Removed " + gameServer.nodesEjected.length + " ejected nodes";
-            global.reset2t = true;
-            global.reset1t = false;
-            global.reset3t = false;
-            global.reset4t = false;
+            reset2t = true;
             for (; gameServer.nodesEjected.length;) gameServer.removeNode(gameServer.nodesEjected[0]);
         }
         if (ent == "food") {
             global.reset3 = "Removed " + gameServer.nodesFood.length + " food nodes";
-            global.reset3t = true;
-            global.reset2t = false;
-            global.reset1t = false;
-            global.reset4t = false;
+            reset3t = true;
             for (; gameServer.nodesFood.length;) gameServer.removeNode(gameServer.nodesFood[0]);
         }
         if (ent == "virus") {
             global.reset4 = "Removed " + gameServer.nodesVirus.length + " virus nodes";
-            global.reset4t = true;
-            global.reset2t = false;
-            global.reset3t = false;
-            global.reset1t = false;
+            reset4t = true;
             for (; gameServer.nodesVirus.length;) gameServer.removeNode(gameServer.nodesVirus[0]);
         }
     },
