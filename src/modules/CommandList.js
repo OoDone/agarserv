@@ -30,7 +30,7 @@ var fillChar = function (data, char, fieldLength, rTL) {
 // Commands
 Commands.list = {
     help: function (gameServer, split) {
-        Logger.print("                       ┌────────────────────────────┐                       \n" +
+        global.help2 = "                       ┌────────────────────────────┐                       \n" +
             "                       │ LIST OF AVAILABLE COMMANDS │                       \n" +
             "┌──────────────────────┴────────────────────────────┴──────────────────────┐\n" +
             "│                         ----Players and AI----                           │\n" +
@@ -87,7 +87,7 @@ Commands.list = {
             "│                                                                          │\n" +
             "├──────────────────────────────────────────────────────────────────────────┤\n" +
             '│         Psst! Do "shortcuts" for a list of command shortcuts!            │\n' +
-            "└──────────────────────────────────────────────────────────────────────────┘");
+            "└──────────────────────────────────────────────────────────────────────────┘";
     },
     shortcuts: function (gameServer, split) {
         Logger.print("                       ┌────────────────────────────┐                       \n" +
