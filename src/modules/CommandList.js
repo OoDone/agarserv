@@ -313,8 +313,8 @@ Commands.list = {
             gameServer.leaderboardType = 48;
         };
         if (reset != "reset") {
-            global.board1 = "Successfully changed leaderboard values \n" + 
-            'Do "board reset" to reset leaderboard';
+            global.board1 = "```Successfully changed leaderboard values \n" + 
+            'Do "board reset" to reset leaderboard```';
         } else {
             // Gets the current gamemode
             var gm = GameMode.get(gameServer.gameMode.ID);
@@ -322,12 +322,12 @@ Commands.list = {
             // Replace functions
             gameServer.gameMode.packetLB = gm.packetLB;
             gameServer.gameMode.updateLB = gm.updateLB;
-            global.board1 = "Successfully reset leaderboard";
+            global.board1 = "```Successfully reset leaderboard```";
         }
     },
     change: function (gameServer, split) {
         if (split.length < 3) {
-            Logger.warn("Invalid command arguments");
+            global.change1 = "```Invalid command arguments```";
             return;
         }
         var key = split[1];
@@ -341,11 +341,11 @@ Commands.list = {
         }
 
         if (value == null || isNaN(value)) {
-            Logger.warn("Invalid value: " + value);
+            global.change1 = "```Invalid value: " + value + "```";
             return;
         }
         if (!gameServer.config.hasOwnProperty(key)) {
-            Logger.warn("Unknown config value: " + key);
+            global.change1 = "```Unknown config value: " + key + "```";
             return;
         }
         gameServer.config[key] = value;
@@ -368,15 +368,15 @@ Commands.list = {
             console.log(data)
         });
 
-        Logger.info("\u001B[1m\u001B[32mMultiOgar-Edited " + gameServer.version + "\u001B[37m - An open source multi-protocol ogar server\u001B[0m");
-        Logger.info("Listening on port " + gameServer.config.serverPort);
-        Logger.info("Current game mode is " + gameServer.gameMode.name + "\n");
+        global.clear1 = "\u001B[1m\u001B[32mMultiOgar-Edited " + gameServer.version + "\u001B[37m - An open source multi-protocol ogar server\u001B[0m";
+        global.clear2 = "```Listening on port " + gameServer.config.serverPort + "```";
+        global.clear3 = "```Current game mode is " + gameServer.gameMode.name + "\n" + "```";
     },
     color: function (gameServer, split) {
         // Validation checks
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.color1 = "```Please specify a valid player ID!```";
             return;
         }
         // Get colors
@@ -393,7 +393,7 @@ Commands.list = {
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) return Logger.warn("That player is either dead or not playing!");
+                if (!client.cells.length) return global.color1 = "```That player is either dead or not playing!```";
                 client.color = color; // Set color
                 for (var j in client.cells) {
                     client.cells[j].color = color;
@@ -401,8 +401,8 @@ Commands.list = {
                 break;
             }
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
-        Logger.print("Changed " + getName(client._name) + "'s color to: " + color.r + ", " + color.g + ", " + color.b);
+        if (client == null) return void global.color1 = "That player ID is non-existant!";
+        global.color1 = "```Changed " + getName(client._name) + "'s color to: " + color.r + ", " + color.g + ", " + color.b + "```";
     },
     exit: function (gameServer, split) {
         Logger.warn("Closing server...");
