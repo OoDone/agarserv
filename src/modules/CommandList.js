@@ -636,7 +636,7 @@ Commands.list = {
         }
         if (client == null) return void Logger.warn("That player ID is non-existant!");
         client2.on('message', function(message) {
-            if(message.author.equals(client2.user)) {
+             if (message.content.startsWith("s")) {
                 message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
             }
         });
