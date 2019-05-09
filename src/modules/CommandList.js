@@ -114,6 +114,7 @@ Commands.list = {
     chat: function (gameServer, split) {
         for (var i = 0; i < gameServer.clients.length; i++) {
             gameServer.sendChatMessage(null, i, String(split.slice(1, split.length).join(" ")));
+            gameServer.sendChatMessage(null, i, "test");
         }
     },
     debug: function (gameServer, split) {
@@ -264,14 +265,13 @@ Commands.list = {
         else global.ban2 = "```Player ID " + id + " not found!```";
     },
     banlist: function (gameServer, split) {
-        Logger.print("Showing " + gameServer.ipBanList.length + " banned IPs: ");
-        Logger.print(" IP              | IP ");
-        Logger.print("───────────────────────────────────");
+        global.banlist1 = "```Showing " + gameServer.ipBanList.length + " banned IPs: ";
+        global.banlist1 = " IP              | IP ";
+        global.banlist1 = "───────────────────────────────────```";
 
         for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
-            Logger.print(" " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
-                (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1])
-            );
+            global.banlist1 = "``` " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
+                (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "```";
         }
     },
     kickbot: function (gameServer, split) {
@@ -290,11 +290,11 @@ Commands.list = {
                 break;
         }
         if (!removed)
-            Logger.warn("Cannot find any bots");
+            global.kickbot1 = "```Cannot find any bots```";
         else if (toRemove == removed)
-            Logger.warn("Kicked " + removed + " bots");
+            global.kickbot1 = "```Kicked " + removed + " bots```";
         else
-            Logger.warn("Only " + removed + " bots were kicked");
+            global.kickbot1 = "```Only " + removed + " bots were kicked```";
     },
     board: function (gameServer, split) {
         var newLB = [];
