@@ -52,8 +52,8 @@ Commands.list = {
             "│ spawnmass [PlayerID] [mass]  │ Sets a player's spawn mass                │\n" +
             "│ freeze [PlayerID]            │ Freezes a player                          │\n" +
             "│ speed [PlayerID]             │ Sets a player's base speed                │\n" +
-            "│ color [PlayerID] [R] [G] [B] │ Set cell(s) color by client ID            │\n" +
-            "│ name [PlayerID] [name]       │ Change cell(s) name by client ID          │\n" +
+            "│ color [PlayerID] [R] [G] [B] │ Set cell(s) color by client ID            │"
+        global.help21 = "│ name [PlayerID] [name]       │ Change cell(s) name by client ID          │\n" +
             "│ skin [PlayerID] [string]     │ Change cell(s) skin by client ID          │\n" +
             "│ rec [PlayerID]               │ Gives a player instant-recombine + more   │\n" +
             "│ split [PlayerID] [Amount]    │ Forces a player to split                  │\n" +
