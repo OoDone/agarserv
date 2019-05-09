@@ -25,6 +25,7 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
+            message.channel.send(Commands(help));
             if (message.content.startsWith("s")) {
                 if (message.content == 's') {
                     message.channel.send("Please specify a valid player ID!");
