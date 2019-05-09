@@ -5,6 +5,7 @@ var figlet = require('figlet');
 var GameMode = require('../gamemodes');
 var Logger = require('./Logger');
 var Entity = require('../entity');
+var Discord = require('..../run/discord');
 
 function Commands() {
     this.list = {}; // Empty
