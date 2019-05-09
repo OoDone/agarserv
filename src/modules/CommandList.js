@@ -12,14 +12,18 @@ function Commands() {
     this.list = {}; // Empty
 }
 function speed2() {
-    this.list = {}; // Empty
+    this.list = {
+        speed2 = {
+            message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
+        };
+    }; // Empty
 }
 
 speed2.list = {
-    speed2 = message.channel.send("Set base speed of " + getName(client._name) + " to " + speed)
+    
 }
 module.exports = Commands;
-module.exports = Speed2;
+module.exports = speed2;
 
 // Utils
 var fillChar = function (data, char, fieldLength, rTL) {
