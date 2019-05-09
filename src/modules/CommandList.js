@@ -313,7 +313,7 @@ Commands.list = {
             gameServer.leaderboardType = 48;
         };
         if (reset != "reset") {
-            global.board1 = "Successfully changed leaderboard values" + 
+            global.board1 = "Successfully changed leaderboard values \n" + 
             'Do "board reset" to reset leaderboard';
         } else {
             // Gets the current gamemode
