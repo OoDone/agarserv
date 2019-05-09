@@ -14,6 +14,7 @@ const config = {
 class Bot {
     constructor() {
         this.client = new Discord.Client();
+        global.client = this.client;
         this.client.on("message", this.onMessage.bind(this));
         this.client.on("ready", this.onReady.bind(this));
         process.on("error", this.onError.bind(this));
