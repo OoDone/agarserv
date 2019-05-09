@@ -38,12 +38,13 @@ class Bot {
                 message.channel.send(debug);
             } else if (message.content.startsWith("shortcuts")) {
                 message.channel.send(shortcut2);
+            } else if (message.content.startsWith("reset")) {
+                message.channel.send(reset1);
+                message.channel.send(reset2);
+                message.channel.send(reset3);
+                message.channel.send(reset4);
             }
-            if (message.content.startsWith("pl")) {
-                if (message.content == 'pl') {
-                   message.channel.send("Playerlist Discord In Progress");
-               }
-            }
+
         } else {
             return;
         }
