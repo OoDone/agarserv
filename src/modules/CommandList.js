@@ -393,7 +393,7 @@ Commands.list = {
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) return global.color1 = "```That player is either dead or not playing!```";
+                if (!client.cells.length) global.color1 = "```That player is either dead or not playing!```";
                 client.color = color; // Set color
                 for (var j in client.cells) {
                     client.cells[j].color = color;
@@ -405,13 +405,13 @@ Commands.list = {
         global.color1 = "```Changed " + getName(client._name) + "'s color to: " + color.r + ", " + color.g + ", " + color.b + "```";
     },
     exit: function (gameServer, split) {
-        Logger.warn("Closing server...");
+        global.exit1 = "```Closing server...```";
         gameServer.wsServer.close();
         process.exit(1);
     },
     restart: function (gameServer) {
         var QuadNode = require('./QuadNode.js');
-        Logger.warn("Restarting server...");
+        global.restart1 = "```Restarting server...```";
         gameServer.httpServer = null;
         gameServer.wsServer = null;
         gameServer.run = true;
@@ -439,7 +439,7 @@ Commands.list = {
     kick: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.kick1 = "Please specify a valid player ID!";
             return;
         }
         // kick player
@@ -454,31 +454,31 @@ Commands.list = {
             // disconnect
             socket.close(1000, "Kicked from server");
             var name = getName(socket.playerTracker._name);
-            Logger.print("Kicked \"" + name + "\"");
+            global.kick1 = "```Kicked \"" + name + "\"```";
             gameServer.sendChatMessage(null, null, "Kicked \"" + name + "\""); // notify to don't confuse with server bug
             count++;
         }, this);
         if (count) return;
-        if (!id) Logger.warn("No players to kick!");
-        else Logger.warn("That player ID (" + id + ") is non-existant!");
+        if (!id) global.kick1 = "```No players to kick!```";
+        else global.kick1 = "```That player ID (" + id + ") is non-existant!```";
     },
     mute: function (gameServer, args) {
         if (!args || args.length < 2) {
-            Logger.warn("Please specify a valid player ID!");
+            global.mute1 = "```Please specify a valid player ID!```";
             return;
         }
         var id = parseInt(args[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.mute1 = "```Please specify a valid player ID!```";
             return;
         }
         var player = playerById(id, gameServer);
         if (!player) {
-            Logger.warn("That player ID (" + id + ") is non-existant!");
+            global.mute1 = "```That player ID (" + id + ") is non-existant!```";
             return;
         }
         if (player.isMuted) {
-            Logger.warn("That player with ID (" + id + ") is already muted!");
+            global.mute1 = "```That player with ID (" + id + ") is already muted!```";
             return;
         }
         Logger.print("Player \"" + getName(player._name) + "\" was muted");
