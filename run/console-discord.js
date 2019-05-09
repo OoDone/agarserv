@@ -28,10 +28,12 @@ class Bot {
             message.delete();
             if (message.content.startsWith("s")) {
                 message.channel.send(speed2);
-            } else if (message.content == 'help') {
+            } else if (message.content.startsWith("help")) {
                 message.channel.send(help2);
                 message.channel.send(help21);
                 message.channel.send(help22);
+            } else if (message.content.startsWith("debug")) {
+                message.channel.send(debug);
             }
             if (message.content.startsWith("pl")) {
                 if (message.content == 'pl') {
