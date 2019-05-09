@@ -29,7 +29,8 @@ class Bot {
             if (message.content.startsWith("s")) {
                 message.channel.send(speed2);
             } else if (message.content == 'help') {
-                    message.channel.send(help2);
+                message.channel.send(help2);
+                message.channel.send(help21);
             }
             if (message.content.startsWith("pl")) {
                 if (message.content == 'pl') {
