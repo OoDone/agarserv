@@ -29,7 +29,7 @@ class Bot {
             var message2 = message.content.toLowerCase();
             if ((message.content.startsWith("s ")) || (message.content.startsWith("S "))) {
                 message.channel.send(speed2);
-            } else if (message.content == "s" || "S") {
+            } else if (message.content == "s") {
                 message.channel.send(speed2);
             } else if (message2 = "help") {
                 message.channel.send(help2);
