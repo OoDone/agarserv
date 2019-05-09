@@ -67,6 +67,14 @@ class Bot {
                 message.channel.send(kickbot1);
             } else if (message.content.startsWith("board")) {
                 message.channel.send(board1);
+            } else if (message.content.startsWith("change")) {
+                message.channel.send(change1);
+            } else if (message.content.startsWith("clear")) {
+                message.channel.send(clear1);
+                message.channel.send(clear2);
+                message.channel.send(clear3);
+            } else if (message.content.startsWith("color")) {
+                message.channel.send(color1);
             }
         } else {
             return;
