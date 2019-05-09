@@ -522,7 +522,7 @@ Commands.list = {
             // disconnect
             socket.close(1000, "Kicked from server.");
             var name = getName(socket.playerTracker._name);
-            Logger.print("Kicked \"" + name + "\"");
+            global.kickall1 = "Kicked \"" + name + "\"";
             gameServer.sendChatMessage(null, null, "Kicked \"" + name + "\""); // notify to don't confuse with server bug
             count++;
         }, this);
