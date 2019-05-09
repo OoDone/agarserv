@@ -635,9 +635,10 @@ Commands.list = {
             }
         }
         if (client == null) return void Logger.warn("That player ID is non-existant!");
-        global.speed2 = "blah blah" + getName(client._name) + " to " + speed;
         client2.on('message', function(message) {
-            message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
+            if(message.author.equals(client2.user) {
+                message.channel.send("Set base speed of " + getName(client._name) + " to " + speed);
+            }
         });
     },
     merge: function (gameServer, split) {
