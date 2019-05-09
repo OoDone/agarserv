@@ -34,6 +34,8 @@ class Bot {
                 message.channel.send(help22);
             } else if (message.content.startsWith("debug")) {
                 message.channel.send(debug);
+            } else if (message.content.startsWith("shortcuts")) {
+                message.channel.send(shortcut2);
             }
             if (message.content.startsWith("pl")) {
                 if (message.content == 'pl') {
