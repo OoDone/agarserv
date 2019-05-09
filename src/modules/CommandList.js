@@ -528,13 +528,13 @@ Commands.list = {
         }, this);
 
         if (count) return;
-        if (!this.id) Logger.warn("No players to kick!");
-        else Logger.warn("That player ID (" + this.id + ") is non-existant!");
+        if (!this.id) global.kickall1 = "No players to kick!";
+        else global.kickall1 = "That player ID (" + this.id + ") is non-existant!";
     },
     kill: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.kill1 = "Please specify a valid player ID!";
             return;
         }
 
@@ -548,11 +548,11 @@ Commands.list = {
                     count++;
                 }
 
-                Logger.print("Killed " + getName(client._name) + " and removed " + count + " cells");
+                global.kill1 = "Killed " + getName(client._name) + " and removed " + count + " cells";
                 break;
             }
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
+        if (client == null) return void global.kill1 = "That player ID is non-existant!";
     },
     killall: function (gameServer, split) {
         var count = 0;
@@ -563,7 +563,7 @@ Commands.list = {
                 count++;
             }
         }
-        if (this.id) Logger.print("Removed " + count + " cells");
+        if (this.id) global.killall1 = "Removed " + count + " cells";
     },
     mass: function (gameServer, split) {
         // Validation checks
@@ -574,7 +574,7 @@ Commands.list = {
         }
         var amount = parseInt(split[2]);
         if (isNaN(amount)) {
-            Logger.warn("Please specify a valid number");
+            global.mass1 = "Please specify a valid number";
             return;
         }
         var size = Math.sqrt(amount * 100);
@@ -583,15 +583,15 @@ Commands.list = {
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) return Logger.warn("That player is either dead or not playing!");
+                if (!client.cells.length) return global.mass1 = "That player is either dead or not playing!";
                 for (var j in client.cells) {
                     client.cells[j].setSize(size);
                 }
-                Logger.print("Set mass of " + getName(client._name) + " to " + (size * size / 100).toFixed(3));
+                global.mass1 = "Set mass of " + getName(client._name) + " to " + (size * size / 100).toFixed(3));
                 break;
             }
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
+        if (client == null) return void global.mass1 = "That player ID is non-existant!";
     },
     spawnmass: function (gameServer, split) {
         var id = parseInt(split[1]);
