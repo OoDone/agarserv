@@ -27,11 +27,9 @@ class Bot {
             execute(index.gameServer, args);
             message.delete();
             if (message.content.startsWith("s")) {
-                if (message.content == 's') {
-                    message.channel.send("Please specify a valid player ID!");
-                } else if (message.content !== 's') {
-                    message.channel.send(speed2);
-                }
+                message.channel.send(speed2);
+            } else if (message.content == 'help') {
+                    message.channel.send(help2);
             }
             if (message.content.startsWith("pl")) {
                 if (message.content == 'pl') {
