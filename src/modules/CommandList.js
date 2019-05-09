@@ -1198,7 +1198,6 @@ function ban(gameServer, split, ip) {
     }, gameServer);
     saveIpBanList(gameServer);
 }
-module.exports = Speed2;
 // functions from PlayerTracker
 
 function getName(name) {
