@@ -140,6 +140,12 @@ class Bot {
                 message.channel.send(name1);
             } else if (message.content.startsWith("split")) {
                 message.channel.send(split1);
+            } else if (message.content.startsWith("unban")) {
+                message.channel.send(unban1);
+            } else if (message.content.startsWith("pause")) {
+                message.channel.send(pause1);
+            } else if (message.content.startsWith("freeze")) {
+                message.channel.send(freeze1);
             } else if ((message.content.startsWith("playerlist")) || (message.content = "pl")) {
                   playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
