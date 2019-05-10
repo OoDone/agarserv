@@ -2,6 +2,8 @@ const Discord = require("discord.js");
 const Commands = require("../src/modules/CommandList");
 const index = require("../src/index");
 const Logger = require("../src/modules/Logger");
+var Entity = require('../entity');
+var GameMode = require('../gamemodes');
 
 
 var fs = require('fs');
