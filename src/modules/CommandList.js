@@ -838,6 +838,7 @@ Commands.list = {
                 global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + data;
             } else if (client.cells.length) {
                 client2.on("message", async message => {
+                    message.channel.send("tesssst");
                     if(message.author.bot) return;
                     message.channel.send("test");
                     nick = fillChar(getName(client._name), ' ', gameServer.config.playerMaxNickLength);
