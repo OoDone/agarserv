@@ -132,6 +132,8 @@ class Bot {
                 message.channel.send(spawnmass1);
             } else if (message.content.startsWith("merge")) {
                 message.channel.send(merge1);
+            } else if (message.content.startsWith("rec")) {
+                message.channel.send(rec1);
             } else if ((message.content.startsWith("playerlist")) || (message.content = "pl")) {
                   playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
