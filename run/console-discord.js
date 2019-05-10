@@ -10,7 +10,6 @@ const config = {
     role: "owner",
     token: "NTY4Nzc1OTU3NDkwNjk2MTky.XLm_8g.QABmXoQkLG1_YZE3WPVudVwsejk"
 };
-
 class Bot {
     constructor() {
         this.client = new Discord.Client();
@@ -19,6 +18,7 @@ class Bot {
         this.client.on("ready", this.onReady.bind(this));
         process.on("error", this.onError.bind(this));
         this.client.login(config.token);
+        emitter.setMaxListeners(20)
     };
     onMessage(message) {
         const args = message.content.split(/\s+/g);
