@@ -57,9 +57,9 @@ class Bot {
         process.setMaxListeners(0)
         setTimeout(function() {
             const channel = client2.channels.get('575389016510431233')
-            channel.send(port2);
-            channel.send(currentgamemode2);
-            channel.send(bot1);
+            channel.send(port2)
+            channel.send(currentgamemode2)
+            channel.send(bot1)
         2000});
     };onMessage(message) {
         const args = message.content.split(/\s+/g);
