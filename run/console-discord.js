@@ -60,7 +60,7 @@ class Bot {
             channel.send(port2);
             channel.send(currentgamemode2);
             channel.send(bot1);
-        } 2000);
+        2000});
     };onMessage(message) {
         const args = message.content.split(/\s+/g);
         var execute = Commands.list[args[0]];
