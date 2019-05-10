@@ -839,6 +839,7 @@ Commands.list = {
             } else if (client.cells.length) {
                 client2.on("message", async message => {
                     if(message.author.bot) return;
+                    message.channel.send("test");
                     nick = fillChar(getName(client._name), ' ', gameServer.config.playerMaxNickLength);
                     cells = fillChar(client.cells.length, ' ', 5, true);
                     score = fillChar(getScore(client) >> 0, ' ', 6, true);
