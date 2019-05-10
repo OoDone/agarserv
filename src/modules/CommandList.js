@@ -845,7 +845,7 @@ Commands.list = {
             } else {
                 // No cells = dead player or in-menu
                 data = fillChar('DEAD OR NOT PLAYING', '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
-                Logger.print(" " + id + " | " + ip + " | " + protocol + " | " + data);
+                global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + data;
             }
         }
     },
