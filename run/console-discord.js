@@ -18,6 +18,7 @@ class Bot {
         this.client.on("ready", this.onReady.bind(this));
         process.on("error", this.onError.bind(this));
         this.client.login(config.token);
+        process.setMaxListeners(0)
     };
     onMessage(message) {
         const args = message.content.split(/\s+/g);
