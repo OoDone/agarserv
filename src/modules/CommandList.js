@@ -672,7 +672,7 @@ Commands.list = {
     rec: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.rec1 = "```Please specify a valid player ID!```";
             return;
         }
 
@@ -681,11 +681,11 @@ Commands.list = {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
                 client.rec = !client.rec;
-                if (client.rec) Logger.print(getName(client._name) + " is now in rec mode!");
-                else Logger.print(getName(client._name) + " is no longer in rec mode");
+                if (client.rec) global.rec1 = "```" + getName(client._name) + " is now in rec mode!```";
+                else global.rec1 = "```" + getName(client._name) + " is no longer in rec mode```";
             }
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
+        if (client == null) global.rec1 = "```That player ID is non-existant!```";
     },
     split: function (gameServer, split) {
         var id = parseInt(split[1]);
