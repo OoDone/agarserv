@@ -196,7 +196,7 @@ class Bot {
                                 }
                             }
                         }
-                            playerlist(index.gameServer, args);
+                playerlist(index.gameServer, args);
                 }
         } else {
             return;
