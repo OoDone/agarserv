@@ -56,7 +56,7 @@ class Bot {
         this.client.login(config.token);
         process.setMaxListeners(0)
         setTimeout(function() {
-            const channel = this.client.channels.get('575389016510431233');
+            const channel = this.client.channel.get('575389016510431233');
             channel.send(port2);
             channel.send(currentgamemode2);
             channel.send(bot1);
