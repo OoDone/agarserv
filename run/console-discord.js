@@ -93,29 +93,6 @@ class Bot {
                 message.channel.send(killall1);
             } else if (message.content.startsWith("mass")) {
                 message.channel.send(mass1);
-            } else if (message.content.startsWith("playerlist")) {
-                function test() {
-                    message.channel.send(playerlist3);
-                    message.channel.send(playerlist4);
-                    message.channel.send(playerlist5);
-                    message.channel.send(playerlist6);
-                    var plstep;
-                    var playerlist3 = playerlist2;
-                    for (plstep = 0; plstep < 5; plstep++) {
-                        message.channel.send(playerlist2);
-                        if (plstep = 2) {
-                            playerlist3 = playerlist2;
-                            message.channel.send("step2test: " + playerlist2)
-                        }
-                        if ((playerlist3 !== playerlist2) && (playerlist2 != "")) {
-                            message.channel.send(playerlist2);
-                        }
-                        if (plstep = 5) {
-                            message.channel.send("playerlist1");
-                        }
-                    }
-                }  
-                test();
             }
         } else {
             return;
