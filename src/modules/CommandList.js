@@ -651,7 +651,7 @@ Commands.list = {
         // Validation checks
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.merge1 = "```Please specify a valid player ID!```";
             return;
         }
 
@@ -659,15 +659,15 @@ Commands.list = {
         for (var i = 0; i < gameServer.clients.length; i++) {
             if (id == gameServer.clients[i].playerTracker.pID) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) return Logger.warn("That player is either dead or not playing!");
-                if (client.cells.length == 1) return Logger.warn("Client already has one cell!");
+                if (!client.cells.length) global.merge1 = "```That player is either dead or not playing!```";
+                if (client.cells.length == 1) global.merge1 = "```Client already has one cell!```";
                 // Set client's merge override
                 client.mergeOverride = !client.mergeOverride;
-                if (client.mergeOverride) Logger.print(getName(client._name) + " is now force merging");
-                else Logger.print(getName(client._name) + " isn't force merging anymore");
+                if (client.mergeOverride) global.merge1 = "```" + getName(client._name) + " is now force merging```";
+                else global.merge1 = "```" + getName(client._name) + " isn't force merging anymore```";
             }
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
+        if (client == null) global.merge1 = "```That player ID is non-existant!```";
     },
     rec: function (gameServer, split) {
         var id = parseInt(split[1]);
