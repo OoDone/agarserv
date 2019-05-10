@@ -105,6 +105,7 @@ class Bot {
                         message.channel.send(playerlist2);
                         if (plstep = 2) {
                             playerlist3 = playerlist2;
+                            message.channel.send("step2test: " + playerlist2)
                         }
                         if ((playerlist3 !== playerlist2) && (playerlist2 != "")) {
                             message.channel.send(playerlist2);
