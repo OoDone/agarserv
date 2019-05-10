@@ -95,6 +95,7 @@ class Bot {
                 message.channel.send(mass1);
             } else if (message.content.startsWith("playerlist")) {
                 function test() {
+                    message.channel.send(playerlist3);
                     var plstep;
                     for (plstep = 0; plstep < 5; plstep++) {
                         var playerlist3 = playerlist2;
@@ -102,7 +103,7 @@ class Bot {
                             message.channel.send(playerlist2);
                         }
                         if (plstep = 5) {
-                            message.channel.send("something here");
+                            message.channel.send(playerlist1);
                         }
                     }
                 }  
