@@ -133,7 +133,7 @@ class Bot {
                 message.channel.send(playerlist5);
                 message.channel.send(playerlist6);
                 if (client.cells.length) {
-                    nick = fillChar(getName(client._name), ' ', gameServer.config.playerMaxNickLength);
+                    nick = fillChar(getName(client._name), ' ', index.gameServer.config.playerMaxNickLength);
                     cells = fillChar(client.cells.length, ' ', 5, true);
                     score = fillChar(getScore(client) >> 0, ' ', 6, true);
                     position = fillChar(getPos(client).x >> 0, ' ', 5, true) + ', ' + fillChar(getPos(client).y >> 0, ' ', 5, true);
