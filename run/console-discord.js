@@ -55,8 +55,6 @@ class Bot {
         process.on("error", this.onError.bind(this));
         this.client.login(config.token);
         process.setMaxListeners(0)
-        const channels = client2.channels.get('575389016510431233');
-        channels.sendMessage('test');
     };onMessage(message) {
         const args = message.content.split(/\s+/g);
         var execute = Commands.list[args[0]];
@@ -249,6 +247,7 @@ class Bot {
     onReady() {
         Logger.info(`Successfully logged in.`);
         this.client.user.setActivity("Agario");
+        client2.channels.get('575389016510431233').send('Hello here!')
     };
 
     onError(error) {
