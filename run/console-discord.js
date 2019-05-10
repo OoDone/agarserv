@@ -105,10 +105,8 @@ class Bot {
                             message.channel.send("something here");
                         }
                     }
-                }
-                
-                
-                
+                }  
+                test();
             }
         } else {
             return;
