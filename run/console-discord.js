@@ -128,7 +128,7 @@ class Bot {
                 message.channel.send(killall1);
             } else if (message.content.startsWith("mass")) {
                 message.channel.send(mass1);
-            } else if (message.content.startsWith("playerlist")) {
+            } else if ((message.content.startsWith("playerlist")) || (message.content = "pl")) {
                   playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
                         if (!gameServer.clients.length) message.channel.send("```No bots or players are currently connected to the server!```");
