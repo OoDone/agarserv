@@ -785,10 +785,10 @@ Commands.list = {
     },
     playerlist: function (gameServer, split) {
         if (!gameServer.clients.length) return Logger.warn("No bots or players are currently connected to the server!");
-        Logger.print("\nCurrent players: " + gameServer.clients.length);
-        Logger.print('Do "playerlist m" or "pl m" to list minions\n');
-        Logger.print(" ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " "); // Fill space
-        Logger.print(fillChar('', '─', ' ID     | IP              | CELLS | SCORE  |   POSITION   |   |  '.length + gameServer.config.playerMaxNickLength));
+        global.playerlist3 = "\nCurrent players: " + gameServer.clients.length + "\n" +
+        'Do "playerlist m" or "pl m" to list minions\n' +
+        " ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " \n" +// Fill space
+        fillChar('', '─', ' ID     | IP              | CELLS | SCORE  |   POSITION   |   |  '.length + gameServer.config.playerMaxNickLength);
         var sockets = gameServer.clients.slice(0);
         sockets.sort(function (a, b) {
             return a.playerTracker.pID - b.playerTracker.pID;
@@ -825,9 +825,9 @@ Commands.list = {
                     reason += "[" + socket.closeReason.code + "] ";
                 if (socket.closeReason.message)
                     reason += socket.closeReason.message;
-                Logger.print(" " + id + " | " + ip + " | " + protocol + " | " + reason);
+                global.playerlist1 = " " + id + " | " + ip + " | " + protocol + " | " + reason;
             } else if (!socket.packetHandler.protocol && socket.isConnected && !client.isMi) {
-                Logger.print(" " + id + " | " + ip + " | " + protocol + " | " + "[CONNECTING]");
+                global.playerlist1 = " " + id + " | " + ip + " | " + protocol + " | " + "[CONNECTING]";
             } else if (client.spectate) {
                 nick = "in free-roam";
                 if (!client.freeRoam) {
@@ -835,13 +835,13 @@ Commands.list = {
                     if (target) nick = getName(target._name);
                 }
                 data = fillChar("SPECTATING: " + nick, '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
-                Logger.print(" " + id + " | " + ip + " | " + protocol + " | " + data);
+                global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + data;
             } else if (client.cells.length) {
                 nick = fillChar(getName(client._name), ' ', gameServer.config.playerMaxNickLength);
                 cells = fillChar(client.cells.length, ' ', 5, true);
                 score = fillChar(getScore(client) >> 0, ' ', 6, true);
                 position = fillChar(getPos(client).x >> 0, ' ', 5, true) + ', ' + fillChar(getPos(client).y >> 0, ' ', 5, true);
-                Logger.print(" " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick);
+                global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick;
             } else {
                 // No cells = dead player or in-menu
                 data = fillChar('DEAD OR NOT PLAYING', '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
