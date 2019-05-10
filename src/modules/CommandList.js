@@ -691,97 +691,97 @@ Commands.list = {
         var id = parseInt(split[1]);
         var count = parseInt(split[2]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.split1 = "```Please specify a valid player ID!```";
             return;
         }
         if (isNaN(count)) {
-            Logger.print("Split player 4 times");
+            global.split1 = "```Split player 4 times```";
             count = 4;
         }
         if (count > gameServer.config.playerMaxCells) {
-            Logger.print("Split player to playerMaxCells");
+            global.split1 = "```Split player to playerMaxCells```";
             count = gameServer.config.playerMaxCells;
         }
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) return Logger.warn("That player is either dead or not playing!");
+                if (!client.cells.length) global.split1 = "```That player is either dead or not playing!```";
                 for (var i = 0; i < count; i++) {
                     gameServer.splitCells(client);
                 }
-                Logger.print("Forced " + getName(client._name) + " to split " + count + " times");
+                global.split1 = "```Forced " + getName(client._name) + " to split " + count + " times```";
                 break;
             }
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
+        if (client == null) global.split1 = "```That player ID is non-existant!```";
     },
     name: function (gameServer, split) {
         // Validation checks
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.name1 = "```Please specify a valid player ID!```";
             return;
         }
 
         var name = split.slice(2, split.length).join(' ');
         if (typeof name == 'undefined') {
-            Logger.warn("Please type a valid name");
+            global.name1 = "```Please type a valid name```";
             return;
         }
 
         // Change name
         for (var i = 0; i < gameServer.clients.length; i++) {
             var client = gameServer.clients[i].playerTracker;
-            if (!client.cells.length) return Logger.warn("That player is either dead or not playing!");
+            if (!client.cells.length) global.name1 = "```That player is either dead or not playing!```";
             if (client.pID == id) {
-                Logger.print("Changing " + getName(client._name) + " to " + name);
+                global.name1 = "```Changing " + getName(client._name) + " to " + name + "```";
                 client.setName(name);
                 return;
             }
         }
 
         // Error
-        Logger.warn("That player ID (" + id + ") is non-existant!");
+        global.name1 = "```That player ID (" + id + ") is non-existant!```";
     },
     skin: function (gameServer, args) {
         if (!args || args.length < 3) {
-            Logger.warn("Please specify a valid player ID and skin name!");
+            global.skin1 = "```Please specify a valid player ID and skin name!```";
             return;
         }
         var id = parseInt(args[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.skin1 = "```Please specify a valid player ID!```";
             return;
         }
         var skin = args[2].trim();
         if (!skin) {
-            Logger.warn("Please specify skin name!");
+            global.skin1 = "```Please specify skin name!```";
         }
         var player = playerById(id, gameServer);
         if (!player) {
-            Logger.warn("That player ID (" + id + ") is non-existant!");
+            global.skin1 = "```That player ID (" + id + ") is non-existant!```";
             return;
         }
         if (player.cells.length) {
-            Logger.warn("Player is alive, skin will not be applied to existing cells!");
+            global.skin1 = "```Player is alive, skin will not be applied to existing cells!```";
         }
-        Logger.print("Player \"" + getName(player._name) + "\"'s skin is changed to " + skin);
+        global.skin1 = "```Player \"" + getName(player._name) + "\"'s skin is changed to " + skin + "```";
         player.setSkin(skin);
     },
     unban: function (gameServer, split) {
         if (split.length < 2 || !split[1] || split[1].trim().length < 1) {
-            Logger.warn("Please specify a valid IP!");
+            global.unban1 = "```Please specify a valid IP!```";
             return;
         }
         var ip = split[1].trim();
         var index = gameServer.ipBanList.indexOf(ip);
         if (index < 0) {
-            Logger.warn("IP " + ip + " is not in the ban list!");
+            global.unban1 = "```IP " + ip + " is not in the ban list!```";
             return;
         }
         gameServer.ipBanList.splice(index, 1);
         saveIpBanList(gameServer);
-        Logger.print("Unbanned IP: " + ip);
+        global.unban1 = "```Unbanned IP: " + ip + "```";
     },
     playerlist: function (gameServer, split) {
         if (!gameServer.clients.length) global.playerlist3 = "No bots or players are currently connected to the server!";
@@ -853,12 +853,12 @@ Commands.list = {
     pause: function (gameServer, split) {
         gameServer.run = !gameServer.run; // Switches the pause state
         var s = gameServer.run ? "Unpaused" : "Paused";
-        Logger.print(s + " the game.");
+        global.pause1 = "```" + s + " the game.```";
     },
     freeze: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.print("Please specify a valid player ID!");
+            global.freeze1 = "```Please specify a valid player ID!```";
             return;
         }
 
