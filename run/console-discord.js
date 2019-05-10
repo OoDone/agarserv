@@ -156,6 +156,8 @@ class Bot {
                 message.channel.send(status1);
             } else if (message.content.startsWith("tp")) {
                 message.channel.send(tp1);
+            } else if (message.content.startsWith("chat")) {
+                message.channel.send(chat1);
             } else if ((message.content.startsWith("playerlist")) || (message.content = "pl")) {
                   playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
