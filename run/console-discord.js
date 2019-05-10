@@ -128,6 +128,8 @@ class Bot {
                 message.channel.send(killall1);
             } else if (message.content.startsWith("mass")) {
                 message.channel.send(mass1);
+            } else if (message.content.startsWith("spawnmass")) {
+                message.channel.send(spawnmass1);
             } else if ((message.content.startsWith("playerlist")) || (message.content = "pl")) {
                   playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
