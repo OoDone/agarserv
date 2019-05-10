@@ -14,7 +14,7 @@ class Bot {
     constructor() {
         this.client = new Discord.Client();
         global.client2 = this.client;
-        this.client.on("message", this.onMessage.bind(this));
+        //this.client.on("message", this.onMessage.bind(this));
         this.client.on("ready", this.onReady.bind(this));
         process.on("error", this.onError.bind(this));
         this.client.login(config.token);
