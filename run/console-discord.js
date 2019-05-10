@@ -94,7 +94,20 @@ class Bot {
             } else if (message.content.startsWith("mass")) {
                 message.channel.send(mass1);
             } else if (message.content.startsWith("playerlist")) {
-                message.channel.send(playerlist1);
+                function test() {
+                    var plstep;
+                    for (plstep = 0; plstep < 5; plstep++) {
+                        var playerlist3 = playerlist2;
+                        if (playerlist3 !== playerlist2) {
+                            message.channel.send(playerlist2);
+                        }
+                        if (plstep = 5) {
+                            message.channel.send("something here");
+                        }
+                    }
+                }
+                
+                
                 
             }
         } else {
