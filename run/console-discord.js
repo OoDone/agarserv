@@ -128,6 +128,7 @@ class Bot {
                     }
                     return result;
                 };
+                  playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
                         if (!gameServer.clients.length) message.channel.send("```No bots or players are currently connected to the server!```");
                             global.playerlist2 = "```\nCurrent players: " + gameServer.clients.length + "\n" +
@@ -195,7 +196,6 @@ class Bot {
                                 }
                             }
                         }
-                playerlist(index.gameServer, args);
                 }
         } else {
             return;
