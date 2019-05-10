@@ -837,13 +837,14 @@ Commands.list = {
                 data = fillChar("SPECTATING: " + nick, '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
                 global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + data;
             } else if (client.cells.length) {
-                nick = fillChar(getName(client._name), ' ', gameServer.config.playerMaxNickLength);
-                cells = fillChar(client.cells.length, ' ', 5, true);
-                score = fillChar(getScore(client) >> 0, ' ', 6, true);
-                position = fillChar(getPos(client).x >> 0, ' ', 5, true) + ', ' + fillChar(getPos(client).y >> 0, ' ', 5, true);
-                setTimeout(function(){
-                    global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick;
-                }, 200);
+                client.on("message", async message => {
+                    if(message.author.bot) return;
+                    nick = fillChar(getName(client._name), ' ', gameServer.config.playerMaxNickLength);
+                    cells = fillChar(client.cells.length, ' ', 5, true);
+                    score = fillChar(getScore(client) >> 0, ' ', 6, true);
+                    position = fillChar(getPos(client).x >> 0, ' ', 5, true) + ', ' + fillChar(getPos(client).y >> 0, ' ', 5, true);
+                    message.channel.send(" " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick);
+                }
             } else {
                 // No cells = dead player or in-menu
                 data = fillChar('DEAD OR NOT PLAYING', '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
