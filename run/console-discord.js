@@ -100,9 +100,12 @@ class Bot {
                     message.channel.send(playerlist5);
                     message.channel.send(playerlist6);
                     var plstep;
+                    var playerlist3 = playerlist2;
                     for (plstep = 0; plstep < 5; plstep++) {
-                        var playerlist3 = playerlist2;
                         message.channel.send(playerlist2);
+                        if (plstep = 2) {
+                            playerlist3 = playerlist2;
+                        }
                         if ((playerlist3 !== playerlist2) && (playerlist2 != "")) {
                             message.channel.send(playerlist2);
                         }
