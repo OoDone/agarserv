@@ -817,7 +817,7 @@ Commands.list = {
             global.cells = ''
             global.score = ''
             global.position = ''
-            gloal.data = '
+            gloal.data = ''
             if (socket.closeReason != null) {
                 // Disconnected
                 global.reason = "[DISCONNECTED] ";
