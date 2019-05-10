@@ -12,6 +12,40 @@ const config = {
     role: "owner",
     token: "NTY4Nzc1OTU3NDkwNjk2MTky.XLm_8g.QABmXoQkLG1_YZE3WPVudVwsejk"
 };
+
+                function getPos(client) {
+                    for (var i = 0; i < client.cells.length; i++) {
+                        if (!client.cells[i]) continue;
+                        return {
+                            x: client.cells[i].position.x / client.cells.length,
+                            y: client.cells[i].position.y / client.cells.length
+                        }
+                    }
+                }
+                function getScore(client) {
+                    var score = 0; // reset to not cause bugs
+                    for (var i = 0; i < client.cells.length; i++) {
+                        if (!client.cells[i]) continue;
+                        score += client.cells[i]._mass;
+                    }
+                    return score;
+                };
+                function getName(name) {
+                    if (!name.length)
+                        name = "An unnamed cell";
+                    return name.trim();
+                }
+                var fillChar = function (data, char, fieldLength, rTL) {
+                    var result = data.toString();
+                    if (rTL === true) {
+                        for (var i = result.length; i < fieldLength; i++)
+                            result = char.concat(result);
+                    } else {
+                        for (var i = result.length; i < fieldLength; i++)
+                            result = result.concat(char);
+                    }
+                    return result;
+                };
 class Bot {
     constructor() {
         this.client = new Discord.Client();
@@ -95,39 +129,6 @@ class Bot {
             } else if (message.content.startsWith("mass")) {
                 message.channel.send(mass1);
             } else if (message.content.startsWith("playerlist")) {
-                function getPos(client) {
-                    for (var i = 0; i < client.cells.length; i++) {
-                        if (!client.cells[i]) continue;
-                        return {
-                            x: client.cells[i].position.x / client.cells.length,
-                            y: client.cells[i].position.y / client.cells.length
-                        }
-                    }
-                }
-                function getScore(client) {
-                    var score = 0; // reset to not cause bugs
-                    for (var i = 0; i < client.cells.length; i++) {
-                        if (!client.cells[i]) continue;
-                        score += client.cells[i]._mass;
-                    }
-                    return score;
-                };
-                function getName(name) {
-                    if (!name.length)
-                        name = "An unnamed cell";
-                    return name.trim();
-                }
-                var fillChar = function (data, char, fieldLength, rTL) {
-                    var result = data.toString();
-                    if (rTL === true) {
-                        for (var i = result.length; i < fieldLength; i++)
-                            result = char.concat(result);
-                    } else {
-                        for (var i = result.length; i < fieldLength; i++)
-                            result = result.concat(char);
-                    }
-                    return result;
-                };
                   playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
                         if (!gameServer.clients.length) message.channel.send("```No bots or players are currently connected to the server!```");
