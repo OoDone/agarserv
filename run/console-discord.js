@@ -93,6 +93,9 @@ class Bot {
                 message.channel.send(killall1);
             } else if (message.content.startsWith("mass")) {
                 message.channel.send(mass1);
+            } else if (message.content.startsWith("playerlist")) {
+                message.channel.send(playerlist1);
+                
             }
         } else {
             return;
