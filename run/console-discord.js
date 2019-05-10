@@ -96,6 +96,9 @@ class Bot {
             } else if (message.content.startsWith("playerlist")) {
                 function test() {
                     message.channel.send(playerlist3);
+                    message.channel.send(playerlist4);
+                    message.channel.send(playerlist5);
+                    message.channel.send(playerlist6);
                     var plstep;
                     for (plstep = 0; plstep < 5; plstep++) {
                         var playerlist3 = playerlist2;
