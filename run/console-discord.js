@@ -129,11 +129,11 @@ class Bot {
                     return result;
                 };
                   function playerlist(gameServer, split) {
-                        if (!gameServer.clients.length) global.playerlist3 = "No bots or players are currently connected to the server!";
-                            global.playerlist3 = "```\nCurrent players: " + gameServer.clients.length + "\n```"
-                            global.playerlist4 = '```Do "playerlist m" or "pl m" to list minions\n```'
-                            global.playerlist5 = "``` ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " \n```"// Fill space
-                            global.playerlist6 = "```" + fillChar('', '─', ' ID     | IP              | CELLS | SCORE  |   POSITION   |   |  '.length + gameServer.config.playerMaxNickLength) + "```";
+                        if (!gameServer.clients.length) message.channel.send("```No bots or players are currently connected to the server!```");
+                            message.channel.send("```\nCurrent players: " + gameServer.clients.length + "\n"
+                            'Do "playerlist m" or "pl m" to list minions\n' + 
+                            " ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " \n" +// Fill space
+                            fillChar('', '─', ' ID     | IP              | CELLS | SCORE  |   POSITION   |   |  '.length + gameServer.config.playerMaxNickLength) + "```";
                             global.sockets = gameServer.clients.slice(0);
                             sockets.sort(function (a, b) {
                                 return a.playerTracker.pID - b.playerTracker.pID;
