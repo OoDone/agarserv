@@ -103,7 +103,9 @@ class Bot {
                             message.channel.send(playerlist2);
                         }
                         if (plstep = 5) {
-                            message.channel.send(playerlist1);
+                            if (playerlist1 !== null) {
+                                message.channel.send(playerlist1);
+                            }
                         }
                     }
                 }  
