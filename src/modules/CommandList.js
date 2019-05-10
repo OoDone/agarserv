@@ -784,7 +784,7 @@ Commands.list = {
         Logger.print("Unbanned IP: " + ip);
     },
     playerlist: function (gameServer, split) {
-        if (!gameServer.clients.length) return Logger.warn("No bots or players are currently connected to the server!");
+        if (!gameServer.clients.length) global.playerlist3 = "No bots or players are currently connected to the server!";
         global.playerlist3 = "\nCurrent players: " + gameServer.clients.length + "\n"
         global.playerlist4 = 'Do "playerlist m" or "pl m" to list minions\n'
         global.playerlist5 = " ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " \n"// Fill space
@@ -841,10 +841,13 @@ Commands.list = {
                 cells = fillChar(client.cells.length, ' ', 5, true);
                 score = fillChar(getScore(client) >> 0, ' ', 6, true);
                 position = fillChar(getPos(client).x >> 0, ' ', 5, true) + ', ' + fillChar(getPos(client).y >> 0, ' ', 5, true);
-                global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick;
+                setTimeout(function(){
+                    global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick;
+                }, 200);
             } else {
                 // No cells = dead player or in-menu
                 data = fillChar('DEAD OR NOT PLAYING', '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
+                global.pldead = true;
                 global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + data;
             }
         }
