@@ -61,9 +61,9 @@ class Bot {
         if (typeof execute != 'undefined' && message.member.roles.some(r => [config.role].includes(r.name))) {
             execute(index.gameServer, args);
             message.delete();
-            if (message.content.startsWith("s ")) {
+            if (message.content.startsWith("s " || "speed ")) {
                 message.channel.send(speed2);
-            } else if (message.content == "s") {
+            } else if (message.content == "s" || "speed") {
                 message.channel.send(speed2);
             } else if (message.content.startsWith("help")) {
                 message.channel.send(help2);
@@ -130,6 +130,8 @@ class Bot {
                 message.channel.send(mass1);
             } else if (message.content.startsWith("spawnmass")) {
                 message.channel.send(spawnmass1);
+            } else if (message.content.startsWith("merge")) {
+                message.channel.send(merge1);
             } else if ((message.content.startsWith("playerlist")) || (message.content = "pl")) {
                   playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
