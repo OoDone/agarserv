@@ -134,6 +134,12 @@ class Bot {
                 message.channel.send(merge1);
             } else if (message.content.startsWith("rec")) {
                 message.channel.send(rec1);
+            } else if (message.content.startsWith("skin")) {
+                message.channel.send(skin1);
+            } else if (message.content.startsWith("name")) {
+                message.channel.send(name1);
+            } else if (message.content.startsWith("split")) {
+                message.channel.send(split1);
             } else if ((message.content.startsWith("playerlist")) || (message.content = "pl")) {
                   playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
