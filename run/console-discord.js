@@ -247,7 +247,7 @@ class Bot {
     onReady() {
         Logger.info(`Successfully logged in.`);
         this.client.user.setActivity("Agario");
-        client2.channels.get('575389086265769989').send("*Starting Server: Instant-Teams*" + "```" + port2 + "\n" + currentgamemode2 + "\n" + bot1 + "```" ) //listening on port port
+        client2.channels.get('575389086265769989').send("**Starting Server: Instant-Teams**" + "```" + port2 + "\n" + currentgamemode2 + "\n" + bot1 + "```" ) //listening on port port
     };
 
     onError(error) {
