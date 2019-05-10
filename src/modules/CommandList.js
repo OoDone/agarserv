@@ -789,20 +789,20 @@ Commands.list = {
         global.playerlist4 = 'Do "playerlist m" or "pl m" to list minions\n'
         global.playerlist5 = " ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " \n"// Fill space
         global.playerlist6 = fillChar('', '─', ' ID     | IP              | CELLS | SCORE  |   POSITION   |   |  '.length + gameServer.config.playerMaxNickLength);
-        var sockets = gameServer.clients.slice(0);
+        global.sockets = gameServer.clients.slice(0);
         sockets.sort(function (a, b) {
             return a.playerTracker.pID - b.playerTracker.pID;
         });
-        for (var i = 0; i < sockets.length; i++) {
-            var socket = sockets[i];
-            var client = socket.playerTracker;
-            var type = split[1];
+        for (global.i = 0; i < sockets.length; i++) {
+            global.socket = sockets[i];
+            global.client = socket.playerTracker;
+            global.type = split[1];
 
             // ID with 3 digits length
-            var id = fillChar((client.pID), ' ', 6, true);
+            global.id = fillChar((client.pID), ' ', 6, true);
 
             // Get ip (15 digits length)
-            var ip = client.isMi ? "[MINION]" : "[BOT]";
+            global.ip = client.isMi ? "[MINION]" : "[BOT]";
             if (socket.isConnected && !client.isMi) {
                 ip = socket.remoteAddress;
             } else if (client.isMi && type != "m") {
@@ -811,16 +811,16 @@ Commands.list = {
             ip = fillChar(ip, ' ', 15);
 
             // Get name and data
-            var protocol = gameServer.clients[i].packetHandler.protocol;
+            global.protocol = gameServer.clients[i].packetHandler.protocol;
             if (!protocol) protocol = "?";
-            var nick = '',
-                cells = '',
-                score = '',
-                position = '',
-                data = '';
+            global.nick = ''
+            global.cells = ''
+            global.score = ''
+            global.position = ''
+            gloal.data = '
             if (socket.closeReason != null) {
                 // Disconnected
-                var reason = "[DISCONNECTED] ";
+                global.reason = "[DISCONNECTED] ";
                 if (socket.closeReason.code)
                     reason += "[" + socket.closeReason.code + "] ";
                 if (socket.closeReason.message)
@@ -831,22 +831,17 @@ Commands.list = {
             } else if (client.spectate) {
                 nick = "in free-roam";
                 if (!client.freeRoam) {
-                    var target = client.getSpecTarget();
+                    global.target = client.getSpecTarget();
                     if (target) nick = getName(target._name);
                 }
                 data = fillChar("SPECTATING: " + nick, '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
                 global.playerlist1 = " " + id + " | " + ip + " | " + protocol + " | " + data;
             } else if (client.cells.length) {
-                client2.on("message", async message => {
-                    message.channel.send("tesssst");
-                    if(message.author.bot) return;
-                    message.channel.send("test");
                     nick = fillChar(getName(client._name), ' ', gameServer.config.playerMaxNickLength);
                     cells = fillChar(client.cells.length, ' ', 5, true);
                     score = fillChar(getScore(client) >> 0, ' ', 6, true);
                     position = fillChar(getPos(client).x >> 0, ' ', 5, true) + ', ' + fillChar(getPos(client).y >> 0, ' ', 5, true);
-                    message.channel.send(" " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick);
-                })
+                    Logger.info(" " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick);
             } else {
                 // No cells = dead player or in-menu
                 data = fillChar('DEAD OR NOT PLAYING', '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
