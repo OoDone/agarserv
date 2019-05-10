@@ -23,7 +23,7 @@ process.on('uncaughtException', function (err) {
 
 // Run MultiOgar-Edited
 var gameServer = new GameServer();
-Logger.info("\u001B[1m\u001B[32mMultiOgar-Edited " + gameServer.version + "\u001B[37m - An open source multi-protocol ogar server\u001B[0m");
+global.gameserver1 = "```\u001B[1m\u001B[32mMultiOgar-Edited " + gameServer.version + "\u001B[37m - An open source multi-protocol ogar server\u001B[0m```";
 
 // Handle arguments
 process.argv.forEach(function (item) {
@@ -120,7 +120,7 @@ figlet(('MultiOgar-Edited  ' + gameServer.version), function(err, data) {
         console.dir(err);
         return;
     }
-    console.log(data)
+    global.start1 = data;
 });
 
 // Initialize the server console
