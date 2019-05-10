@@ -195,7 +195,7 @@ class Bot {
                                     global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + data;
                                 }
                             }
-                        },
+                        }
                             playerlist(index.gameServer, args);
                 }
             }
