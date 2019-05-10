@@ -158,6 +158,18 @@ class Bot {
                 message.channel.send(tp1);
             } else if (message.content.startsWith("chat")) {
                 message.channel.send(chat1);
+            } else if (message.content.startsWith("spawn")) {
+                message.channel.send(spawn1);
+            } else if (message.content.startsWith("replace")) {
+                message.channel.send(replace1);
+            } else if (message.content.startsWith("pop")) {
+                message.channel.send(pop1);
+            } else if (message.content.startsWith("explode")) {
+                message.channel.send(explode1);
+            } else if (message.content.startsWith("lms")) {
+                message.channel.send(calc1);
+            } else if (message.content.startsWith("calc")) {
+                message.channel.send(calc1);
             } else if ((message.content.startsWith("playerlist")) || (message.content = "pl")) {
                   playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
