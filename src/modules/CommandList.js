@@ -865,18 +865,18 @@ Commands.list = {
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) return Logger.warn("That player is either dead or not playing!");
+                if (!client.cells.length) global.freeze1 = "```That player is either dead or not playing!```";
                 // set frozen state
                 client.frozen = !client.frozen;
-                if (client.frozen) Logger.print("Froze " + getName(client._name));
-                else Logger.print("Unfroze " + getName(client._name));
+                if (client.frozen) global.freeze1 = "```Froze " + getName(client._name) + "```";
+                else global.freeze1 = "```Unfroze " + getName(client._name) + "```";
             }
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
+        if (client == null) global.freeze1 = "```That player ID is non-existant!```";
     },
     reload: function (gameServer, split) {
         gameServer.loadFiles();
-        Logger.print("Reloaded files successfully");
+        global.reload1 = "```Reloaded files successfully```";
     },
     status: function (gameServer, split) {
         var ini = require('./ini.js');
@@ -896,20 +896,20 @@ Commands.list = {
             scores.push(getScore(gameServer.clients[i].playerTracker))
         if (!gameServer.clients.length) scores = [0];
 
-        Logger.print("Connected players: " + gameServer.clients.length + "/" + gameServer.config.serverMaxConnections);
-        Logger.print("Players: " + humans + " - Bots: " + bots);
-        Logger.print("Average score: " + (scores.reduce(function (x, y) {
+        global.status1 = "```Connected players: " + gameServer.clients.length + "/" + gameServer.config.serverMaxConnections +  "\n" +
+        "Players: " + humans + " - Bots: " + bots + "\n" +
+        "Average score: " + (scores.reduce(function (x, y) {
             return x + y;
-        }) / scores.length).toFixed(2));
-        Logger.print("Server has been running for a total of" + Math.floor(process.uptime() / 60) + " minutes");
-        Logger.print("Current memory usage: " + Math.round(process.memoryUsage().heapUsed / 1048576 * 10) / 10 + "/" + Math.round(process.memoryUsage().heapTotal / 1048576 * 10) / 10 + " mb");
-        Logger.print("Current game mode: " + gameServer.gameMode.name);
-        Logger.print("Current update time: " + gameServer.updateTimeAvg.toFixed(3) + " [ms]  (" + ini.getLagMessage(gameServer.updateTimeAvg) + ")");
+        }) / scores.length).toFixed(2) + "\n" +
+        "Server has been running for a total of" + Math.floor(process.uptime() / 60) + " minutes\n" +
+        "Current memory usage: " + Math.round(process.memoryUsage().heapUsed / 1048576 * 10) / 10 + "/" + Math.round(process.memoryUsage().heapTotal / 1048576 * 10) / 10 + " mb\n" + 
+        "Current game mode: " + gameServer.gameMode.name + "\n" +
+        "Current update time: " + gameServer.updateTimeAvg.toFixed(3) + " [ms]  (" + ini.getLagMessage(gameServer.updateTimeAvg) + ")```";
     },
     tp: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            global.tp1 = "```Please specify a valid player ID!```";
             return;
         }
 
@@ -919,7 +919,7 @@ Commands.list = {
             y: parseInt(split[3])
         };
         if (isNaN(pos.x) || isNaN(pos.y)) {
-            Logger.warn("Invalid coordinates");
+            global.tp1 = "```Invalid coordinates```";
             return;
         }
 
@@ -927,22 +927,22 @@ Commands.list = {
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) return Logger.warn("That player is either dead or not playing!");
+                if (!client.cells.length) global.tp1 = "```That player is either dead or not playing!```";
                 for (var j in client.cells) {
                     client.cells[j].position.x = pos.x;
                     client.cells[j].position.y = pos.y;
                     gameServer.updateNodeQuad(client.cells[j]);
                 }
-                Logger.print("Teleported " + getName(client._name) + " to (" + pos.x + " , " + pos.y + ")");
+                global.tp1 = "```Teleported " + getName(client._name) + " to (" + pos.x + " , " + pos.y + ")```";
                 break;
             }
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
+        if (client == null) global.tp1 = "```That player ID is non-existant!```";
     },
     spawn: function (gameServer, split) {
         var ent = split[1];
         if (ent != "virus" && ent != "food" && ent != "mothercell") {
-            Logger.warn("Please specify either virus, food, or mothercell");
+            Logger.warn("```Please specify either virus, food, or mothercell```");
             return;
         }
 
@@ -954,7 +954,7 @@ Commands.list = {
 
         // Make sure the input values are numbers
         if (isNaN(pos.x) || isNaN(pos.y)) {
-            Logger.warn("Invalid coordinates");
+            Logger.warn("```Invalid coordinates```");
             return;
         }
 
@@ -975,33 +975,33 @@ Commands.list = {
         if (ent == "virus") {
             var virus = new Entity.Virus(gameServer, null, pos, size);
             gameServer.addNode(virus);
-            Logger.print("Spawned 1 virus at (" + pos.x + " , " + pos.y + ")");
+            Logger.print("```Spawned 1 virus at (" + pos.x + " , " + pos.y + ")```");
         } else if (ent == "food") {
             var food = new Entity.Food(gameServer, null, pos, size);
             food.color = gameServer.getRandomColor();
             gameServer.addNode(food);
-            Logger.print("Spawned 1 food cell at (" + pos.x + " , " + pos.y + ")");
+            Logger.print("```Spawned 1 food cell at (" + pos.x + " , " + pos.y + ")```");
         } else if (ent == "mothercell") {
             var mother = new Entity.MotherCell(gameServer, null, pos, size);
             gameServer.addNode(mother);
-            Logger.print("Spawned 1 mothercell at (" + pos.x + " , " + pos.y + ")");
+            Logger.print("```Spawned 1 mothercell at (" + pos.x + " , " + pos.y + ")```");
         }
     },
     replace: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            Logger.warn("```Please specify a valid player ID!```");
             return;
         }
         var ent = split[2];
         if (ent != "virus" && ent != "food" && ent != "mothercell") {
-            Logger.warn("Please specify either virus, food, or mothercell");
+            Logger.warn("```Please specify either virus, food, or mothercell```");
             return;
         }
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) return Logger.warn("That player is either dead or not playing!");
+                if (!client.cells.length) return Logger.warn("```That player is either dead or not playing!```");
                 while (client.cells.length > 0) {
                     var cell = client.cells[0];
                     gameServer.removeNode(cell);
@@ -1021,35 +1021,35 @@ Commands.list = {
             }
         }
         if (ent == "virus") {
-            Logger.print("Replaced " + getName(client._name) + " with a virus");
+            Logger.print("```Replaced " + getName(client._name) + " with a virus```");
         } else if (ent == "food") {
-            Logger.print("Replaced " + getName(client._name) + " with a food cell");
+            Logger.print("```Replaced " + getName(client._name) + " with a food cell```");
         } else if (ent == "mothercell") {
-            Logger.print("Replaced " + getName(client._name) + " with a mothercell");
+            Logger.print("```Replaced " + getName(client._name) + " with a mothercell```");
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
+        if (client == null) return void Logger.warn("```That player ID is non-existant!```");
     },
     pop: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            Logger.warn("```Please specify a valid player ID!```");
             return;
         }
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) return Logger.warn("That player is either dead or not playing!");
+                if (!client.cells.length) return Logger.warn("```That player is either dead or not playing!```");
                 var virus = new Entity.Virus(gameServer, null, client.centerPos, gameServer.config.virusMinSize);
                 gameServer.addNode(virus);
-                Logger.print("Popped " + getName(client._name));
+                Logger.print("```Popped " + getName(client._name) + "```");
             }
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
+        if (client == null) return void Logger.warn("```That player ID is non-existant!```");
     },
     explode: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            Logger.warn("Please specify a valid player ID!");
+            Logger.warn("```Please specify a valid player ID!```");
             return;
         }
         for (var i in gameServer.clients) {
@@ -1075,30 +1075,30 @@ Commands.list = {
                     }
                     cell.setSize(gameServer.config.playerMinSize);
                 }
-                if (!client.cells.length) return Logger.warn("That player is either dead or not playing!");
-                Logger.print("Successfully exploded " + getName(client._name));
+                if (!client.cells.length) return Logger.warn("```That player is either dead or not playing!```");
+                Logger.print("```Successfully exploded " + getName(client._name) + "```");
             }
         }
-        if (client == null) return void Logger.warn("That player ID is non-existant!");
+        if (client == null) return void Logger.warn("```That player ID is non-existant!```");
     },
     lms: function (gameServer, split) {
         gameServer.disableSpawn = !gameServer.disableSpawn;
         var s = gameServer.disableSpawn ? "Started" : "Ended";
-        Logger.print(s + " last man standing");
+        Logger.print("```" + s + " last man standing```");
     },
     calc: function (gameServer, split) {
         var num = parseInt(split[1]);
         if (isNaN(num)) {
-            Logger.warn("Please specify a valid number!");
+            Logger.warn("```Please specify a valid number!```");
             return;
         }
         var to = split[2];
         if (to != "toMass" && to != "toSize") {
-            Logger.warn('Please specify either "toMass" or "toSize"');
+            Logger.warn('```Please specify either "toMass" or "toSize"```');
             return;
         }
-        if (to == "toMass") Logger.print("The specified size is " + num * num / 100 + " in mass");
-        else Logger.print("The specified mass is " + (Math.sqrt(num * 100)).toFixed(2) + " in size");
+        if (to == "toMass") Logger.print("```The specified size is " + num * num / 100 + " in mass```");
+        else Logger.print("```The specified mass is " + (Math.sqrt(num * 100)).toFixed(2) + " in size```");
     },
 
     // Aliases for commands
