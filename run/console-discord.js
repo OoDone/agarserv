@@ -204,7 +204,7 @@ class Bot {
     };
     onReady() {
         Logger.info(`Successfully logged in.`);
-        this.client.user.setGame("Agario");
+        this.client.user.setActivity("Agario");
     };
 
     onError(error) {
