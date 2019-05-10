@@ -150,6 +150,12 @@ class Bot {
                 message.channel.send(pause1);
             } else if (message.content.startsWith("freeze")) {
                 message.channel.send(freeze1);
+            } else if (message.content.startsWith("restart")) {
+                message.channel.send(restart1);
+            } else if (message.content.startsWith("status")) {
+                message.channel.send(status1);
+            } else if (message.content.startsWith("tp")) {
+                message.channel.send(tp1);
             } else if ((message.content.startsWith("playerlist")) || (message.content = "pl")) {
                   playerlist(index.gameServer, args);
                   function playerlist(gameServer, split) {
