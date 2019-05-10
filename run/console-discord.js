@@ -247,9 +247,9 @@ class Bot {
     onReady() {
         Logger.info(`Successfully logged in.`);
         this.client.user.setActivity("Agario");
-        client2.channels.get('575389016510431233').send(port2)
-        client2.channels.get('575389016510431233').send(currentgamemode2)
-        client2.channels.get('575389016510431233').send(bot1)
+        client2.channels.get('575389086265769989').send(port2) //listening on port port
+        client2.channels.get('575389086265769989').send(currentgamemode2) //current gamemode is : gamemode
+        client2.channels.get('575389086265769989').send(bot1) //added X player bots
     };
 
     onError(error) {
