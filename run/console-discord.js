@@ -55,9 +55,10 @@ class Bot {
         process.on("error", this.onError.bind(this));
         this.client.login(config.token);
         process.setMaxListeners(0)
-        client2.channels.get("575389016510431233").send(port2)
-        client2.channels.get("575389016510431233").send(currentgamemode2)
-        client2.channels.get("575389016510431233").send(bot1)
+        var channel = client.get_channel(575389016510431233);
+        channel.send(port2);
+        channel.send(currentgamemode2);
+        channel.send(bot1);
     };onMessage(message) {
         const args = message.content.split(/\s+/g);
         var execute = Commands.list[args[0]];
