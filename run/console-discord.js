@@ -10,7 +10,7 @@ var fs = require('fs');
 
 const config = {
     role: "owner",
-    token: "NTc2NzkwMzgzNDkzNjQ0MzAx.XNbsGQ.2ZIjvQ_KdoHnNG7ATHtJ5DRv88c"
+    token: "NTc2NzkwMzgzNDkzNjQ0MzAx.XNloIQ.8X9cwqbYb1qbz8GQnu1MQKPPa_E"
 };
 
                 function getPos(client) {
