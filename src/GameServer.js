@@ -208,14 +208,14 @@ GameServer.prototype.onHttpServerOpen = function () {
     setTimeout(this.timerLoopBind, 1);
 
     // Done
-    Logger.info("Listening on port " + process.env.PORT || 8080);
-    Logger.info("Current game mode is " + this.gameMode.name);
+    global.port2 = "Listening on port " + process.env.PORT || 8080;
+    global.currentgamemode2 = "Current game mode is " + this.gameMode.name;
 
     // Player bots (Experimental)
     if (this.config.serverBots) {
         for (var i = 0; i < this.config.serverBots; i++)
             this.bots.addBot();
-        Logger.info("Added " + this.config.serverBots + " player bots");
+        global.bot1 = "Added " + this.config.serverBots + " player bots";
     }
 };
 
