@@ -357,5 +357,13 @@ var playerCommands = {
         }
         Logger.warn("RESTART REQUEST FROM " + this.playerTracker.socket.remoteAddress + " as " + this.playerTracker.userAuth);
         process.exit(3);
+    },
+    test: function (args) {
+        if (this.playerTracker.userRole != UserRoleEnum.ADMIN) {
+            this.writeLine("ERROR: access denied!");
+            return;
+        }
+        this.writeLine("TESTING");
+        Logger.warn("asdasd " + this.playerTracker.socket.remoteAddress + " as " + this.playerTracker.userAuth);
     }
 };
