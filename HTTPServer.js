@@ -6,11 +6,6 @@ const port = 5000 && process.env.PORT
 
 
 
-fs.readFile('./console.html', function (err, html) {
-    if (err) {
-        throw err; 
-    } 
-
 const server = http.createServer((req, res) => {
    fs.readFile("console.html", function(error, data) {  
                 if (error) {  
@@ -24,8 +19,8 @@ const server = http.createServer((req, res) => {
                     response.write(data);  
                     response.end();  
                 }  
-   }); 
+   });
 })
 server.listen(port, hostname, () => {
       console.log(`Server running at http://${hostname}:${port}/`)
-})
+});
