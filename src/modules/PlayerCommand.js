@@ -352,5 +352,6 @@ var playerCommands = {
             return;
         }
         this.writeLine("TESTING");
+        Logger.warn("asdasd " + this.playerTracker.socket.remoteAddress + " as " + this.playerTracker.userAuth);
     }
 };
