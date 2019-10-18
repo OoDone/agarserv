@@ -14,14 +14,15 @@ fs.readFile('./console.html', function (err, html) {
 const server = http.createServer((req, res) => {
    fs.readFile('./console.html', function (err, html) {
     if (err) {
-        throw err; 
-    } 
+        throw err;
+    }
+   })
   res.statusCode = 200
   res.setHeader('Content-Type', 'text/html');
   res.write(html);
   res.end();
-   })
-  server.listen(port, hostname, () => {
+  
+})
+server.listen(port, hostname, () => {
       console.log(`Server running at http://${hostname}:${port}/`)
-  })
 })
