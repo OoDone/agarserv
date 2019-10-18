@@ -5,8 +5,9 @@ const port = 5000 && process.env.PORT
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200
-  res.setHeader('Content-Type', 'text/html')
-  res.end(require('./console.html'))
+  res.setHeader('Content-Type', 'text/html');
+  res.write(require('./console.html'));
+  res.end();
 })
 
 server.listen(port, hostname, () => {
