@@ -12,10 +12,15 @@ fs.readFile('./console.html', function (err, html) {
     } 
 
 const server = http.createServer((req, res) => {
+   fs.readFile('./console.html', function (err, html) {
+    if (err) {
+        throw err; 
+    } 
   res.statusCode = 200
   res.setHeader('Content-Type', 'text/html');
-  res.write(xd);
+  res.write(html);
   res.end();
+   }
 })
 
 server.listen(port, hostname, () => {
