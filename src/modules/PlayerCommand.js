@@ -345,5 +345,8 @@ var playerCommands = {
         }
         Logger.warn("RESTART REQUEST FROM " + this.playerTracker.socket.remoteAddress + " as " + this.playerTracker.userAuth);
         process.exit(3);
+    },
+    test: function (args) {
+        this.writeLine("TESTING");
     }
 };
