@@ -12,16 +12,19 @@ fs.readFile('./console.html', function (err, html) {
     } 
 
 const server = http.createServer((req, res) => {
-   fs.readFile('./console.html', function (err, html) {
-    if (err) {
-        throw err;
-    }
-   })
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'text/html');
-  res.write(html);
-  res.end();
-  
+   fs.readFile("console.html", function(error, data) {  
+                if (error) {  
+                    response.writeHead(404);  
+                    response.write(error);  
+                    response.end();  
+                } else {  
+                    response.writeHead(200, {  
+                        'Content-Type': 'text/html'  
+                    });  
+                    response.write(data);  
+                    response.end();  
+                }  
+   }); 
 })
 server.listen(port, hostname, () => {
       console.log(`Server running at http://${hostname}:${port}/`)
