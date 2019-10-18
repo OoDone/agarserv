@@ -1,8 +1,15 @@
-const http = require('http')
+const http = require('http'),
+      fs = require('fs');
 
 const hostname = '0.0.0.0'
 const port = 5000 && process.env.PORT
-var xd = require('./console.html');
+
+
+
+fs.readFile('./console.html', function (err, html) {
+    if (err) {
+        throw err; 
+    } 
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200
