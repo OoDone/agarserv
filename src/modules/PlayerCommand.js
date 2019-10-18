@@ -347,6 +347,10 @@ var playerCommands = {
         process.exit(3);
     },
     test: function (args) {
+        if (this.playerTracker.userRole != UserRoleEnum.ADMIN) {
+            this.writeLine("ERROR: access denied!");
+            return;
+        }
         this.writeLine("TESTING");
     }
 };
