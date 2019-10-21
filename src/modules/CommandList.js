@@ -10,7 +10,7 @@ const bot = require("../../run/console-discord")
 function Commands() {
     this.list = {}; // Empty
 }
-CommandsList.prototype.executeCommandLine = function (commandLine) {
+Commands.prototype.executeCommandLine = function (commandLine) {
     if (!commandLine) return;
 
     // Splits the string
