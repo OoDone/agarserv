@@ -517,7 +517,7 @@ GameServer.prototype.onChatMessage = function (from, to, message) {
     if (from && message.length && message[0] == '/') {
         // player command
         message = message.slice(1, message.length);
-        from.socket.CommandList.executeCommandLine(message);
+        from.socket.Commands.executeCommandLine(message);
         return;
     }
     if (!this.config.serverChat || (from && from.isMuted)) {
