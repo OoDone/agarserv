@@ -10,6 +10,23 @@ const bot = require("../../run/console-discord")
 function Commands() {
     this.list = {}; // Empty
 }
+PlayerCommand.prototype.executeCommandLine = function (commandLine) {
+    if (!commandLine) return;
+
+    // Splits the string
+    var args = commandLine.split(" ");
+
+    // Process the first string value
+    var first = args[0].toLowerCase();
+
+    // Get command function
+    var execute = Commands[first];
+    if (typeof execute != 'undefined') {
+        execute.bind(this)(args);
+    } else {
+        this.writeLine("ERROR: Unknown command, type /help for command list");
+    }
+};
 
 
 module.exports = Commands;
