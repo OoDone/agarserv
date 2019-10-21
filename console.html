@@ -6,10 +6,11 @@
 <body>
 
   <form>
-  Command:<br>
-  <input type="text" id="command" name="console" value="/help">
-  <br><br>
-  <input type="submit" value="Submit" onclick="sendCommand">
+  Username:<br>
+  <input type="text" name="console" id="console" value="/help">
+  <br>
+  <button type="button" onclick="sendCommand("xd")">Try it</button>
+</form>
     <script>
       function sendCommand(args) {
         console.log("test");
