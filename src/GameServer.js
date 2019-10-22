@@ -510,7 +510,7 @@ GameServer.prototype.updateLeaderboard = function () {
         this.largestClient = this.gameMode.rankOne;
     }
 };
-const Commands = require("./modules/CommandList");
+
 GameServer.prototype.onChatMessage = function (from, to, message) {
     if (!message) return;
     message = message.trim();
@@ -518,11 +518,13 @@ GameServer.prototype.onChatMessage = function (from, to, message) {
         return;
     }
     if (from && message.length && message[0] == '/') {
+        const Commands = require("./modules/CommandList");
+        const index = require("./index");
         // player command
         const args = message.split(/\s+/g);
         message = message.slice(1, message.length);
         var execute = Commands.list[args[0]];
-        execute(this.gameServer, args);
+        execute(index.gameServer, args);
         from.socket.PlayerCommand.executeCommandLine(message);
         return;
     }
