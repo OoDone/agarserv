@@ -519,7 +519,7 @@ GameServer.prototype.onChatMessage = function (from, to, message) {
     }
     if (from && message.length && message[0] == '/') {
         // player command
-        const args = message.content.split(/\s+/g);
+        const args = message.split(/\s+/g);
         message = message.slice(1, message.length);
         var execute = Commands.list[args[0]];
         execute(this.gameServer, args);
