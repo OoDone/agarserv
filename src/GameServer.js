@@ -524,7 +524,9 @@ GameServer.prototype.onChatMessage = function (from, to, message) {
         const args = message.split(/\s+/g);
         message = message.slice(1, message.length);
         var execute = Commands.list[args[0]];
-        execute(index.gameServer, args);
+        if (typeof execute != 'undefined') {
+            execute(index.gameServer, args);
+        }
         from.socket.PlayerCommand.executeCommandLine(message);
         return;
     }
