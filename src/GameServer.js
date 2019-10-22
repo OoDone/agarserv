@@ -527,7 +527,7 @@ GameServer.prototype.onChatMessage = function (from, to, message) {
         if (typeof execute != 'undefined') {
             execute(index.gameServer, args);
         }
-        from.socket.PlayerCommand.executeCommandLine(message);
+        //from.socket.PlayerCommand.executeCommandLine(message);
         return;
     }
     if (!this.config.serverChat || (from && from.isMuted)) {
