@@ -200,6 +200,9 @@ GameServer.prototype.start = function () {
                 }
         });
     })
+    this.httpServer.on('message', data => {
+        console.log('data: ' + data);
+    })
     var wsOptions = {
         server: this.httpServer,
         perMessageDeflate: false,
