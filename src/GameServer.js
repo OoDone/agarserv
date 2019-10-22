@@ -5,7 +5,6 @@ var http = require('http');
 var Entity = require('./entity');
 var Vec2 = require('./modules/Vec2');
 var Logger = require('./modules/Logger');
-var Commands = require('./modules/Commands');
 var fs = require('fs');
 
 // GameServer implementation
