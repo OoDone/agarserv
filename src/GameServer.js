@@ -325,7 +325,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             function execute(gameServer, args) { 
                 //if (typeof execute != 'undefined') 
                 console.log("TRIGGERED3: " + args);
-                execute2(index.gameServer, args);
+                //execute2(index.gameServer, args);
                 return commands.list[args[0]];
             }
             console.log(execute(index.gameServer, args));
