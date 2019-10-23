@@ -4,6 +4,8 @@
 <title>InstantMerge-Console</title>
 </head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="/src/modules/CommandList.js"></script>
+  <script src="/src/index.js"></script>
 <body>
 
   <form>
@@ -13,11 +15,21 @@
   <button type="button" onclick="sendCommand()">Try it</button>
 </form>
     <script>
-      function sendCommand() {
+     /* function sendCommand() {
         var args = "xd";
         $.post("/src/GameServer.js", args, function(data, status){
         })
+      }*/
+      module.exports = recievedCmd;
+      function recievedCmd(cmd) {
       }
+
+     function sendCommand () {
+       var msg = "help"
+       const args = msg.content.split(/\s+/g);
+       var execute = Commands.list[args[0]];
+       execute(index.gameServer, args);
+     }
       </script>
 </form> 
 
