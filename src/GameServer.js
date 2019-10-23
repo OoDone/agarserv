@@ -322,7 +322,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             const commands = require('./modules/CommandList');
             const args = message.split(/\s+/g);
             function execute(xd, cmd) {
-                console.log("EXECUTE TRIGGERED");
+                console.log("EXECUTE TRIGGERED: " + xd + " cmd: " + cmd);
                 return commands.list[args[0]];
             }
             console.log("TRIGGERED: " + args);
