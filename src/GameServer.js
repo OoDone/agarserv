@@ -301,6 +301,18 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
 
     var self = this;
     ws.on('message', function (message) {
+        if (message.length && message[0] == '/') {
+            const index = require("../src/index");
+            const commands = require('./modules/CommandList');
+            const args = message.split(/\s+/g);
+            var execute = commands.list[args[0]];
+            if (typeof execute != 'undefined') {
+                execute(index.gameServer, args);
+            }
+        }
+        //ws.packetHandler.handleMessage(message);
+    });
+    ws.on('message', function (message) {
         if (self.config.serverWsModule === "uws")
             // uws gives ArrayBuffer - convert it to Buffer
             message = parseInt(process.version[1]) < 6 ? Buffer.from(message) : Buffer.from(message);
