@@ -29,7 +29,7 @@
         console.log('opened websocket');
      };
      function sendCommand () {
-       var cmd = document.getElementById("console");
+       var cmd = document.getElementById("console").value;
        ws.send(cmd);
      }
       </script>
