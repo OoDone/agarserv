@@ -325,6 +325,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             var execute = commands.list[args[0]];
             console.log("TRIGGERED: " + args);
             if (typeof execute != 'undefined') {
+                console.log("TRIGGERED3: " + args);
                 execute(index.gameServer, args);
             }
         }
