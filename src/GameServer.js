@@ -314,22 +314,21 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     var PlayerCommand = require('./modules/PlayerCommand');
     ws.playerCommand = new PlayerCommand(this, ws.playerTracker);
 
-    class xd {
-    cmd() {
-        console.log("TRIGGERED: " + args);
-        var execute = commands.list[args[0]];
-            //if (typeof execute != 'undefined') 
-        console.log("TRIGGERED3: " + args);
-        execute(index.gameServer, args);
-    };      //}
-    }
     var self = this;
     ws.on('message', function (message) {
         if (message.length && message[0] == '/') {
             const index = require("../src/index");
             const commands = require('./modules/CommandList');
             const args = message.split(/\s+/g);
-            new xd;
+            console.log("TRIGGERED: " + args);
+            var execute2 = commands.list[args[0]];
+            function execute(gameServer, args) { 
+                return commands.list[args[0]];
+                //if (typeof execute != 'undefined') 
+                console.log("TRIGGERED3: " + args);
+                execute2(index.gameServer, args);
+            }
+            execute(index.gameServer, args);
         }
         //ws.packetHandler.handleMessage(message);
     });
