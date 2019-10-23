@@ -18,9 +18,7 @@
         $.post("/src/GameServer.js", args, function(data, status){
         })
       }*/
-      function sendCommand () {
-        console.log('SENDCOMMAND');
-     }
+      
       var ws = new WebSocket('wss://instant-merge.herokuapp.com');
       function recievedCmd(cmd) {
         console.log('recievedCmd: ' + cmd);
@@ -30,6 +28,10 @@
         ws.send(cmd);
         console.log('opened websocket');
      };
+     function sendCommand () {
+       var cmd = document.getElementById("console");
+       ws.send(cmd);
+     }
       </script>
 </form> 
 
