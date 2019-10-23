@@ -21,8 +21,8 @@
         })
       }*/
       var ws = new Websocket('instant-merge.herokuapp.com');
-      module.exports = recievedCmd;
-      function recievedCmd(cmd) {
+      export = function recievedCmd(cmd) {
+        
       }
 
       ws.on('connection', (wss) => {
