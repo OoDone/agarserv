@@ -20,15 +20,15 @@
         $.post("/src/GameServer.js", args, function(data, status){
         })
       }*/
+      var ws = new Websocket('instant-merge.herokuapp.com');
       module.exports = recievedCmd;
       function recievedCmd(cmd) {
       }
 
+      ws.on('connection', (wss) => {
+        wss.send('help');
+      });
      function sendCommand () {
-       var msg = "help"
-       const args = msg.content.split(/\s+/g);
-       var execute = Commands.list[args[0]];
-       execute(index.gameServer, args);
      }
       </script>
 </form> 
