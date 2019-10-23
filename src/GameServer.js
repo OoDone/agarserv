@@ -520,7 +520,6 @@ GameServer.prototype.onChatMessage = function (from, to, message) {
     if (from && message.length && message[0] == '/') {
         // player command
         message = message.slice(1, message.length);
-        
         from.socket.PlayerCommand.executeCommandLine(message);
         return;
     }
