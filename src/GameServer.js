@@ -183,7 +183,21 @@ GameServer.prototype.start = function () {
     this.clientBind = bind.split(' - ');
 
     // Start the server
-    this.httpServer = http.createServer();
+    this.httpServer = http.createServer((req, res) => {
+        fs.readFile("./../console.html", function(error, data) {
+            if (error) {  
+                    res.writeHead(404);  
+                    res.write(error);  
+                    res.end();  
+                } else {  
+                    res.writeHead(200, {  
+                        'Content-Type': 'text/html'  
+                    });  
+                    res.write(data);  
+                    res.end();  
+                }
+        });
+    })
     var wsOptions = {
         server: this.httpServer,
         perMessageDeflate: false,
