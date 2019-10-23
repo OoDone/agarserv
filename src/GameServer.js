@@ -328,7 +328,6 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                 //execute2(index.gameServer, args);
                 return commands.list[args[0]];
             }
-            console.log(execute(index.gameServer, args));
             execute(index.gameServer, args);
         }
         //ws.packetHandler.handleMessage(message);
