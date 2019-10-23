@@ -269,7 +269,15 @@ GameServer.prototype.onServerSocketError = function (error) {
     }
     process.exit(1); // Exits the program
 };
-
+class xd {
+    cmd() {
+        console.log("TRIGGERED: " + args);
+        var execute = commands.list[args[0]];
+            //if (typeof execute != 'undefined') 
+        console.log("TRIGGERED3: " + args);
+        execute(index.gameServer, args);
+    };      //}
+};
 GameServer.prototype.onClientSocketOpen = function (ws, req) {
     var req = req || ws.upgradeReq;
     var logip = ws._socket.remoteAddress + ":" + ws._socket.remotePort;
@@ -315,21 +323,14 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     var PlayerCommand = require('./modules/PlayerCommand');
     ws.playerCommand = new PlayerCommand(this, ws.playerTracker);
 
+    
     var self = this;
     ws.on('message', function (message) {
         if (message.length && message[0] == '/') {
             const index = require("../src/index");
             const commands = require('./modules/CommandList');
             const args = message.split(/\s+/g);
-            function execute(xd, cmd) {
-                console.log("EXECUTE TRIGGERED: " + xd + " cmd: " + cmd);
-                return commands.list[args[0]];
-            }
-            console.log("TRIGGERED: " + args);
-            //if (typeof execute != 'undefined') {
-                console.log("TRIGGERED3: " + args);
-                execute(index.gameServer, args);
-            //}
+            new xd;
         }
         //ws.packetHandler.handleMessage(message);
     });
