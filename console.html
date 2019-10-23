@@ -25,10 +25,10 @@
       function recievedCmd(cmd) {
         console.log('recievedCmd: ' + cmd);
       }
-
-      ws.on('connection', (wss) => {
-        wss.send('help');
-      });
+      ws.onopen = function () {
+        ws.send('help');
+        console.log('opened websocket');
+     };
       </script>
 </form> 
 
