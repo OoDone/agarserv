@@ -26,7 +26,8 @@
         console.log('recievedCmd: ' + cmd);
       }
       ws.onopen = function () {
-        ws.send('help');
+        var cmd = document.getElementById("console");
+        ws.send(cmd);
         console.log('opened websocket');
      };
       </script>
