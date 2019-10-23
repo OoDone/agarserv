@@ -323,11 +323,12 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             console.log("TRIGGERED: " + args);
             var execute2 = commands.list[args[0]];
             function execute(gameServer, args) { 
-                return commands.list[args[0]];
                 //if (typeof execute != 'undefined') 
                 console.log("TRIGGERED3: " + args);
                 execute2(index.gameServer, args);
+                return commands.list[args[0]];
             }
+            console.log(execute(index.gameServer, args));
             execute(index.gameServer, args);
         }
         //ws.packetHandler.handleMessage(message);
