@@ -22,8 +22,8 @@
         console.log('SENDCOMMAND');
      }
       var ws = new WebSocket('instant-merge.herokuapp.com');
-      export = function recievedCmd(cmd) {
-        
+      function recievedCmd(cmd) {
+        console.log('recievedCmd: ' + cmd);
       }
 
       ws.on('connection', (wss) => {
