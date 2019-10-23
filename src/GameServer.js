@@ -6,6 +6,8 @@ var Entity = require('./entity');
 var Vec2 = require('./modules/Vec2');
 var Logger = require('./modules/Logger');
 
+var fs = require('fs');
+
 // GameServer implementation
 function GameServer() {
     // Location of source files - For renaming or moving source files!
