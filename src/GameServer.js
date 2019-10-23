@@ -317,7 +317,6 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
 
     var self = this;
     ws.on('message', function (message) {
-        console.log("TRIGGERED1: " + message);
         if (message.length && message[0] == '/') {
             const index = require("../src/index");
             const commands = require('./modules/CommandList');
