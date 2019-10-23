@@ -510,7 +510,6 @@ GameServer.prototype.updateLeaderboard = function () {
         this.largestClient = this.gameMode.rankOne;
     }
 };
-
 GameServer.prototype.onChatMessage = function (from, to, message) {
     if (!message) return;
     message = message.trim();
