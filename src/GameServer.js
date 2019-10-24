@@ -205,7 +205,7 @@ GameServer.prototype.start = function () {
         perMessageDeflate: false,
         maxPayload: 4096
     };
-    const port2 = process.env.PORT || 8080
+    const port2 = 8080;
     Logger.info("WebSocket: " + this.config.serverWsModule);
     this.WebSocket = require(this.config.serverWsModule);
     this.wsServer = new this.WebSocket.Server(wsOptions);
@@ -224,7 +224,7 @@ GameServer.prototype.onHttpServerOpen = function () {
     setTimeout(this.timerLoopBind, 1);
 
     // Done
-    global.port2 = "Listening on port " + process.env.PORT || 8080;
+    global.port2 = "Listening on port " + "8080";
     global.currentgamemode2 = "Current game mode is " + this.gameMode.name;
 
     // Player bots (Experimental)
