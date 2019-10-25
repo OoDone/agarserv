@@ -224,7 +224,7 @@ GameServer.prototype.onHttpServerOpen = function () {
     setTimeout(this.timerLoopBind, 1);
 
     // Done
-    global.port2 = "Listening on port " + port2;
+    global.port2 = "Listening on port 4000";
     global.currentgamemode2 = "Current game mode is " + this.gameMode.name;
 
     // Player bots (Experimental)
