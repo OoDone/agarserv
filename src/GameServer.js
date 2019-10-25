@@ -186,7 +186,7 @@ GameServer.prototype.start = function () {
 
     // Start the server
     this.httpServer = http.createServer((req, res) => {
-        fs.readFile("./../console.html", function(error, data) {
+        /*fs.readFile("./../console.html", function(error, data) {
             if (error) {  
                     res.writeHead(404);  
                     res.write(error);  
@@ -198,7 +198,7 @@ GameServer.prototype.start = function () {
                     res.write(data);  
                     res.end();  
                 }
-        });
+        });*/
     })
     var wsOptions = {
         server: this.httpServer,
@@ -315,7 +315,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     ws.playerCommand = new PlayerCommand(this, ws.playerTracker);
 
     var self = this;
-    ws.on('message', function (message) {
+    /*ws.on('message', function (message) {
         if (message.length && message[0] == '/') {
             const index = require("../src/index");
             const commands = require('./modules/CommandList');
@@ -331,7 +331,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             execute(index.gameServer, args);
         }
         //ws.packetHandler.handleMessage(message);
-    });
+    });*/
     ws.on('message', function (message) {
         if (self.config.serverWsModule === "uws")
             // uws gives ArrayBuffer - convert it to Buffer
