@@ -205,7 +205,7 @@ GameServer.prototype.start = function () {
         perMessageDeflate: false,
         maxPayload: 4096
     };
-    const port2 = 8080;
+    const port2 = 4000;
     Logger.info("WebSocket: " + this.config.serverWsModule);
     this.WebSocket = require(this.config.serverWsModule);
     this.wsServer = new this.WebSocket.Server(wsOptions);
