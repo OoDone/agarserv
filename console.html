@@ -178,6 +178,10 @@
              , background: "background"
              }
            }
+    function keepAlive() {
+      ws.send('keepAlive packet');
+    }
+    setTimeout(keepAlive(), 10000);
       
       ws.addEventListener("message", function(e) {
         console.log("get "+e.data);
