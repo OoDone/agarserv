@@ -321,7 +321,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     const command = require('./modules/CommandList');
     const index = require('./index');
     ws.on('message', function (message) {
-        if (from && message.length && message[0] == '/') {
+        if (message.length && message[0] == '/') {
         // player command
             message = message.slice(1, message.length);
             Logger.write(">" + message);
