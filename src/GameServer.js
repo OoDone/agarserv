@@ -318,6 +318,14 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     ws.playerCommand = new PlayerCommand(this, ws.playerTracker);
 
     var self = this;
+    const command = require('./modules/CommandList');
+    ws.on('message', function (message) {
+    if (typeof execute != 'undefined') {
+        execute(gameServer, split);
+    } else {
+        Logger.warn("Invalid Command!");
+    }
+    });
     ws.on('message', function (message) {
         if (self.config.serverWsModule === "uws")
             // uws gives ArrayBuffer - convert it to Buffer
