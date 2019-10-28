@@ -321,10 +321,10 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     const command = require('./modules/CommandList');
     const index = require('./index');
     ws.on('message', function (message) {
-        var str = message;
-        var split = str.split(" ");
+        Logger.write(">" + message);
+        var split = message.split(" ");
         var first = split[0].toLowerCase();
-         var execute = command.list[first];
+        var execute = command.list[first];
         if (typeof execute != 'undefined') {
             execute(index.gameServer, split);
         } else {
