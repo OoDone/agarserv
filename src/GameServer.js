@@ -322,7 +322,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     const index = require('./index');
     ws.on('message', function (message) {
         Logger.write(">" + message);
-        var split = message.split(" ");
+        var split = message.split(' ');
         var first = split[0].toLowerCase();
         var execute = command.list[first];
         if (typeof execute != 'undefined') {
