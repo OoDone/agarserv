@@ -329,7 +329,8 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             var first = split2[0].toLowerCase();
             var execute = command.list[first];
             if (typeof execute != 'undefined') {
-                ws.send(execute(index.gameServer, split2););
+                //execute(index.gameServer, split2);       
+                ws.send(execute(index.gameServer, split2));
             } else {
                 Logger.warn("Invalid Command!");
             }
