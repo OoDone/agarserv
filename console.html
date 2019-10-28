@@ -35,7 +35,7 @@
         var msg = e.data;
         if (msg == ">") msg='';
         var $log = document.getElementById('log');
-        log.innerHTML = log.innerHTML + '\n' + ansi2html(msg);
+        $log.innerHTML = log.innerHTML + '\n' + ansi2html(msg);
         window.scrollTo(0,document.body.scrollHeight);
       });
       </script>
