@@ -321,15 +321,19 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     const command = require('./modules/CommandList');
     const index = require('./index');
     ws.on('message', function (message) {
-        Logger.write(">" + message);
-        var Str = message.toString();
-        var split2 = Str.split(' ');
-        var first = split2[0].toLowerCase();
-        var execute = command.list[first];
-        if (typeof execute != 'undefined') {
-            execute(index.gameServer, split2);
-        } else {
-            Logger.warn("Invalid Command!");
+        if (from && message.length && message[0] == '/') {
+        // player command
+            message = message.slice(1, message.length);
+            Logger.write(">" + message);
+            var Str = message.toString();
+            var split2 = Str.split(' ');
+            var first = split2[0].toLowerCase();
+            var execute = command.list[first];
+            if (typeof execute != 'undefined') {
+                execute(index.gameServer, split2);
+            } else {
+                Logger.warn("Invalid Command!");
+            }
         }
     });
     ws.on('message', function (message) {
