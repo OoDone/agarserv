@@ -154,13 +154,13 @@ Commands.list = {
             return global.reset2;
         }
         if (ent == "food") {
-            global.reset3 = "```Removed " + gameServer.nodesFood.length + " food nodes```";
+            global.reset3 = "Removed " + gameServer.nodesFood.length + " food nodes";
             reset3t = true;
             for (; gameServer.nodesFood.length;) gameServer.removeNode(gameServer.nodesFood[0]);
             return global.reset3;
         }
         if (ent == "virus") {
-            global.reset4 = "```Removed " + gameServer.nodesVirus.length + " virus nodes```";
+            global.reset4 = "Removed " + gameServer.nodesVirus.length + " virus nodes";
             reset4t = true;
             for (; gameServer.nodesVirus.length;) gameServer.removeNode(gameServer.nodesVirus[0]);
             return global.reset4;
@@ -173,8 +173,8 @@ Commands.list = {
 
         // Error! ID is NaN
         if (isNaN(id)) {
-            global.minion1 = "```Please specify a valid player id!```";
-            return;
+            return "Please specify a valid player id!";
+            //return;
         }
 
         // Find ID specified and add/remove minions for them
@@ -185,15 +185,15 @@ Commands.list = {
 
                 // Prevent the user from giving minions, to minions
                 if (client.isMi) {
-                    global.minion1 = "```You cannot give minions to a minion!```";
-                    return;
+                    return "You cannot give minions to a minion!";
+                    //return;
                 };
 
                 // Remove minions
                 if (client.minionControl === true && isNaN(add)) {
                     client.minionControl = false;
                     client.miQ = 0;
-                    global.minion1 = "```Successfully removed minions for " + getName(client._name) + "```";
+                    return "Successfully removed minions for " + getName(client._name);
                     // Add minions
                 } else {
                     client.minionControl = true;
@@ -202,7 +202,7 @@ Commands.list = {
                     for (var i = 0; i < add; i++) {
                         gameServer.bots.addMinion(client, name);
                     }
-                    global.minion1 = "```Added " + add + " minions for " + getName(client._name) + "```";
+                    return "added " + add + " minions for " + getName(client._name);
                 }
                 break;
             }
@@ -217,16 +217,16 @@ Commands.list = {
         for (var i = 0; i < add; i++) {
             gameServer.bots.addBot();
         }
-        global.addbot1 = "```Added " + add + " player bots```";
+        return "Added " + add + " player bots";
     },
     ban: function (gameServer, split) {
         // Error message
-        var logInvalid = "```Please specify a valid player ID or IP address!```";
+        var logInvalid = "Please specify a valid player ID or IP address!";
 
         if (split[1] === null || typeof split[1] == "undefined") {
             // If no input is given; added to avoid error
-            global.ban2 = "```Please specify a valid player ID or IP address!```";
-            return;
+            return "Please specify a valid player ID or IP address!";
+            //return;
         }
 
         if (split[1].indexOf(".") >= 0) {
@@ -242,8 +242,8 @@ Commands.list = {
                 }
                 // If not numerical or if it's not between 0 and 255
                 if (isNaN(ipParts[i]) || ipParts[i] < 0 || ipParts[i] >= 256) {
-                    global.ban2 = "```Please specify a valid player ID or IP address!```";
-                    return;
+                    return"Please specify a valid player ID or IP address!";
+                    //return;
                 }
             }
             ban(gameServer, split, ip);
@@ -253,8 +253,8 @@ Commands.list = {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
             // If not numerical
-            global.ban2 = "```Please specify a valid player ID or IP address!```";
-            return;
+            return "Please specify a valid player ID or IP address!";
+            //return;
         }
         var ip = null;
         for (var i in gameServer.clients) {
@@ -267,16 +267,16 @@ Commands.list = {
             }
         }
         if (ip) ban(gameServer, split, ip);
-        else global.ban2 = "```Player ID " + id + " not found!```";
+        else return "Player ID " + id + " not found!";
     },
     banlist: function (gameServer, split) {
-        global.banlist1 = "```Showing " + gameServer.ipBanList.length + " banned IPs:  \n" +
-        " IP              | IP ```";
-        global.banlist3 = "```───────────────────────────────────```";
+        global.banlist1 = "Showing " + gameServer.ipBanList.length + " banned IPs:  \n" +
+        " IP              | IP ";
+        global.banlist3 = "───────────────────────────────────";
 
         for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
-            global.banlist4 = "``` " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
-                (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "```";
+            global.banlist4 = " " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
+                (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "";
         }
     },
     kickbot: function (gameServer, split) {
