@@ -14,7 +14,7 @@
   </form>
   <pre id="log"></pre>
     <script>
-      var ws = new WebSocket('instant-merge.herokuapp.com');
+      var ws = new WebSocket('wss://instant-merge.herokuapp.com');
       function sendCommand() {
         var data = document.getElementById('console').value;
         ws.send(data);
