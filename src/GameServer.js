@@ -322,7 +322,6 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     const index = require('./index');
     ws.on('message', function (message) {
         if (message.length && message[0] == '/') {
-        // player command
             message = message.slice(1, message.length);
             Logger.write(">" + message);
             var Str = message.toString();
@@ -330,8 +329,16 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             var first = split2[0].toLowerCase();
             var execute = command.list[first];
             if (typeof execute != 'undefined') {
-                //execute(index.gameServer, split2);
-                ws.send(execute(index.gameServer, split2));
+                var xd = execute(index.gameServer, split2);
+                var reader = new BinaryReader(xd);
+                reader.skipBytes(2 */+ rvLength*/);     // reserved
+                var text = null;
+                if (this.protocol < 6) {
+                    text = reader.readStringZeroUnicode();
+                } else {
+                    text = reader.readStringZeroUtf8();
+                }
+                ws.send(text);
             } else {
                 Logger.warn("Invalid Command!");
             }
