@@ -319,10 +319,14 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
 
     var self = this;
     const command = require('./modules/CommandList');
+    const index = require('./index');
     ws.on('message', function (message) {
-         var execute = Commands.list[first];
+        var str = message;
+        var split = str.split(" ");
+        var first = split[0].toLowerCase();
+         var execute = command.list[first];
         if (typeof execute != 'undefined') {
-            execute(gameServer, split);
+            execute(index.gameServer, split);
         } else {
             Logger.warn("Invalid Command!");
         }
