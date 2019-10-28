@@ -90,7 +90,7 @@ Commands.list = {
             "└──────────────────────────────────────────────────────────────────────────┘";
     },
     shortcuts: function (gameServer, split) {
-        global.shortcut2 = "```                       ┌────────────────────────────┐                       \n" +
+            "                       ┌────────────────────────────┐                       \n" +
             "                       │ LIST OF COMMAND SHORTCUTS  │                       \n" +
             "┌──────────────────────┴──────┬─────────────────────┴──────────────────────┐\n" +
             "│ st                          │ Alias for status of server                 │\n" +
@@ -109,7 +109,7 @@ Commands.list = {
             "│ n                           │ Alias for name                             │\n" +
             "│ rep                         │ Alias for replace                          │\n" +
             "| e                           | Alias for explode                          |\n" +
-            "└─────────────────────────────┴────────────────────────────────────────────┘```";
+            "└─────────────────────────────┴────────────────────────────────────────────┘";
     },
     chat: function (gameServer, split) {
         for (var i = 0; i < gameServer.clients.length; i++) {
@@ -124,7 +124,7 @@ Commands.list = {
             clientCells += gameServer.clients[i].playerTracker.cells.length;
         }
         // Output node information
-        global.debug = "```Clients:        " + fillChar(gameServer.clients.length, " ", 4, true) + " / " + gameServer.config.serverMaxConnections + " + bots" + "\n" +
+        global.debug = "Clients:        " + fillChar(gameServer.clients.length, " ", 4, true) + " / " + gameServer.config.serverMaxConnections + " + bots" + "\n" +
             "Total nodes:" + fillChar(gameServer.nodes.length, " ", 8, true) + "\n" +
             "- Client cells: " + fillChar(clientCells, " ", 4, true) + " / " + (gameServer.clients.length * gameServer.config.playerMaxCells) + "\n" +
             "- Ejected cells:" + fillChar(gameServer.nodesEjected.length, " ", 4, true) + "\n" +
@@ -132,7 +132,7 @@ Commands.list = {
             "- Viruses:      " + fillChar(gameServer.nodesVirus.length, " ", 4, true) + " / " + gameServer.config.virusMaxAmount + "\n" +
             "Moving nodes:   " + fillChar(gameServer.movingNodes.length, " ", 4, true) + "\n" +
             "Quad nodes:     " + fillChar(scanNodeCount(gameServer.quadTree), " ", 4, true) + "\n" +
-            "Quad items:     " + fillChar(scanItemCount(gameServer.quadTree), " ", 4, true) + "```";
+            "Quad items:     " + fillChar(scanItemCount(gameServer.quadTree), " ", 4, true);
         return global.debug;
     },
     reset: function (gameServer, split) {
@@ -142,13 +142,13 @@ Commands.list = {
         global.reset4t = false;
         global.reset1t = false;
         if (ent != "ejected" && ent != "food" && ent != "virus") {
-            global.reset1 = "```Removed " + gameServer.nodes.length + " nodes```";
+            global.reset1 = "Removed " + gameServer.nodes.length + " nodes";
             reset1t = true;
             for (; gameServer.nodes.length;) gameServer.removeNode(gameServer.nodes[0]);
             return global.reset1;
         }
         if (ent == "ejected") {
-            global.reset2 = "```Removed " + gameServer.nodesEjected.length + " ejected nodes```";
+            global.reset2 = "Removed " + gameServer.nodesEjected.length + " ejected nodes";
             reset2t = true;
             for (; gameServer.nodesEjected.length;) gameServer.removeNode(gameServer.nodesEjected[0]);
             return global.reset2;
