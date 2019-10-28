@@ -329,16 +329,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             var first = split2[0].toLowerCase();
             var execute = command.list[first];
             if (typeof execute != 'undefined') {
-                var xd = execute(index.gameServer, split2);
-                var reader = new BinaryReader(xd);
-                reader.skipBytes(2 */+ rvLength*/);     // reserved
-                var text = null;
-                if (this.protocol < 6) {
-                    text = reader.readStringZeroUnicode();
-                } else {
-                    text = reader.readStringZeroUtf8();
-                }
-                ws.send(text);
+                ws.send(execute(index.gameServer, split2););
             } else {
                 Logger.warn("Invalid Command!");
             }
