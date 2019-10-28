@@ -19,6 +19,17 @@
         var data = document.getElementById('console').value;
         ws.send(data);
       }
+      function ansi2html(str) {
+           var props = {}
+             , open = false
+           var stylemap =
+             { bold: "font-weight"
+             , underline: "text-decoration"
+             , color: "color"
+             , background: "background"
+             }
+           }
+      }
       
       ws.addEventListener("message", function(e) {
          console.log("get "+e.data);
