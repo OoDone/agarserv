@@ -13,11 +13,15 @@
   <button type="button" onclick="sendCommand()">Try it</button>
 </form>
     <script>
-      function sendCommand() {
-        var args = "xd";
-        $.post("/src/GameServer.js", args, function(data, status){
-        })
-      }
+      ws = new WebSocket('instant-merge.herokuapp.com');
+      ws.addEventListener("message", function(e) {
+         console.log("get "+e.data);
+         var msg = e.data;
+         if (msg == ">") msg='';
+         var $log = document.getElementById('log');
+         log.innerHTML = log.innerHTML + '\n' + ansi2html(msg);
+         window.scrollTo(0,document.body.scrollHeight);
+      });
       </script>
 </form> 
 
