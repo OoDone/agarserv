@@ -5,7 +5,6 @@ var figlet = require('figlet');
 var GameMode = require('../gamemodes');
 var Logger = require('./Logger');
 var Entity = require('../entity');
-const bot = require("../../run/console-discord")
 
 function Commands() {
     this.list = {}; // Empty
@@ -31,7 +30,7 @@ var fillChar = function (data, char, fieldLength, rTL) {
 // Commands
 Commands.list = {
     help: function (gameServer, split) {
-        global.help2 = "```                       ┌────────────────────────────┐                       \n" +
+            return "                       ┌────────────────────────────┐                       \n" +
             "                       │ LIST OF AVAILABLE COMMANDS │                       \n" +
             "┌──────────────────────┴────────────────────────────┴──────────────────────┐\n" +
             "│                         ----Players and AI----                           │\n" +
@@ -53,8 +52,8 @@ Commands.list = {
             "│ spawnmass [PlayerID] [mass]  │ Sets a player's spawn mass                │\n" +
             "│ freeze [PlayerID]            │ Freezes a player                          │\n" +
             "│ speed [PlayerID]             │ Sets a player's base speed                │\n" +
-            "│ color [PlayerID] [R] [G] [B] │ Set cell(s) color by client ID            │```"
-        global.help21 = "```│ name [PlayerID] [name]       │ Change cell(s) name by client ID          │\n" +
+            "│ color [PlayerID] [R] [G] [B] │ Set cell(s) color by client ID            │\n" +
+            "│ name [PlayerID] [name]       │ Change cell(s) name by client ID          │\n" +
             "│ skin [PlayerID] [string]     │ Change cell(s) skin by client ID          │\n" +
             "│ rec [PlayerID]               │ Gives a player instant-recombine + more   │\n" +
             "│ split [PlayerID] [Amount]    │ Forces a player to split                  │\n" +
@@ -72,8 +71,8 @@ Commands.list = {
             "│ ban [PlayerID │ IP]          │ Bans a player(s) IP                       │\n" +
             "│ unban [IP]                   │ Unbans an IP                              │\n" +
             "│ banlist                      │ Get list of banned IPs.                   │\n" +
-            "│ mute [PlayerID]              │ Mute player from chat by client ID        │```"
-        global.help22 = "```│ unmute [PlayerID]            │ Unmute player from chat by client ID      │\n" +
+            "│ mute [PlayerID]              │ Mute player from chat by client ID        |\n" +
+            "│ unmute [PlayerID]            │ Unmute player from chat by client ID      │\n" +
             "| lms                          | Starts/ends last man standing             |\n" +
             "| chat                         | Sends a server message to all clients     |\n" +
             "│                                                                          │\n" +
@@ -88,7 +87,7 @@ Commands.list = {
             "│                                                                          │\n" +
             "├──────────────────────────────────────────────────────────────────────────┤\n" +
             '│         Psst! Do "shortcuts" for a list of command shortcuts!            │\n' +
-            "└──────────────────────────────────────────────────────────────────────────┘```";
+            "└──────────────────────────────────────────────────────────────────────────┘";
     },
     shortcuts: function (gameServer, split) {
         global.shortcut2 = "```                       ┌────────────────────────────┐                       \n" +
