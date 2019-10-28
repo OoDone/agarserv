@@ -320,11 +320,12 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     var self = this;
     const command = require('./modules/CommandList');
     ws.on('message', function (message) {
-    if (typeof execute != 'undefined') {
-        execute(gameServer, split);
-    } else {
-        Logger.warn("Invalid Command!");
-    }
+         var execute = Commands.list[first];
+        if (typeof execute != 'undefined') {
+            execute(gameServer, split);
+        } else {
+            Logger.warn("Invalid Command!");
+        }
     });
     ws.on('message', function (message) {
         if (self.config.serverWsModule === "uws")
