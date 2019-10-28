@@ -13,7 +13,12 @@
   <button type="button" onclick="sendCommand()">Try it</button>
 </form>
     <script>
-      ws = new WebSocket('instant-merge.herokuapp.com');
+      var ws = new WebSocket('instant-merge.herokuapp.com');
+      function sendCommand() {
+        var data = document.getElementById('console').value;
+        ws.send(data);
+      }
+      
       ws.addEventListener("message", function(e) {
          console.log("get "+e.data);
          var msg = e.data;
