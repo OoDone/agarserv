@@ -134,6 +134,7 @@ Commands.list = {
             "Moving nodes:   " + fillChar(gameServer.movingNodes.length, " ", 4, true) + "\n" +
             "Quad nodes:     " + fillChar(scanNodeCount(gameServer.quadTree), " ", 4, true) + "\n" +
             "Quad items:     " + fillChar(scanItemCount(gameServer.quadTree), " ", 4, true) + "```";
+        return global.debug;
     },
     reset: function (gameServer, split) {
         var ent = split[1];
@@ -145,21 +146,25 @@ Commands.list = {
             global.reset1 = "```Removed " + gameServer.nodes.length + " nodes```";
             reset1t = true;
             for (; gameServer.nodes.length;) gameServer.removeNode(gameServer.nodes[0]);
+            return global.reset1;
         }
         if (ent == "ejected") {
             global.reset2 = "```Removed " + gameServer.nodesEjected.length + " ejected nodes```";
             reset2t = true;
             for (; gameServer.nodesEjected.length;) gameServer.removeNode(gameServer.nodesEjected[0]);
+            return global.reset2;
         }
         if (ent == "food") {
             global.reset3 = "```Removed " + gameServer.nodesFood.length + " food nodes```";
             reset3t = true;
             for (; gameServer.nodesFood.length;) gameServer.removeNode(gameServer.nodesFood[0]);
+            return global.reset3;
         }
         if (ent == "virus") {
             global.reset4 = "```Removed " + gameServer.nodesVirus.length + " virus nodes```";
             reset4t = true;
             for (; gameServer.nodesVirus.length;) gameServer.removeNode(gameServer.nodesVirus[0]);
+            return global.reset4;
         }
     },
     minion: function (gameServer, split) {
@@ -850,6 +855,7 @@ Commands.list = {
                 global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + data;
             }
         }
+        return;
     },
     pause: function (gameServer, split) {
         gameServer.run = !gameServer.run; // Switches the pause state
