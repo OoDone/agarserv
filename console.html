@@ -181,7 +181,6 @@
     function keepAlive() {
       ws.send('keepAlive packet');
     }
-    setTimeout(keepAlive(), 10000);
       
       ws.addEventListener("message", function(e) {
         console.log("get "+e.data);
@@ -190,6 +189,7 @@
         var $log = document.getElementById('log');
         $log.innerHTML = log.innerHTML + '\n' + e.data;
         window.scrollTo(0,document.body.scrollHeight);
+        setTimeout(keepAlive(), 10000);
       });
       </script>
 </form> 
