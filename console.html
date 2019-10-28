@@ -11,7 +11,8 @@
   <input type="text" name="console" id="console" value="/help">
   <br>
   <button type="button" onclick="sendCommand()">Try it</button>
-</form>
+  </form>
+  <pre id="log"></pre>
     <script>
       var ws = new WebSocket('instant-merge.herokuapp.com');
       function sendCommand() {
