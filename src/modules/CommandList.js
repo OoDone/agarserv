@@ -295,11 +295,11 @@ Commands.list = {
                 break;
         }
         if (!removed)
-            global.kickbot1 = "```Cannot find any bots```";
+            return "Cannot find any bots";
         else if (toRemove == removed)
-            global.kickbot1 = "```Kicked " + removed + " bots```";
+            return "Kicked " + removed + " bots";
         else
-            global.kickbot1 = "```Only " + removed + " bots were kicked```";
+            return "Only " + removed + " bots were kicked";
     },
     board: function (gameServer, split) {
         var newLB = [];
@@ -318,8 +318,8 @@ Commands.list = {
             gameServer.leaderboardType = 48;
         };
         if (reset != "reset") {
-            global.board1 = "```Successfully changed leaderboard values \n" + 
-            'Do "board reset" to reset leaderboard```';
+            return "Successfully changed leaderboard values \n" + 
+            'Do "board reset" to reset leaderboard';
         } else {
             // Gets the current gamemode
             var gm = GameMode.get(gameServer.gameMode.ID);
@@ -327,13 +327,13 @@ Commands.list = {
             // Replace functions
             gameServer.gameMode.packetLB = gm.packetLB;
             gameServer.gameMode.updateLB = gm.updateLB;
-            global.board1 = "```Successfully reset leaderboard```";
+            return "Successfully reset leaderboard";
         }
     },
     change: function (gameServer, split) {
         if (split.length < 3) {
-            global.change1 = "```Invalid command arguments```";
-            return;
+            return "Invalid command arguments";
+            //return;
         }
         var key = split[1];
         var value = split[2];
@@ -346,12 +346,12 @@ Commands.list = {
         }
 
         if (value == null || isNaN(value)) {
-            global.change1 = "```Invalid value: " + value + "```";
-            return;
+            return "Invalid value: " + value;
+            //return;
         }
         if (!gameServer.config.hasOwnProperty(key)) {
-            global.change1 = "```Unknown config value: " + key + "```";
-            return;
+            return "Unknown config value: " + key;
+            //return;
         }
         gameServer.config[key] = value;
 
@@ -373,16 +373,16 @@ Commands.list = {
             console.log(data)
         });
 
-        global.clear1 = "\u001B[1m\u001B[32mMultiOgar-Edited " + gameServer.version + "\u001B[37m - An open source multi-protocol ogar server\u001B[0m";
-        global.clear2 = "```Listening on port " + gameServer.config.serverPort + "```";
-        global.clear3 = "```Current game mode is " + gameServer.gameMode.name + "\n" + "```";
+        return "\u001B[1m\u001B[32mMultiOgar-Edited " + gameServer.version + "\u001B[37m - An open source multi-protocol ogar server\u001B[0m \n" +
+        "Listening on port " + gameServer.config.serverPort + "\n" +
+        "```Current game mode is " + gameServer.gameMode.name + "\n";
     },
     color: function (gameServer, split) {
         // Validation checks
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.color1 = "```Please specify a valid player ID!```";
-            return;
+            return "Please specify a valid player ID!";
+            //return;
         }
         // Get colors
         var color = {
@@ -398,7 +398,7 @@ Commands.list = {
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) global.color1 = "```That player is either dead or not playing!```";
+                if (!client.cells.length) return "That player is either dead or not playing!";
                 client.color = color; // Set color
                 for (var j in client.cells) {
                     client.cells[j].color = color;
@@ -407,12 +407,12 @@ Commands.list = {
             }
         }
         if (client == null) {
-            global.color1 = "That player ID is non-existant!";
+            return "That player ID is non-existant!";
         }
-        global.color1 = "```Changed " + getName(client._name) + "'s color to: " + color.r + ", " + color.g + ", " + color.b + "```";
+        return "Changed " + getName(client._name) + "'s color to: " + color.r + ", " + color.g + ", " + color.b + "";
     },
     exit: function (gameServer, split) {
-        global.exit1 = "```Closing server...```";
+        return "Closing server...";
         gameServer.wsServer.close();
         process.exit(1);
     },
