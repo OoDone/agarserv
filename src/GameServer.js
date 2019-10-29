@@ -10,6 +10,17 @@ var index = require('./index');
 
 // GameServer implementation
 function GameServer() {
+    var fillChar = function (data, char, fieldLength, rTL) {
+    var result = data.toString();
+    if (rTL === true) {
+        for (var i = result.length; i < fieldLength; i++)
+            result = char.concat(result);
+    } else {
+        for (var i = result.length; i < fieldLength; i++)
+            result = result.concat(char);
+    }
+    return result;
+};
     // Location of source files - For renaming or moving source files!
     this.srcFiles = "../src";
 
