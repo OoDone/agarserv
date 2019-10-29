@@ -344,6 +344,10 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                 if (split2 == "playerlist") {
                     var gameServer = index.gameServer;
                     var sockets = gameServer.clients.slice(0);
+                    ws.send("\nCurrent players: " + gameServer.clients.length + "\n" +
+        'Do "playerlist m" or "pl m" to list minions\n' +
+        " ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " \n" +
+        fillChar('', '─', ' ID     | IP              | CELLS | SCORE  |   POSITION   |   |  '.length + gameServer.config.playerMaxNickLength));
         sockets.sort(function (a, b) {
             return a.playerTracker.pID - b.playerTracker.pID;
         });
