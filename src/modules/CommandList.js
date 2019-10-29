@@ -471,46 +471,46 @@ Commands.list = {
     },
     mute: function (gameServer, args) {
         if (!args || args.length < 2) {
-            global.mute1 = "Please specify a valid player ID!";
-            return;
+            return "Please specify a valid player ID!";
+            //return;
         }
         var id = parseInt(args[1]);
         if (isNaN(id)) {
-            global.mute1 = "Please specify a valid player ID!";
-            return;
+            return "Please specify a valid player ID!";
+            //return;
         }
         var player = playerById(id, gameServer);
         if (!player) {
-            global.mute1 = "That player ID (" + id + ") is non-existant!";
-            return;
+            return "That player ID (" + id + ") is non-existant!";
+            //return;
         }
         if (player.isMuted) {
-            global.mute1 = "That player with ID (" + id + ") is already muted!";
-            return;
+            return "That player with ID (" + id + ") is already muted!";
+            //return;
         }
         Logger.print("Player \"" + getName(player._name) + "\" was muted");
         player.isMuted = true;
     },
     unmute: function (gameServer, args) {
         if (!args || args.length < 2) {
-            global.unmute1 = "Please specify a valid player ID!";
-            return;
+            return "Please specify a valid player ID!";
+            //return;
         }
         var id = parseInt(args[1]);
         if (isNaN(id)) {
-            global.unmute1 = "Please specify a valid player ID!";
-            return;
+            return "Please specify a valid player ID!";
+            //return;
         }
         var player = playerById(id, gameServer);
         if (player === null) {
-            global.unmute1 = "That player ID (" + id + ") is non-existant!";
-            return;
+            return "That player ID (" + id + ") is non-existant!";
+            //return;
         }
         if (!player.isMuted) {
-            global.unmute1 = "Player with id=" + id + " already not muted!";
-            return;
+            return "Player with id=" + id + " already not muted!";
+            r//eturn;
         }
-        global.unmute1 = "Player \"" + getName(player._name) + "\" was unmuted";
+        return "Player \"" + getName(player._name) + "\" was unmuted";
         player.isMuted = false;
     },
     kickall: function (gameServer, split) {
@@ -527,20 +527,20 @@ Commands.list = {
             // disconnect
             socket.close(1000, "Kicked from server.");
             var name = getName(socket.playerTracker._name);
-            global.kickall1 = "Kicked \"" + name + "\"";
+            return "Kicked \"" + name + "\"";
             gameServer.sendChatMessage(null, null, "Kicked \"" + name + "\""); // notify to don't confuse with server bug
             count++;
         }, this);
 
         if (count) return;
-        if (!this.id) global.kickall1 = "No players to kick!";
-        else global.kickall1 = "That player ID (" + this.id + ") is non-existant!";
+        if (!this.id) return "No players to kick!";
+        else return "That player ID (" + this.id + ") is non-existant!";
     },
     kill: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.kill1 = "Please specify a valid player ID!";
-            return;
+            return "Please specify a valid player ID!";
+            //return;
         }
 
         var count = 0;
@@ -553,11 +553,11 @@ Commands.list = {
                     count++;
                 }
 
-                global.kill1 = "Killed " + getName(client._name) + " and removed " + count + " cells";
+                return "Killed " + getName(client._name) + " and removed " + count + " cells";
                 break;
             }
         }
-        if (client == null) global.kill1 = "That player ID is non-existant!";
+        if (client == null) return "That player ID is non-existant!";
     },
     killall: function (gameServer, split) {
         var count = 0;
@@ -568,19 +568,19 @@ Commands.list = {
                 count++;
             }
         }
-        if (this.id) global.killall1 = "Removed " + count + " cells";
+        if (this.id) return "Removed " + count + " cells";
     },
     mass: function (gameServer, split) {
         // Validation checks
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.mass1 = "Please specify a valid player ID!";
-            return;
+            return "Please specify a valid player ID!";
+            //return;
         }
         var amount = parseInt(split[2]);
         if (isNaN(amount)) {
-            global.mass1 = "Please specify a valid number";
-            return;
+            return "Please specify a valid number";
+            //return;
         }
         var size = Math.sqrt(amount * 100);
 
@@ -592,11 +592,11 @@ Commands.list = {
                 for (var j in client.cells) {
                     client.cells[j].setSize(size);
                 }
-                global.mass1 = "Set mass of " + getName(client._name) + " to " + (size * size / 100).toFixed(3) + "";
+                return "Set mass of " + getName(client._name) + " to " + (size * size / 100).toFixed(3) + "";
                 break;
             }
         }
-        if (client == null) global.mass1 = "That player ID is non-existant!";
+        if (client == null) return "That player ID is non-existant!";
     },
     spawnmass: function (gameServer, split) {
         var id = parseInt(split[1]);
