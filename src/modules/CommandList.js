@@ -9,11 +9,6 @@ var Entity = require('../entity');
 function Commands() {
     this.list = {}; // Empty
 }
-var ws = function() {
-    var index = require('../index');
-    var gameServer = index.gameServer;
-    return gameServer.prototype.onClientSocketOpen;
-}
 
 
 
@@ -279,6 +274,7 @@ Commands.list = {
         " IP              | IP ";
         global.banlist3 = "───────────────────────────────────";
         for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
+            var ws = global.ws;
             ws.send("TEST");
             ws.send(" " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
                 (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "");
