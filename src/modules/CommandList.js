@@ -279,7 +279,7 @@ Commands.list = {
         " IP              | IP ";
         global.banlist3 = "───────────────────────────────────";
         for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
-            ws.ws.send("TEST");
+            ws.send("TEST");
             ws.send(" " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
                 (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "");
         }
