@@ -864,25 +864,25 @@ Commands.list = {
     freeze: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.freeze1 = "Please specify a valid player ID!";
-            return;
+            return "Please specify a valid player ID!";
+            //return;
         }
 
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) global.freeze1 = "That player is either dead or not playing!";
+                if (!client.cells.length) return "That player is either dead or not playing!";
                 // set frozen state
                 client.frozen = !client.frozen;
-                if (client.frozen) global.freeze1 = "Froze " + getName(client._name) + "";
-                else global.freeze1 = "Unfroze " + getName(client._name) + "";
+                if (client.frozen) return "Froze " + getName(client._name) + "";
+                else return "Unfroze " + getName(client._name) + "";
             }
         }
-        if (client == null) global.freeze1 = "That player ID is non-existant!";
+        if (client == null) return "That player ID is non-existant!";
     },
     reload: function (gameServer, split) {
         gameServer.loadFiles();
-        global.reload1 = "Reloaded files successfully";
+        return "Reloaded files successfully";
     },
     status: function (gameServer, split) {
         var ini = require('./ini.js');
@@ -902,7 +902,7 @@ Commands.list = {
             scores.push(getScore(gameServer.clients[i].playerTracker))
         if (!gameServer.clients.length) scores = [0];
 
-        global.status1 = "Connected players: " + gameServer.clients.length + "/" + gameServer.config.serverMaxConnections +  "\n" +
+        return "Connected players: " + gameServer.clients.length + "/" + gameServer.config.serverMaxConnections +  "\n" +
         "Players: " + humans + " - Bots: " + bots + "\n" +
         "Average score: " + (scores.reduce(function (x, y) {
             return x + y;
@@ -915,8 +915,8 @@ Commands.list = {
     tp: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.tp1 = "Please specify a valid player ID!";
-            return;
+            return "Please specify a valid player ID!";
+            //return;
         }
 
         // Make sure the input values are numbers
@@ -925,25 +925,25 @@ Commands.list = {
             y: parseInt(split[3])
         };
         if (isNaN(pos.x) || isNaN(pos.y)) {
-            global.tp1 = "Invalid coordinates";
-            return;
+            return "Invalid coordinates";
+            //return;
         }
 
         // Spawn
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) global.tp1 = "That player is either dead or not playing!";
+                if (!client.cells.length) return "That player is either dead or not playing!";
                 for (var j in client.cells) {
                     client.cells[j].position.x = pos.x;
                     client.cells[j].position.y = pos.y;
                     gameServer.updateNodeQuad(client.cells[j]);
                 }
-                global.tp1 = "Teleported " + getName(client._name) + " to (" + pos.x + " , " + pos.y + ")";
+                return "Teleported " + getName(client._name) + " to (" + pos.x + " , " + pos.y + ")";
                 break;
             }
         }
-        if (client == null) global.tp1 = "That player ID is non-existant!";
+        if (client == null) return "That player ID is non-existant!";
     },
     spawn: function (gameServer, split) {
         var ent = split[1];
