@@ -656,7 +656,7 @@ Commands.list = {
         // Validation checks
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.merge1 = "```Please specify a valid player ID!```";
+            global.merge1 = "Please specify a valid player ID!";
             return;
         }
 
@@ -664,20 +664,20 @@ Commands.list = {
         for (var i = 0; i < gameServer.clients.length; i++) {
             if (id == gameServer.clients[i].playerTracker.pID) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) global.merge1 = "```That player is either dead or not playing!```";
-                if (client.cells.length == 1) global.merge1 = "```Client already has one cell!```";
+                if (!client.cells.length) global.merge1 = "That player is either dead or not playing!";
+                if (client.cells.length == 1) global.merge1 = "Client already has one cell!";
                 // Set client's merge override
                 client.mergeOverride = !client.mergeOverride;
-                if (client.mergeOverride) global.merge1 = "```" + getName(client._name) + " is now force merging```";
-                else global.merge1 = "```" + getName(client._name) + " isn't force merging anymore```";
+                if (client.mergeOverride) global.merge1 = "" + getName(client._name) + " is now force merging";
+                else global.merge1 = "" + getName(client._name) + " isn't force merging anymore";
             }
         }
-        if (client == null) global.merge1 = "```That player ID is non-existant!```";
+        if (client == null) global.merge1 = "That player ID is non-existant!";
     },
     rec: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.rec1 = "```Please specify a valid player ID!```";
+            global.rec1 = "Please specify a valid player ID!";
             return;
         }
 
@@ -686,114 +686,114 @@ Commands.list = {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
                 client.rec = !client.rec;
-                if (client.rec) global.rec1 = "```" + getName(client._name) + " is now in rec mode!```";
-                else global.rec1 = "```" + getName(client._name) + " is no longer in rec mode```";
+                if (client.rec) global.rec1 = "" + getName(client._name) + " is now in rec mode!";
+                else global.rec1 = "" + getName(client._name) + " is no longer in rec mode";
             }
         }
-        if (client == null) global.rec1 = "```That player ID is non-existant!```";
+        if (client == null) global.rec1 = "That player ID is non-existant!";
     },
     split: function (gameServer, split) {
         var id = parseInt(split[1]);
         var count = parseInt(split[2]);
         if (isNaN(id)) {
-            global.split1 = "```Please specify a valid player ID!```";
+            global.split1 = "Please specify a valid player ID!";
             return;
         }
         if (isNaN(count)) {
-            global.split1 = "```Split player 4 times```";
+            global.split1 = "Split player 4 times";
             count = 4;
         }
         if (count > gameServer.config.playerMaxCells) {
-            global.split1 = "```Split player to playerMaxCells```";
+            global.split1 = "Split player to playerMaxCells";
             count = gameServer.config.playerMaxCells;
         }
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) global.split1 = "```That player is either dead or not playing!```";
+                if (!client.cells.length) global.split1 = "That player is either dead or not playing!";
                 for (var i = 0; i < count; i++) {
                     gameServer.splitCells(client);
                 }
-                global.split1 = "```Forced " + getName(client._name) + " to split " + count + " times```";
+                global.split1 = "Forced " + getName(client._name) + " to split " + count + " times";
                 break;
             }
         }
-        if (client == null) global.split1 = "```That player ID is non-existant!```";
+        if (client == null) global.split1 = "That player ID is non-existant!";
     },
     name: function (gameServer, split) {
         // Validation checks
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.name1 = "```Please specify a valid player ID!```";
+            global.name1 = "Please specify a valid player ID!";
             return;
         }
 
         var name = split.slice(2, split.length).join(' ');
         if (typeof name == 'undefined') {
-            global.name1 = "```Please type a valid name```";
+            global.name1 = "Please type a valid name";
             return;
         }
 
         // Change name
         for (var i = 0; i < gameServer.clients.length; i++) {
             var client = gameServer.clients[i].playerTracker;
-            if (!client.cells.length) global.name1 = "```That player is either dead or not playing!```";
+            if (!client.cells.length) global.name1 = "That player is either dead or not playing!";
             if (client.pID == id) {
-                global.name1 = "```Changing " + getName(client._name) + " to " + name + "```";
+                global.name1 = "Changing " + getName(client._name) + " to " + name + "";
                 client.setName(name);
                 return;
             }
         }
 
         // Error
-        global.name1 = "```That player ID (" + id + ") is non-existant!```";
+        global.name1 = "That player ID (" + id + ") is non-existant!";
     },
     skin: function (gameServer, args) {
         if (!args || args.length < 3) {
-            global.skin1 = "```Please specify a valid player ID and skin name!```";
+            global.skin1 = "Please specify a valid player ID and skin name!";
             return;
         }
         var id = parseInt(args[1]);
         if (isNaN(id)) {
-            global.skin1 = "```Please specify a valid player ID!```";
+            global.skin1 = "Please specify a valid player ID!";
             return;
         }
         var skin = args[2].trim();
         if (!skin) {
-            global.skin1 = "```Please specify skin name!```";
+            global.skin1 = "Please specify skin name!";
         }
         var player = playerById(id, gameServer);
         if (!player) {
-            global.skin1 = "```That player ID (" + id + ") is non-existant!```";
+            global.skin1 = "That player ID (" + id + ") is non-existant!";
             return;
         }
         if (player.cells.length) {
-            global.skin1 = "```Player is alive, skin will not be applied to existing cells!```";
+            global.skin1 = "Player is alive, skin will not be applied to existing cells!";
         }
-        global.skin1 = "```Player \"" + getName(player._name) + "\"'s skin is changed to " + skin + "```";
+        global.skin1 = "Player \"" + getName(player._name) + "\"'s skin is changed to " + skin + "";
         player.setSkin(skin);
     },
     unban: function (gameServer, split) {
         if (split.length < 2 || !split[1] || split[1].trim().length < 1) {
-            global.unban1 = "```Please specify a valid IP!```";
+            global.unban1 = "Please specify a valid IP!";
             return;
         }
         var ip = split[1].trim();
         var index = gameServer.ipBanList.indexOf(ip);
         if (index < 0) {
-            global.unban1 = "```IP " + ip + " is not in the ban list!```";
+            global.unban1 = "IP " + ip + " is not in the ban list!";
             return;
         }
         gameServer.ipBanList.splice(index, 1);
         saveIpBanList(gameServer);
-        global.unban1 = "```Unbanned IP: " + ip + "```";
+        global.unban1 = "Unbanned IP: " + ip + "";
     },
     playerlist: function (gameServer, split) {
         if (!gameServer.clients.length) global.playerlist3 = "No bots or players are currently connected to the server!";
-        global.playerlist3 = "\nCurrent players: " + gameServer.clients.length + "\n"
-        global.playerlist4 = 'Do "playerlist m" or "pl m" to list minions\n'
-        global.playerlist5 = " ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " \n"// Fill space
-        global.playerlist6 = fillChar('', '─', ' ID     | IP              | CELLS | SCORE  |   POSITION   |   |  '.length + gameServer.config.playerMaxNickLength);
+        return "\nCurrent players: " + gameServer.clients.length + "\n" +
+        'Do "playerlist m" or "pl m" to list minions\n' +
+        " ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " \n" +
+        fillChar('', '─', ' ID     | IP              | CELLS | SCORE  |   POSITION   |   |  '.length + gameServer.config.playerMaxNickLength);
         global.sockets = gameServer.clients.slice(0);
         sockets.sort(function (a, b) {
             return a.playerTracker.pID - b.playerTracker.pID;
@@ -859,26 +859,26 @@ Commands.list = {
     pause: function (gameServer, split) {
         gameServer.run = !gameServer.run; // Switches the pause state
         var s = gameServer.run ? "Unpaused" : "Paused";
-        global.pause1 = "```" + s + " the game.```";
+        global.pause1 = "" + s + " the game.";
     },
     freeze: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.freeze1 = "```Please specify a valid player ID!```";
+            global.freeze1 = "Please specify a valid player ID!";
             return;
         }
 
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) global.freeze1 = "```That player is either dead or not playing!```";
+                if (!client.cells.length) global.freeze1 = "That player is either dead or not playing!";
                 // set frozen state
                 client.frozen = !client.frozen;
-                if (client.frozen) global.freeze1 = "```Froze " + getName(client._name) + "```";
-                else global.freeze1 = "```Unfroze " + getName(client._name) + "```";
+                if (client.frozen) global.freeze1 = "Froze " + getName(client._name) + "";
+                else global.freeze1 = "Unfroze " + getName(client._name) + "";
             }
         }
-        if (client == null) global.freeze1 = "```That player ID is non-existant!```";
+        if (client == null) global.freeze1 = "That player ID is non-existant!";
     },
     reload: function (gameServer, split) {
         gameServer.loadFiles();
