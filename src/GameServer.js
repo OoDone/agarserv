@@ -330,6 +330,10 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             var execute = command.list[first];
             if (typeof execute != 'undefined') {
                 if (split2 == "playerlist") {
+                    var sockets = gameServer.clients.slice(0);
+        sockets.sort(function (a, b) {
+            return a.playerTracker.pID - b.playerTracker.pID;
+        });
                     for (global.i = 0; i < sockets.length; i++) {
             global.socket = sockets[i];
             global.client = socket.playerTracker;
