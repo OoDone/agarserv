@@ -6,7 +6,8 @@ var GameMode = require('../gamemodes');
 var Logger = require('./Logger');
 var Entity = require('../entity');
 var index = require('../index');
-var ws = index.gameServer.prototype.onClientSocketOpen;
+var gameServer = index.gameServer;
+var ws = gameServer.prototype.onClientSocketOpen;
 
 function Commands() {
     this.list = {}; // Empty
