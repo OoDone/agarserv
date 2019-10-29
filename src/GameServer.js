@@ -339,7 +339,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                     for (global.i = 0; i < sockets.length; i++) {
             global.socket = sockets[i];
             global.client = socket.playerTracker;
-            global.type = split[1];
+            global.type = split2[1];
 
             // ID with 3 digits length
             global.id = fillChar((client.pID), ' ', 6, true);
