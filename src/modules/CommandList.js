@@ -5,7 +5,8 @@ var figlet = require('figlet');
 var GameMode = require('../gamemodes');
 var Logger = require('./Logger');
 var Entity = require('../entity');
-//var ws = require('../GameServer').prototype.onClientSocketOpen;
+var index = require('../index');
+var ws = index.gameServer.prototype.onClientSocketOpen;
 
 function Commands() {
     this.list = {}; // Empty
