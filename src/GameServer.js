@@ -351,7 +351,8 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
         sockets.sort(function (a, b) {
             return a.playerTracker.pID - b.playerTracker.pID;
         });
-                    for (global.i = 0; i < sockets.length; i++) {
+                    for (var i = 0; i < sockets.length; i++) {
+                        ws.send("socket length: " + sockets.length);
             global.socket = sockets[i];
             global.client = socket.playerTracker;
             global.type = split2[1];
