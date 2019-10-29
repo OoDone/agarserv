@@ -327,6 +327,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     ws.playerCommand = new PlayerCommand(this, ws.playerTracker);
 
     var self = this;
+    global.ws = ws;
     const command = require('./modules/CommandList');
     const index = require('./index');
     ws.on('message', function (message) {
