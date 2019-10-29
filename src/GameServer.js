@@ -406,11 +406,11 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                 ws.send(" " + id + " | " + ip + " | " + protocol + " | " + data);
             }
         }
-                } else {
-                    ws.send(execute(index.gameServer, split2));
                 } else if (split2 == "banlist") { 
                     execute(index.gameServer, split2);
-                }
+                } else {
+                    ws.send(execute(index.gameServer, split2));
+                } 
             } else {
                 Logger.warn("Invalid Command!");
             }
