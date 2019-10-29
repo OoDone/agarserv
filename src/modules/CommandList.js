@@ -5,6 +5,7 @@ var figlet = require('figlet');
 var GameMode = require('../gamemodes');
 var Logger = require('./Logger');
 var Entity = require('../entity');
+var ws = require('../GameServer');
 
 function Commands() {
     this.list = {}; // Empty
@@ -242,7 +243,7 @@ Commands.list = {
                 }
                 // If not numerical or if it's not between 0 and 255
                 if (isNaN(ipParts[i]) || ipParts[i] < 0 || ipParts[i] >= 256) {
-                    return"Please specify a valid player ID or IP address!";
+                    return "Please specify a valid player ID or IP address!";
                     //return;
                 }
             }
@@ -273,10 +274,10 @@ Commands.list = {
         global.banlist1 = "Showing " + gameServer.ipBanList.length + " banned IPs:  \n" +
         " IP              | IP ";
         global.banlist3 = "───────────────────────────────────";
-
         for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
-            global.banlist4 = " " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
-                (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "";
+            ws.ws.send("TEST");
+            ws.send(" " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
+                (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "");
         }
     },
     kickbot: function (gameServer, split) {
