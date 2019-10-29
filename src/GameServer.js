@@ -409,7 +409,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                 } else if (split2 == "banlist") { 
                     ws.send("Showing " + gameServer.ipBanList.length + " banned IPs:  \n" +
                         " IP              | IP \n" +
-                        "───────────────────────────────────";
+                        "───────────────────────────────────");
                     for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
             
                         ws.send(" " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
