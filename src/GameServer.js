@@ -406,7 +406,8 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                 ws.send(" " + id + " | " + ip + " | " + protocol + " | " + data);
             }
         }
-                } else if (split2 == "banlist") { 
+                } else if (split2 == "banlist") {
+                    var gameServer = index.gameServer;
                     ws.send("Showing " + gameServer.ipBanList.length + " banned IPs:  \n" +
                         " IP              | IP \n" +
                         "───────────────────────────────────");
