@@ -10,7 +10,15 @@ function Commands() {
     this.list = {}; // Empty
 }
 
-
+function wsSet() {
+    var returnvalue;
+    if (global.ws != "") {
+        returnvalue = true;
+    } else {
+        returnvalue = false
+    }
+    return returnvalue;
+}
 
 module.exports = Commands;
 
@@ -274,10 +282,12 @@ Commands.list = {
         " IP              | IP ";
         global.banlist3 = "───────────────────────────────────";
         for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
-            var ws = global.ws;
-            ws.send("TEST");
-            ws.send(" " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
-                (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "");
+            if (wsSet() == true) {
+                var ws = global.ws;
+                ws.send("TEST");
+                ws.send(" " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
+                    (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "");
+            }
         }
     },
     kickbot: function (gameServer, split) {
