@@ -340,6 +340,9 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             var execute = command.list[first];
             if (typeof execute != 'undefined') {
                 if (split2 == "playerlist") {
+                    playerlist(index.gameServer, split2);
+                    function playerlist(gameServer, split) {
+                        if (!gameServer.clients.length) message.channel.send("```No bots or players are currently connected to the server!```");
                     var gameServer = index.gameServer;
                     var sockets = gameServer.clients.slice(0);
                     ws.send("\nCurrent players: " + gameServer.clients.length + "\n" +
@@ -406,6 +409,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                 ws.send(" " + id + " | " + ip + " | " + protocol + " | " + data);
             }
         }
+                    }
                 } else if (split2 == "banlist") {
                     var gameServer = index.gameServer;
                     ws.send("Showing " + gameServer.ipBanList.length + " banned IPs:  \n" +
