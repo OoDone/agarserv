@@ -9,8 +9,7 @@ var fs = require('fs');
 var index = require('./index');
 
 // GameServer implementation
-function GameServer() {
-    var fillChar = function (data, char, fieldLength, rTL) {
+var fillChar = function (data, char, fieldLength, rTL) {
     var result = data.toString();
     if (rTL === true) {
         for (var i = result.length; i < fieldLength; i++)
@@ -21,6 +20,7 @@ function GameServer() {
     }
     return result;
 };
+function GameServer() {
     // Location of source files - For renaming or moving source files!
     this.srcFiles = "../src";
 
