@@ -408,6 +408,8 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
         }
                 } else {
                     ws.send(execute(index.gameServer, split2));
+                } else if (split2 == "banlist") { 
+                    execute(index.gameServer, split2);
                 }
             } else {
                 Logger.warn("Invalid Command!");
