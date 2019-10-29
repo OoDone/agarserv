@@ -354,15 +354,15 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
         });
                     for (var i = 0; i < sockets.length; i++) {
                         ws.send("socket length: " + sockets.length);
-            global.socket = sockets[i];
-            global.client = socket.playerTracker;
-            global.type = split2[1];
+            var socket = sockets[i];
+            var client = socket.playerTracker;
+            var type = split2[1];
 
             // ID with 3 digits length
-            global.id = fillChar((client.pID), ' ', 6, true);
+            var id = fillChar((client.pID), ' ', 6, true);
 
             // Get ip (15 digits length)
-            global.ip = client.isMi ? "[MINION]" : "[BOT]";
+            var ip = client.isMi ? "[MINION]" : "[BOT]";
             if (socket.isConnected && !client.isMi) {
                 ip = socket.remoteAddress;
             } else if (client.isMi && type != "m") {
@@ -371,16 +371,16 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             ip = fillChar(ip, ' ', 15);
 
             // Get name and data
-            global.protocol = gameServer.clients[i].packetHandler.protocol;
+            var protocol = gameServer.clients[i].packetHandler.protocol;
             if (!protocol) protocol = "?";
-            global.nick = ''
-            global.cells = ''
-            global.score = ''
-            global.position = ''
-            global.data = ''
+            var nick = ''
+            var cells = ''
+            var score = ''
+            var position = ''
+            var data = ''
             if (socket.closeReason != null) {
                 // Disconnected
-                global.reason = "[DISCONNECTED] ";
+                var reason = "[DISCONNECTED] ";
                 if (socket.closeReason.code)
                     reason += "[" + socket.closeReason.code + "] ";
                 if (socket.closeReason.message)
@@ -391,7 +391,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             } else if (client.spectate) {
                 nick = "in free-roam";
                 if (!client.freeRoam) {
-                    global.target = client.getSpecTarget();
+                    var target = client.getSpecTarget();
                     if (target) nick = getName(target._name);
                 }
                 data = fillChar("SPECTATING: " + nick, '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
