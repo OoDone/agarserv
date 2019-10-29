@@ -330,7 +330,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             var execute = command.list[first];
             if (typeof execute != 'undefined') {
                 if (split2 == "playerlist") {
-                    var sockets = index.gameServer.clients.slice(0);
+                    var sockets = gameServer.clients.slice(0);
         sockets.sort(function (a, b) {
             return a.playerTracker.pID - b.playerTracker.pID;
         });
@@ -352,7 +352,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             ip = fillChar(ip, ' ', 15);
 
             // Get name and data
-            global.protocol = index.gameServer.clients[i].packetHandler.protocol;
+            global.protocol = gameServer.clients[i].packetHandler.protocol;
             if (!protocol) protocol = "?";
             global.nick = ''
             global.cells = ''
