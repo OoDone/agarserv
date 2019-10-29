@@ -282,12 +282,9 @@ Commands.list = {
         " IP              | IP ";
         global.banlist3 = "───────────────────────────────────";
         for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
-            if (wsSet() == true) {
-                var ws = global.ws;
-                ws.send("TEST");
-                ws.send(" " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
-                    (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "");
-            }
+            
+             global.banlist = " " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
+                 (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "";
         }
     },
     kickbot: function (gameServer, split) {
