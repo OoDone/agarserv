@@ -418,7 +418,7 @@ Commands.list = {
     },
     restart: function (gameServer) {
         var QuadNode = require('./QuadNode.js');
-        global.restart1 = "```Restarting server...```";
+        return "Restarting server...";
         gameServer.httpServer = null;
         gameServer.wsServer = null;
         gameServer.run = true;
@@ -446,8 +446,8 @@ Commands.list = {
     kick: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.kick1 = "Please specify a valid player ID!";
-            return;
+            return "Please specify a valid player ID!";
+            //return;
         }
         // kick player
         var count = 0;
@@ -461,31 +461,31 @@ Commands.list = {
             // disconnect
             socket.close(1000, "Kicked from server");
             var name = getName(socket.playerTracker._name);
-            global.kick1 = "```Kicked \"" + name + "\"```";
+            return "Kicked \"" + name + "\"";
             gameServer.sendChatMessage(null, null, "Kicked \"" + name + "\""); // notify to don't confuse with server bug
             count++;
         }, this);
         if (count) return;
-        if (!id) global.kick1 = "```No players to kick!```";
-        else global.kick1 = "```That player ID (" + id + ") is non-existant!```";
+        if (!id) return "No players to kick!";
+        else return "That player ID (" + id + ") is non-existant!";
     },
     mute: function (gameServer, args) {
         if (!args || args.length < 2) {
-            global.mute1 = "```Please specify a valid player ID!```";
+            global.mute1 = "Please specify a valid player ID!";
             return;
         }
         var id = parseInt(args[1]);
         if (isNaN(id)) {
-            global.mute1 = "```Please specify a valid player ID!```";
+            global.mute1 = "Please specify a valid player ID!";
             return;
         }
         var player = playerById(id, gameServer);
         if (!player) {
-            global.mute1 = "```That player ID (" + id + ") is non-existant!```";
+            global.mute1 = "That player ID (" + id + ") is non-existant!";
             return;
         }
         if (player.isMuted) {
-            global.mute1 = "```That player with ID (" + id + ") is already muted!```";
+            global.mute1 = "That player with ID (" + id + ") is already muted!";
             return;
         }
         Logger.print("Player \"" + getName(player._name) + "\" was muted");
@@ -493,24 +493,24 @@ Commands.list = {
     },
     unmute: function (gameServer, args) {
         if (!args || args.length < 2) {
-            global.unmute1 = "```Please specify a valid player ID!```";
+            global.unmute1 = "Please specify a valid player ID!";
             return;
         }
         var id = parseInt(args[1]);
         if (isNaN(id)) {
-            global.unmute1 = "```Please specify a valid player ID!```";
+            global.unmute1 = "Please specify a valid player ID!";
             return;
         }
         var player = playerById(id, gameServer);
         if (player === null) {
-            global.unmute1 = "```That player ID (" + id + ") is non-existant!```";
+            global.unmute1 = "That player ID (" + id + ") is non-existant!";
             return;
         }
         if (!player.isMuted) {
-            global.unmute1 = "```Player with id=" + id + " already not muted!```";
+            global.unmute1 = "Player with id=" + id + " already not muted!";
             return;
         }
-        global.unmute1 = "```Player \"" + getName(player._name) + "\" was unmuted```";
+        global.unmute1 = "Player \"" + getName(player._name) + "\" was unmuted";
         player.isMuted = false;
     },
     kickall: function (gameServer, split) {
@@ -568,18 +568,18 @@ Commands.list = {
                 count++;
             }
         }
-        if (this.id) global.killall1 = "```Removed " + count + " cells```";
+        if (this.id) global.killall1 = "Removed " + count + " cells";
     },
     mass: function (gameServer, split) {
         // Validation checks
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.mass1 = "```Please specify a valid player ID!```";
+            global.mass1 = "Please specify a valid player ID!";
             return;
         }
         var amount = parseInt(split[2]);
         if (isNaN(amount)) {
-            global.mass1 = "```Please specify a valid number```";
+            global.mass1 = "Please specify a valid number";
             return;
         }
         var size = Math.sqrt(amount * 100);
@@ -592,23 +592,23 @@ Commands.list = {
                 for (var j in client.cells) {
                     client.cells[j].setSize(size);
                 }
-                global.mass1 = "```Set mass of " + getName(client._name) + " to " + (size * size / 100).toFixed(3) + "```";
+                global.mass1 = "Set mass of " + getName(client._name) + " to " + (size * size / 100).toFixed(3) + "";
                 break;
             }
         }
-        if (client == null) global.mass1 = "```That player ID is non-existant!```";
+        if (client == null) global.mass1 = "That player ID is non-existant!";
     },
     spawnmass: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.spawnmass1 = "```Please specify a valid player ID!```";
+            global.spawnmass1 = "Please specify a valid player ID!";
             return;
         }
 
         var amount = Math.max(parseInt(split[2]), 9);
         var size = Math.sqrt(amount * 100);
         if (isNaN(amount)) {
-            global.spawnmass1 = "```Please specify a valid mass!```";
+            global.spawnmass1 = "Please specify a valid mass!";
             return;
         }
 
@@ -617,21 +617,21 @@ Commands.list = {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
                 client.spawnmass = size;
-                global.spawnmass1 = "```Set spawnmass of " + getName(client._name) + " to " + (size * size / 100).toFixed(3) + "```";
+                global.spawnmass1 = "Set spawnmass of " + getName(client._name) + " to " + (size * size / 100).toFixed(3);
             }
         }
-        if (client == null) global.spawnmass1 = "```That player ID is non-existant!```";
+        if (client == null) global.spawnmass1 = "That player ID is non-existant!";
     },
     speed: function (gameServer, split) {
         var id = parseInt(split[1]);
         var speed = parseInt(split[2]);
         if (isNaN(id)) {
-            global.speed2 = "```Please specify a valid player ID!```";
+            global.speed2 = "Please specify a valid player ID!";
             return;
         }
 
         if (isNaN(speed)) {
-            global.speed2 = "```Please specify a valid speed!```";
+            global.speed2 = "Please specify a valid speed!";
             return;
         }
 
@@ -650,7 +650,7 @@ Commands.list = {
             }
         }
         if (client == null) return void Logger.warn("That player ID is non-existant!");
-            global.speed2 = "```Set base speed of " + getName(client._name) + " to " + speed + "```";
+            global.speed2 = "Set base speed of " + getName(client._name) + " to " + speed + "";
     },
     merge: function (gameServer, split) {
         // Validation checks
