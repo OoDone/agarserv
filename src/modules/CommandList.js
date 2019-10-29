@@ -775,21 +775,21 @@ Commands.list = {
     },
     unban: function (gameServer, split) {
         if (split.length < 2 || !split[1] || split[1].trim().length < 1) {
-            global.unban1 = "Please specify a valid IP!";
-            return;
+            return "Please specify a valid IP!";
+            //return;
         }
         var ip = split[1].trim();
         var index = gameServer.ipBanList.indexOf(ip);
         if (index < 0) {
-            global.unban1 = "IP " + ip + " is not in the ban list!";
-            return;
+            return "IP " + ip + " is not in the ban list!";
+            //return;
         }
         gameServer.ipBanList.splice(index, 1);
         saveIpBanList(gameServer);
-        global.unban1 = "Unbanned IP: " + ip + "";
+        return "Unbanned IP: " + ip + "";
     },
     playerlist: function (gameServer, split) {
-        if (!gameServer.clients.length) global.playerlist3 = "No bots or players are currently connected to the server!";
+        if (!gameServer.clients.length) return "No bots or players are currently connected to the server!";
         return "\nCurrent players: " + gameServer.clients.length + "\n" +
         'Do "playerlist m" or "pl m" to list minions\n' +
         " ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " \n" +
@@ -830,9 +830,9 @@ Commands.list = {
                     reason += "[" + socket.closeReason.code + "] ";
                 if (socket.closeReason.message)
                     reason += socket.closeReason.message;
-                global.playerlist1 = " " + id + " | " + ip + " | " + protocol + " | " + reason;
+                return " " + id + " | " + ip + " | " + protocol + " | " + reason;
             } else if (!socket.packetHandler.protocol && socket.isConnected && !client.isMi) {
-                global.playerlist1 = " " + id + " | " + ip + " | " + protocol + " | " + "[CONNECTING]";
+                return " " + id + " | " + ip + " | " + protocol + " | " + "[CONNECTING]";
             } else if (client.spectate) {
                 nick = "in free-roam";
                 if (!client.freeRoam) {
@@ -851,7 +851,7 @@ Commands.list = {
                 // No cells = dead player or in-menu
                 data = fillChar('DEAD OR NOT PLAYING', '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
                 global.pldead = true;
-                global.playerlist2 = " " + id + " | " + ip + " | " + protocol + " | " + data;
+                return " " + id + " | " + ip + " | " + protocol + " | " + data;
             }
         }
         return;
@@ -859,7 +859,7 @@ Commands.list = {
     pause: function (gameServer, split) {
         gameServer.run = !gameServer.run; // Switches the pause state
         var s = gameServer.run ? "Unpaused" : "Paused";
-        global.pause1 = "" + s + " the game.";
+        return "" + s + " the game.";
     },
     freeze: function (gameServer, split) {
         var id = parseInt(split[1]);
