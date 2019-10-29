@@ -882,7 +882,7 @@ Commands.list = {
     },
     reload: function (gameServer, split) {
         gameServer.loadFiles();
-        global.reload1 = "```Reloaded files successfully```";
+        global.reload1 = "Reloaded files successfully";
     },
     status: function (gameServer, split) {
         var ini = require('./ini.js');
@@ -902,7 +902,7 @@ Commands.list = {
             scores.push(getScore(gameServer.clients[i].playerTracker))
         if (!gameServer.clients.length) scores = [0];
 
-        global.status1 = "```Connected players: " + gameServer.clients.length + "/" + gameServer.config.serverMaxConnections +  "\n" +
+        global.status1 = "Connected players: " + gameServer.clients.length + "/" + gameServer.config.serverMaxConnections +  "\n" +
         "Players: " + humans + " - Bots: " + bots + "\n" +
         "Average score: " + (scores.reduce(function (x, y) {
             return x + y;
@@ -910,12 +910,12 @@ Commands.list = {
         "Server has been running for a total of" + Math.floor(process.uptime() / 60) + " minutes\n" +
         "Current memory usage: " + Math.round(process.memoryUsage().heapUsed / 1048576 * 10) / 10 + "/" + Math.round(process.memoryUsage().heapTotal / 1048576 * 10) / 10 + " mb\n" + 
         "Current game mode: " + gameServer.gameMode.name + "\n" +
-        "Current update time: " + gameServer.updateTimeAvg.toFixed(3) + " [ms]  (" + ini.getLagMessage(gameServer.updateTimeAvg) + ")```";
+        "Current update time: " + gameServer.updateTimeAvg.toFixed(3) + " [ms]  (" + ini.getLagMessage(gameServer.updateTimeAvg) + ")";
     },
     tp: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.tp1 = "```Please specify a valid player ID!```";
+            global.tp1 = "Please specify a valid player ID!";
             return;
         }
 
@@ -925,7 +925,7 @@ Commands.list = {
             y: parseInt(split[3])
         };
         if (isNaN(pos.x) || isNaN(pos.y)) {
-            global.tp1 = "```Invalid coordinates```";
+            global.tp1 = "Invalid coordinates";
             return;
         }
 
@@ -933,22 +933,22 @@ Commands.list = {
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) global.tp1 = "```That player is either dead or not playing!```";
+                if (!client.cells.length) global.tp1 = "That player is either dead or not playing!";
                 for (var j in client.cells) {
                     client.cells[j].position.x = pos.x;
                     client.cells[j].position.y = pos.y;
                     gameServer.updateNodeQuad(client.cells[j]);
                 }
-                global.tp1 = "```Teleported " + getName(client._name) + " to (" + pos.x + " , " + pos.y + ")```";
+                global.tp1 = "Teleported " + getName(client._name) + " to (" + pos.x + " , " + pos.y + ")";
                 break;
             }
         }
-        if (client == null) global.tp1 = "```That player ID is non-existant!```";
+        if (client == null) global.tp1 = "That player ID is non-existant!";
     },
     spawn: function (gameServer, split) {
         var ent = split[1];
         if (ent != "virus" && ent != "food" && ent != "mothercell") {
-            global.spawn1 = "```Please specify either virus, food, or mothercell```";
+            global.spawn1 = "Please specify either virus, food, or mothercell";
             return;
         }
 
@@ -960,7 +960,7 @@ Commands.list = {
 
         // Make sure the input values are numbers
         if (isNaN(pos.x) || isNaN(pos.y)) {
-            global.spawn1 = "```Invalid coordinates```";
+            global.spawn1 = "Invalid coordinates";
             return;
         }
 
@@ -981,33 +981,33 @@ Commands.list = {
         if (ent == "virus") {
             var virus = new Entity.Virus(gameServer, null, pos, size);
             gameServer.addNode(virus);
-            global.spawn1 = "```Spawned 1 virus at (" + pos.x + " , " + pos.y + ")```";
+            global.spawn1 = "Spawned 1 virus at (" + pos.x + " , " + pos.y + ")";
         } else if (ent == "food") {
             var food = new Entity.Food(gameServer, null, pos, size);
             food.color = gameServer.getRandomColor();
             gameServer.addNode(food);
-            global.spawn1 = "```Spawned 1 food cell at (" + pos.x + " , " + pos.y + ")```";
+            global.spawn1 = "Spawned 1 food cell at (" + pos.x + " , " + pos.y + ")";
         } else if (ent == "mothercell") {
             var mother = new Entity.MotherCell(gameServer, null, pos, size);
             gameServer.addNode(mother);
-            global.spawn1 = "```Spawned 1 mothercell at (" + pos.x + " , " + pos.y + ")```";
+            global.spawn1 = "Spawned 1 mothercell at (" + pos.x + " , " + pos.y + ")";
         }
     },
     replace: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.replace1 = "```Please specify a valid player ID!```";
+            global.replace1 = "Please specify a valid player ID!";
             return;
         }
         var ent = split[2];
         if (ent != "virus" && ent != "food" && ent != "mothercell") {
-            global.replace1 = "```Please specify either virus, food, or mothercell```";
+            global.replace1 = "Please specify either virus, food, or mothercell";
             return;
         }
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) global.replace1 = "```That player is either dead or not playing!```";
+                if (!client.cells.length) global.replace1 = "That player is either dead or not playing!";
                 while (client.cells.length > 0) {
                     var cell = client.cells[0];
                     gameServer.removeNode(cell);
@@ -1027,35 +1027,35 @@ Commands.list = {
             }
         }
         if (ent == "virus") {
-            global.replace1 = "```Replaced " + getName(client._name) + " with a virus```";
+            global.replace1 = "Replaced " + getName(client._name) + " with a virus";
         } else if (ent == "food") {
-            global.replace1 = "```Replaced " + getName(client._name) + " with a food cell```";
+            global.replace1 = "Replaced " + getName(client._name) + " with a food cell";
         } else if (ent == "mothercell") {
-            global.replace1 = "```Replaced " + getName(client._name) + " with a mothercell```";
+            global.replace1 = "Replaced " + getName(client._name) + " with a mothercell";
         }
-        if (client == null) global.replace1 = "```That player ID is non-existant!```";
+        if (client == null) global.replace1 = "That player ID is non-existant!";
     },
     pop: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.pop1 = "```Please specify a valid player ID!```";
+            global.pop1 = "Please specify a valid player ID!";
             return;
         }
         for (var i in gameServer.clients) {
             if (gameServer.clients[i].playerTracker.pID == id) {
                 var client = gameServer.clients[i].playerTracker;
-                if (!client.cells.length) global.pop1 = "```That player is either dead or not playing!```";
+                if (!client.cells.length) global.pop1 = "That player is either dead or not playing!";
                 var virus = new Entity.Virus(gameServer, null, client.centerPos, gameServer.config.virusMinSize);
                 gameServer.addNode(virus);
-                global.pop1 = "```Popped " + getName(client._name) + "```";
+                global.pop1 = "Popped " + getName(client._name) + "";
             }
         }
-        if (client == null) global.pop1 = "```That player ID is non-existant!```";
+        if (client == null) global.pop1 = "That player ID is non-existant!";
     },
     explode: function (gameServer, split) {
         var id = parseInt(split[1]);
         if (isNaN(id)) {
-            global.explode1 = "```Please specify a valid player ID!```";
+            global.explode1 = "Please specify a valid player ID!";
             return;
         }
         for (var i in gameServer.clients) {
@@ -1081,30 +1081,30 @@ Commands.list = {
                     }
                     cell.setSize(gameServer.config.playerMinSize);
                 }
-                if (!client.cells.length) global.explode1 = "```That player is either dead or not playing!```";
-                global.explode1 = "```Successfully exploded " + getName(client._name) + "```";
+                if (!client.cells.length) global.explode1 = "That player is either dead or not playing!";
+                global.explode1 = "Successfully exploded " + getName(client._name) + "";
             }
         }
-        if (client == null) global.explode1 = "```That player ID is non-existant!```";
+        if (client == null) global.explode1 = "That player ID is non-existant!";
     },
     lms: function (gameServer, split) {
         gameServer.disableSpawn = !gameServer.disableSpawn;
         var s = gameServer.disableSpawn ? "Started" : "Ended";
-        global.lms1 = "```" + s + " last man standing```";
+        global.lms1 = "" + s + " last man standing";
     },
     calc: function (gameServer, split) {
         var num = parseInt(split[1]);
         if (isNaN(num)) {
-            global.calc1 = "```Please specify a valid number!```";
+            global.calc1 = "Please specify a valid number!";
             return;
         }
         var to = split[2];
         if (to != "toMass" && to != "toSize") {
-            global.calc1 = '```Please specify either "toMass" or "toSize"```';
+            global.calc1 = 'Please specify either "toMass" or "toSize"';
             return;
         }
-        if (to == "toMass") global.calc1 = "```The specified size is " + num * num / 100 + " in mass```";
-        else global.calc1 = "```The specified mass is " + (Math.sqrt(num * 100)).toFixed(2) + " in size```";
+        if (to == "toMass") global.calc1 = "The specified size is " + num * num / 100 + " in mass";
+        else global.calc1 = "The specified mass is " + (Math.sqrt(num * 100)).toFixed(2) + " in size";
     },
 
     // Aliases for commands
