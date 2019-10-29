@@ -379,9 +379,9 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                     reason += "[" + socket.closeReason.code + "] ";
                 if (socket.closeReason.message)
                     reason += socket.closeReason.message;
-                return " " + id + " | " + ip + " | " + protocol + " | " + reason;
+                ws.send(" " + id + " | " + ip + " | " + protocol + " | " + reason);
             } else if (!socket.packetHandler.protocol && socket.isConnected && !client.isMi) {
-                return " " + id + " | " + ip + " | " + protocol + " | " + "[CONNECTING]";
+                ws.send(" " + id + " | " + ip + " | " + protocol + " | " + "[CONNECTING]");
             } else if (client.spectate) {
                 nick = "in free-roam";
                 if (!client.freeRoam) {
@@ -389,18 +389,18 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                     if (target) nick = getName(target._name);
                 }
                 data = fillChar("SPECTATING: " + nick, '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
-                global.playerlist1 = " " + id + " | " + ip + " | " + protocol + " | " + data;
+                ws.send(" " + id + " | " + ip + " | " + protocol + " | " + data);
             } else if (client.cells.length) {
                     nick = fillChar(getName(client._name), ' ', gameServer.config.playerMaxNickLength);
                     cells = fillChar(client.cells.length, ' ', 5, true);
                     score = fillChar(getScore(client) >> 0, ' ', 6, true);
                     position = fillChar(getPos(client).x >> 0, ' ', 5, true) + ', ' + fillChar(getPos(client).y >> 0, ' ', 5, true);
-                    Logger.info(" " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick);
+                    ws.send(" " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick);
             } else {
                 // No cells = dead player or in-menu
                 data = fillChar('DEAD OR NOT PLAYING', '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
                 global.pldead = true;
-                return " " + id + " | " + ip + " | " + protocol + " | " + data;
+                ws.send(" " + id + " | " + ip + " | " + protocol + " | " + data);
             }
         }
                 } else {
