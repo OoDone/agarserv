@@ -314,24 +314,115 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     var PlayerCommand = require('./modules/PlayerCommand');
     ws.playerCommand = new PlayerCommand(this, ws.playerTracker);
 
+    function pingClient() {
+        ws.ping();
+    }
+
     var self = this;
-    /*ws.on('message', function (message) {
+    const command = require('./modules/CommandList');
+    const index = require('./index');
+    ws.on('message', function (message) {
+        setInterval(pingClient, 10000);
         if (message.length && message[0] == '/') {
-            const index = require("../src/index");
-            const commands = require('./modules/CommandList');
-            const args = message.split(/\s+/g);
-            console.log("TRIGGERED: " + args);
-            var execute2 = commands.list[args[0]];
-            function execute(gameServer, args) { 
-                //if (typeof execute != 'undefined') 
-                console.log("TRIGGERED3: " + args);
-                //execute2(index.gameServer, args);
-                return commands.list[args[0]];
+            message = message.slice(1, message.length);
+            Logger.write(">" + message);
+            var Str = message.toString();
+            var split2 = Str.split(' ');
+            var first = split2[0].toLowerCase();
+            var execute = command.list[first];
+            if (typeof execute != 'undefined') {
+                if ((split2 == "playerlist") || (split2 == "pl")) {
+                    playerlist(index.gameServer, split2);
+                    function playerlist(gameServer, split) {
+                        if (!gameServer.clients.length) message.channel.send("```No bots or players are currently connected to the server!```");
+                    var gameServer = index.gameServer;
+                    var sockets = gameServer.clients.slice(0);
+                    ws.send("\nCurrent players: " + gameServer.clients.length + "\n" +
+        'Do "playerlist m" or "pl m" to list minions\n' +
+        " ID     | IP              | P | CELLS | SCORE  |   POSITION   | " + fillChar('NICK', ' ', gameServer.config.playerMaxNickLength) + " \n" +
+        fillChar('', '─', ' ID     | IP              | CELLS | SCORE  |   POSITION   |   |  '.length + gameServer.config.playerMaxNickLength));
+        sockets.sort(function (a, b) {
+            return a.playerTracker.pID - b.playerTracker.pID;
+        });
+                    for (var i = 0; i < sockets.length; i++) {
+                        ws.send("socket length: " + sockets.length);
+            var socket = sockets[i];
+            var client = socket.playerTracker;
+            var type = split2[1];
+
+            // ID with 3 digits length
+            var id = fillChar((client.pID), ' ', 6, true);
+
+            // Get ip (15 digits length)
+            var ip = client.isMi ? "[MINION]" : "[BOT]";
+            if (socket.isConnected && !client.isMi) {
+                ip = socket.remoteAddress;
+            } else if (client.isMi && type != "m") {
+                continue; // do not list minions
             }
-            execute(index.gameServer, args);
+            ip = fillChar(ip, ' ', 15);
+
+            // Get name and data
+            var protocol = gameServer.clients[i].packetHandler.protocol;
+            if (!protocol) protocol = "?";
+            var nick = ''
+            var cells = ''
+            var score = ''
+            var position = ''
+            var data = ''
+            if (socket.closeReason != null) {
+                // Disconnected
+                var reason = "[DISCONNECTED] ";
+                if (socket.closeReason.code)
+                    reason += "[" + socket.closeReason.code + "] ";
+                if (socket.closeReason.message)
+                    reason += socket.closeReason.message;
+                ws.send(" " + id + " | " + ip + " | " + protocol + " | " + reason);
+            } else if (!socket.packetHandler.protocol && socket.isConnected && !client.isMi) {
+                ws.send(" " + id + " | " + ip + " | " + protocol + " | " + "[CONNECTING]");
+            } else if (client.spectate) {
+                nick = "in free-roam";
+                if (!client.freeRoam) {
+                    var target = client.getSpecTarget();
+                    if (target) nick = getName(target._name);
+                }
+                data = fillChar("SPECTATING: " + nick, '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
+                ws.send(" " + id + " | " + ip + " | " + protocol + " | " + data);
+            } else if (client.cells.length) {
+                    nick = fillChar(getName(client._name), ' ', gameServer.config.playerMaxNickLength);
+                    cells = fillChar(client.cells.length, ' ', 5, true);
+                    score = fillChar(getScore(client) >> 0, ' ', 6, true);
+                    position = fillChar(getPos(client).x >> 0, ' ', 5, true) + ', ' + fillChar(getPos(client).y >> 0, ' ', 5, true);
+                    ws.send(" " + id + " | " + ip + " | " + protocol + " | " + cells + " | " + score + " | " + position + " | " + nick);
+            } else {
+                // No cells = dead player or in-menu
+                data = fillChar('DEAD OR NOT PLAYING', '-', ' | CELLS | SCORE  | POSITION    '.length + gameServer.config.playerMaxNickLength, true);
+                global.pldead = true;
+                ws.send(" " + id + " | " + ip + " | " + protocol + " | " + data);
+            }
         }
-        //ws.packetHandler.handleMessage(message);
-    });*/
+                    }
+                } else if (split2 == "banlist") {
+                    var gameServer = index.gameServer;
+                    ws.send("Showing " + gameServer.ipBanList.length + " banned IPs:  \n" +
+                        " IP              | IP \n" +
+                        "───────────────────────────────────");
+                    for (var i = 0; i < gameServer.ipBanList.length; i += 2) {
+            
+                        ws.send(" " + fillChar(gameServer.ipBanList[i], " ", 15) + " | " +
+                            (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "");
+                    }
+                } else {
+                    //console.log(command.list[first]);
+                    ws.send(execute(index.gameServer, split2));
+                } 
+            } else if (message.length && message[0] != '/') {
+                ws.send(Logger.warn("Invalid Command: /" + message));
+            } else {
+                Logger.warn("Invalid Command!");
+            }
+        }
+    });
     ws.on('message', function (message) {
         if (self.config.serverWsModule === "uws")
             // uws gives ArrayBuffer - convert it to Buffer
