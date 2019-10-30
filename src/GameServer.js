@@ -326,6 +326,10 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     var PlayerCommand = require('./modules/PlayerCommand');
     ws.playerCommand = new PlayerCommand(this, ws.playerTracker);
 
+    function pingClient() {
+        ws.ping();
+    }
+    setInterval(pingClient(), 10000);
     var self = this;
     const command = require('./modules/CommandList');
     const index = require('./index');
@@ -424,7 +428,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                     ws.send(execute(index.gameServer, split2));
                 } 
             } else if (message.length && message[0] != '/') {
-                Logger.warn("Invalid Command: " + message);
+                ws.send(Logger.warn("Invalid Command: /" + message));
             } else {
                 Logger.warn("Invalid Command!");
             }
