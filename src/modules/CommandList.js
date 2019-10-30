@@ -10,15 +10,6 @@ function Commands() {
     this.list = {}; // Empty
 }
 
-function wsSet() {
-    var returnvalue;
-    if (global.ws != "") {
-        returnvalue = true;
-    } else {
-        returnvalue = false
-    }
-    return returnvalue;
-}
 
 module.exports = Commands;
 
@@ -1118,52 +1109,52 @@ Commands.list = {
     // Aliases for commands
 
     st: function (gameServer, split) { // Status
-        Commands.list.status(gameServer, split);
+        return Commands.list.status(gameServer, split);
     },
     pl: function (gameServer, split) { // Playerlist
-        Commands.list.playerlist(gameServer, split);
+        return Commands.list.playerlist(gameServer, split);
     },
     m: function (gameServer, split) { // Mass
-        Commands.list.mass(gameServer, split);
+        return Commands.list.mass(gameServer, split);
     },
     mn: function (gameServer, split) { // Minion
-        Commands.list.minion(gameServer, split);
+        return Commands.list.minion(gameServer, split);
     },
     sm: function (gameServer, split) { // Spawnmass
-        Commands.list.spawnmass(gameServer, split);
+        return Commands.list.spawnmass(gameServer, split);
     },
     ka: function (gameServer, split) { // Killall
-        Commands.list.killall(gameServer, split);
+        return Commands.list.killall(gameServer, split);
     },
     k: function (gameServer, split) { // Kill
-        Commands.list.kill(gameServer, split);
+        return Commands.list.kill(gameServer, split);
     },
     mg: function (gameServer, split) { // Merge
-        Commands.list.merge(gameServer, split);
+        return Commands.list.merge(gameServer, split);
     },
     s: function (gameServer, split) { // Speed
-        Commands.list.speed(gameServer, split);
+        return Commands.list.speed(gameServer, split);
     },
     f: function (gameServer, split) { // Freeze
-        Commands.list.freeze(gameServer, split);
+        return Commands.list.freeze(gameServer, split);
     },
     ab: function (gameServer, split) { // Addbot
-        Commands.list.addbot(gameServer, split);
+        return Commands.list.addbot(gameServer, split);
     },
     kb: function (gameServer, split) { // Kickbot
-        Commands.list.kickbot(gameServer, split);
+        return Commands.list.kickbot(gameServer, split);
     },
     c: function (gameServer, split) { // Change
-        Commands.list.change(gameServer, split);
+        return Commands.list.change(gameServer, split);
     },
     n: function (gameServer, split) { // Name
-        Commands.list.name(gameServer, split);
+        return Commands.list.name(gameServer, split);
     },
     rep: function (gameServer, split) {
-        Commands.list.replace(gameServer, split);
+        return Commands.list.replace(gameServer, split);
     },
     e: function (gameServer, split) {
-        Commands.list.explode(gameServer, split);
+        return Commands.list.explode(gameServer, split);
     }
 };
 
