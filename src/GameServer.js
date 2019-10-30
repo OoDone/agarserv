@@ -330,7 +330,10 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     global.ws = ws;
     const command = require('./modules/CommandList');
     const index = require('./index');
-    setTimeout(ws.send('keepAlive packet'), 10000);
+    function keepAlive() {
+        ws.send("keepAlive packet");
+    }
+    var keepalive = setTimeout(keepAlive(), 10000);
     ws.on('message', function (message) {
         if (message.length && message[0] == '/') {
             message = message.slice(1, message.length);
