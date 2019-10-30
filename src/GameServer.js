@@ -286,6 +286,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     var logip = ws._socket.remoteAddress + ":" + ws._socket.remotePort;
     ws.on('error', function (err) {
         Logger.writeError("[" + logip + "] " + err.stack);
+        ws.send("[ERROR] " + err);
     });
     if (this.config.serverMaxConnections && this.socketCount >= this.config.serverMaxConnections) {
         ws.close(1000, "No slots");
@@ -357,7 +358,6 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             return a.playerTracker.pID - b.playerTracker.pID;
         });
                     for (var i = 0; i < sockets.length; i++) {
-                        ws.send("socket length: " + sockets.length);
             var socket = sockets[i];
             var client = socket.playerTracker;
             var type = split2[1];
@@ -453,6 +453,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     ws.on('close', function (reason) {
         if (ws._socket && ws._socket.destroy != null && typeof ws._socket.destroy == 'function') {
             ws._socket.destroy();
+            ws.send('[CLOSING] ' + reason);
         }
         self.socketCount--;
         ws.isConnected = false;
