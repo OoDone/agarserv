@@ -420,7 +420,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                             (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "");
                     }
                 } else {
-                    ws.send(command.list[message]);
+                    ws.send(command.list[first]);
                     //ws.send(execute(index.gameServer, split2));
                 } 
             } else if (message.length && message[0] != '/') {
