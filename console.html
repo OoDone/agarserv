@@ -183,11 +183,15 @@
     //}
       
       ws.addEventListener("message", function(e) {
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
         console.log("get "+e.data);
         var msg = e.data;
         if (msg == ">") msg='';
         var $log = document.getElementById('log');
-        $log.innerHTML = log.innerHTML + '\n' + e.data;
+        $log.innerHTML = log.innerHTML + '\n' + dateTime + ": " + e.data;
         window.scrollTo(0,document.body.scrollHeight);
         //setTimeout(keepAlive(), 10000);
       });
