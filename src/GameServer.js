@@ -327,16 +327,8 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     ws.playerCommand = new PlayerCommand(this, ws.playerTracker);
 
     var self = this;
-    global.ws = ws;
     const command = require('./modules/CommandList');
     const index = require('./index');
-    function keepAlive() {
-        ws.send("keepAlive packet");
-    }
-    function keepalive2(time) {
-        var keepalive = setTimeout(keepAlive(), time);
-    }
-    keepalive2(10000);
     ws.on('message', function (message) {
         if (message.length && message[0] == '/') {
             message = message.slice(1, message.length);
@@ -430,6 +422,8 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                 } else {
                     ws.send(execute(index.gameServer, split2));
                 } 
+            } else if (message.length && message[0] != '/') {
+                console.log(message);
             } else {
                 Logger.warn("Invalid Command!");
             }
