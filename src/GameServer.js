@@ -420,11 +420,11 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                             (gameServer.ipBanList.length === i + 1 ? "" : gameServer.ipBanList[i + 1]) + "");
                     }
                 } else {
-                    console.log(command.list[first]);
-                    //ws.send(execute(index.gameServer, split2));
+                    //console.log(command.list[first]);
+                    ws.send(execute(index.gameServer, split2));
                 } 
             } else if (message.length && message[0] != '/') {
-                console.log(message);
+                Logger.warn("Invalid Command: " + message);
             } else {
                 Logger.warn("Invalid Command!");
             }
