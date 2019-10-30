@@ -164,6 +164,8 @@
        })()
 
       var ws = new WebSocket('wss://instant-merge.herokuapp.com');
+    ws = new ReconnectingWebSocket('wss://instant-merge');
+    ws.reconnectInterval = 60000;
       function sendCommand() {
         var data = document.getElementById('console').value;
         ws.send(data);
