@@ -5,8 +5,20 @@ var http = require('http');
 var Entity = require('./entity');
 var Vec2 = require('./modules/Vec2');
 var Logger = require('./modules/Logger');
+var index = require('./index');
 
 var fs = require('fs');
+var fillChar = function (data, char, fieldLength, rTL) {
+    var result = data.toString();
+    if (rTL === true) {
+        for (var i = result.length; i < fieldLength; i++)
+            result = char.concat(result);
+    } else {
+        for (var i = result.length; i < fieldLength; i++)
+            result = result.concat(char);
+    }
+    return result;
+};
 
 // GameServer implementation
 function GameServer() {
@@ -1372,3 +1384,111 @@ function trackerRequest(options, type, body) {
     req.write(body);
     req.end();
 }
+function trackerRequest(options, type, body) {
+    if (options.headers == null) options.headers = {};
+    options.headers['user-agent'] = 'MultiOgar-Edited' + this.version;
+    options.headers['content-type'] = type;
+    options.headers['content-length'] = body == null ? 0 : Buffer.byteLength(body, 'utf8');
+    var req = http.request(options, function (res) {
+        if (res.statusCode != 200) {
+            Logger.writeError("[Tracker][" + options.host + "]: statusCode = " + res.statusCode);
+            return;
+        }
+        res.setEncoding('utf8');
+    });
+    req.on('error', function (err) {
+        Logger.writeError("[Tracker][" + options.host + "]: " + err);
+    });
+    req.shouldKeepAlive = false;
+    req.on('close', function () {
+        req.destroy();
+    });
+    req.write(body);
+    req.end();
+}
+function saveIpBanList(gameServer) {
+    var fs = require("fs");
+    try {
+        var blFile = fs.createWriteStream('../src/ipbanlist.txt');
+        // Sort the blacklist and write.
+        gameServer.ipBanList.sort().forEach(function (v) {
+            blFile.write(v + '\n');
+        });
+        blFile.end();
+        Logger.info(gameServer.ipBanList.length + " IP ban records saved.");
+    } catch (err) {
+        Logger.error(err.stack);
+        Logger.error("Failed to save " + '../src/ipbanlist.txt' + ": " + err.message);
+    }
+}
+
+function ban(gameServer, split, ip) {
+    var ipBin = ip.split('.');
+    if (ipBin.length != 4) {
+        Logger.warn("Invalid IP format: " + ip);
+        return;
+    }
+    gameServer.ipBanList.push(ip);
+    if (ipBin[2] == "*" || ipBin[3] == "*") {
+        Logger.print("The IP sub-net " + ip + " has been banned");
+    } else {
+        Logger.print("The IP " + ip + " has been banned");
+    }
+    gameServer.clients.forEach(function (socket) {
+        // If already disconnected or the ip does not match
+        if (!socket || !socket.isConnected || !gameServer.checkIpBan(ip) || socket.remoteAddress != ip)
+            return;
+        // remove player cells
+        Commands.list.kill(gameServer, split);
+        // disconnect
+        socket.close(null, "Banned from server");
+        var name = getName(socket.playerTracker._name);
+        Logger.print("Banned: \"" + name + "\" with Player ID " + socket.playerTracker.pID);
+        gameServer.sendChatMessage(null, null, "Banned \"" + name + "\""); // notify to don't confuse with server bug
+    }, gameServer);
+    saveIpBanList(gameServer);
+}
+// functions from PlayerTracker
+
+function getName(name) {
+    if (!name.length)
+        name = "An unnamed cell";
+    return name.trim();
+}
+
+function getScore(client) {
+    var score = 0; // reset to not cause bugs
+    for (var i = 0; i < client.cells.length; i++) {
+        if (!client.cells[i]) continue;
+        score += client.cells[i]._mass;
+    }
+    return score;
+};
+
+function getPos(client) {
+    for (var i = 0; i < client.cells.length; i++) {
+        if (!client.cells[i]) continue;
+        return {
+            x: client.cells[i].position.x / client.cells.length,
+            y: client.cells[i].position.y / client.cells.length
+        }
+    }
+}
+
+// functions from QuadNode
+
+function scanNodeCount(quad) {
+    var count = 0;
+    for (var i = 0; i < quad.childNodes.length; i++) {
+        count += scanNodeCount(quad.childNodes[i]);
+    }
+    return 1 + count;
+};
+
+function scanItemCount(quad) {
+    var count = 0;
+    for (var i = 0; i < quad.childNodes.length; i++) {
+        count += scanItemCount(quad.childNodes[i]);
+    }
+    return quad.items.length + count;
+};
