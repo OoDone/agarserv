@@ -329,11 +329,11 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     function pingClient() {
         ws.ping();
     }
-    setInterval(pingClient(), 10000);
     var self = this;
     const command = require('./modules/CommandList');
     const index = require('./index');
     ws.on('message', function (message) {
+        setInterval(pingClient, 10000);
         if (message.length && message[0] == '/') {
             message = message.slice(1, message.length);
             Logger.write(">" + message);
