@@ -333,7 +333,10 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     function keepAlive() {
         ws.send("keepAlive packet");
     }
-    var keepalive = setTimeout(keepAlive(), 10000);
+    function keepalive2(time) {
+        var keepalive = setTimeout(keepAlive(), time);
+    }
+    keepalive2(10000);
     ws.on('message', function (message) {
         if (message.length && message[0] == '/') {
             message = message.slice(1, message.length);
