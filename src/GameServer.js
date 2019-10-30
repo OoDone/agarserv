@@ -429,7 +429,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                     ws.send(execute(index.gameServer, split2));
                 } 
             } else if (message.length && message[0] != '/') {
-                ws.send(Logger.warn("Invalid Command: /" + message));
+                ws.send("[WARN] Invalid Command: /" + message);
             } else {
                 Logger.warn("Invalid Command!");
             }
