@@ -453,7 +453,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     ws.on('close', function (reason) {
         if (ws._socket && ws._socket.destroy != null && typeof ws._socket.destroy == 'function') {
             ws._socket.destroy();
-            ws.send('[CLOSING] ' + reason);
+           // ws.send('[CLOSING] ' + reason);
         }
         self.socketCount--;
         ws.isConnected = false;
