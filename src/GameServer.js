@@ -342,7 +342,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             var first = split2[0].toLowerCase();
             var execute = command.list[first];
             if (typeof execute != 'undefined') {
-                if (split2 == "playerlist") {
+                if ((split2 == "playerlist") || (split2 == "pl")) {
                     playerlist(index.gameServer, split2);
                     function playerlist(gameServer, split) {
                         if (!gameServer.clients.length) message.channel.send("```No bots or players are currently connected to the server!```");
