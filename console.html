@@ -201,9 +201,6 @@
         var jsondata = {"console": "true"}
         ws.send(jsondata);
       });*/
-    ws.addEventListener("close", function(data) {
-      ws = new WebSocket('wss://instant-merge.herokuapp.com');
-    });
       </script>
 </form> 
 
