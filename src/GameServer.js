@@ -353,7 +353,8 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             int = true;
         }*/
         console.log("recieved msg");
-        if (message.contains('console')) {
+        var xd = message.toString();
+        if (xd.indexOf('console')) {
             console.log(dat);
         try {
             var json = JSON.parse(message);
