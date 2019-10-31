@@ -203,6 +203,10 @@
         //setTimeout(keepAlive(), 10000);
         }
       });
+      ws.addEventListener("connect", function(data) {
+        var jsondata = {"console": "true"}
+        ws.send(jsondata);
+      });
     ws.addEventListener("close", function(data) {
       ws = new WebSocket('wss://instant-merge.herokuapp.com');
     });
