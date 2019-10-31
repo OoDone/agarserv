@@ -337,10 +337,11 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     const index = require('./index');
     var int = false;
     ws.on('message', function (message) {
-        if (int == false) {
-            setInterval(pingClient, 10000);
+        setInterval(pingClient, 10000);
+        /*if (int == false) {
             int = true;
-        }
+        }*/
+        console.log("recieved msg");
         try {
             var json = JSON.parse(message);
             var isConsole = json['console'];
