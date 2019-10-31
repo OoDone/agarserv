@@ -6,6 +6,7 @@ var Entity = require('./entity');
 var Vec2 = require('./modules/Vec2');
 var Logger = require('./modules/Logger');
 var index = require('./index');
+const auth = require('./auth.json');
 
 var fs = require('fs');
 var fillChar = function (data, char, fieldLength, rTL) {
@@ -334,8 +335,23 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     var self = this;
     const command = require('./modules/CommandList');
     const index = require('./index');
+    var int = false;
     ws.on('message', function (message) {
-        setInterval(pingClient, 10000);
+        if (int == false) {
+            setInterval(pingClient, 10000);
+            int = true;
+        }
+        try {
+            var json = JSON.parse(message);
+            var isConsole = json['console'];
+            if (isConsole == true) {
+                if ((auth.username == "admin") && (auth.password == "test")) {
+                    ws.send('accepted');
+                }
+            }
+        } catch (e) {
+            return console.error(e);
+        }
         if (message.length && message[0] == '/') {
             message = message.slice(1, message.length);
             Logger.write(">" + message);
