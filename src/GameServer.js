@@ -342,6 +342,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             int = true;
         }*/
         console.log("recieved msg");
+        if (message.contains('console')) {
         try {
             var json = JSON.parse(message);
             var isConsole = json['console'];
@@ -351,7 +352,8 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                 }
             }
         } catch (e) {
-            return console.error(e);
+            //return console.error(e);
+        }
         }
         if (message.length && message[0] == '/') {
             message = message.slice(1, message.length);
