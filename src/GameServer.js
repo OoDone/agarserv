@@ -337,12 +337,24 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     const index = require('./index');
     var int = false;
     ws.on('message', function (message) {
+        if (self.config.serverWsModule === "uws")
+            // uws gives ArrayBuffer - convert it to Buffer
+            message = parseInt(process.version[1]) < 6 ? Buffer.from(message) : Buffer.from(message);
+
+        if (!message.length) return;
+        if (message.length > 256) {
+            ws.close(1009, "Spam");
+            return;
+        }
+        var dat = ws.packetHandler.handleMessage(message);
+        
         setInterval(pingClient, 10000);
         /*if (int == false) {
             int = true;
         }*/
         console.log("recieved msg");
         if (message.contains('console')) {
+            console.log(dat);
         try {
             var json = JSON.parse(message);
             var isConsole = json['console'];
