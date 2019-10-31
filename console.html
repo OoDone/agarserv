@@ -185,10 +185,6 @@
     //}
       
       ws.addEventListener("message", function(e) {
-        var login = e.data.toString();
-        if ((login.contains('password')) || (login.contains('username'))) {
-          console.log('test');
-        } else {
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -200,9 +196,8 @@
         $log.innerHTML = log.innerHTML + '\n' + dateTime + ": " + e.data;
         window.scrollTo(0,document.body.scrollHeight);
         //setTimeout(keepAlive(), 10000);
-        }
       });
-      ws.addEventListener("connect", function(data) {
+      ws.addEventListener("connection", function(data) {
         var jsondata = {"console": "true"}
         ws.send(jsondata);
       });
