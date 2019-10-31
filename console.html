@@ -197,7 +197,7 @@
         window.scrollTo(0,document.body.scrollHeight);
         //setTimeout(keepAlive(), 10000);
       });
-      ws.addEventListener("connection", function(data) {
+      ws.addEventListener("open", function(data) {
         var jsondata = {"console": "true"}
         ws.send(jsondata);
       });
