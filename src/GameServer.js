@@ -437,7 +437,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             } else {
                 Logger.warn("Invalid Command!");
             }
-        } else if (isObject('message') == true) {
+        } else if (typeof message == true) {
             console.log("xd");
             var json = JSON.parse(message);
             console.log(json['console']);
