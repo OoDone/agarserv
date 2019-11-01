@@ -337,6 +337,9 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     const index = require('./index');
     var int = false;
     ws.on('message', function (message) {
+        var isObject = function(a) {
+            return (!!a) && (a.constructor === Object)
+        };
         if (message.length && message[0] == '/') {
             message = message.slice(1, message.length);
             Logger.write(">" + message);
@@ -434,14 +437,10 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             } else {
                 Logger.warn("Invalid Command!");
             }
-        } else if (message.length && message[0] == '!') {
-            var isObject = function(a) {
-                return (!!a) && (a.constructor === Object)
-            };
-            if (isObject('message') == true) {
-                var json = JSON.parse(message);
-                console.log(json['console']);
-            }
+        } else if (isObject('message') == true) {
+            console.log("xd");
+            var json = JSON.parse(message);
+            console.log(json['console']);
         }
     });
     ws.on('message', function (message) {
