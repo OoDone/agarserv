@@ -434,16 +434,16 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                 } 
             } else if (message.length && message[0] != '/') {
                // else if (message.length && message[0] != '/') {
-                console.log("xd");
-                var json = JSON.parse(message);
-                console.log(json['console']);
        // }
                 ws.send("[WARN] Invalid Command: /" + message);
             } else {
                 Logger.warn("Invalid Command!");
             }
-        } else {
+        } else if (typeof message == 'object') {
             console.log(message);
+            console.log("xd");
+            var json = JSON.parse(message);
+            console.log(json['console']);
         }
     });
     ws.on('message', function (message) {
