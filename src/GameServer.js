@@ -439,7 +439,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             } else {
                 Logger.warn("Invalid Command!");
             }
-        } else if (typeof message == 'object') {
+        } else if (typeof message == 'string') {
             if (Buffer.isBuffer(message) == false) {
                 console.log(message);
                 console.log("xd");
