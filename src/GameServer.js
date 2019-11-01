@@ -441,10 +441,16 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             }
         } else if (typeof message == 'string') {
             if (Buffer.isBuffer(message) == false) {
-                console.log(message);
-                console.log("xd");
                 var json = JSON.parse(message);
-                console.log(json['console']);
+                //console.log(json['console']);
+                if (json['console'] == true) {
+                    console.log("Console Connected!");
+                    var pass = json['password'];
+                    var user = json['username'];
+                    if ((pass == auth.password) && (user = auth.username)) {
+                        console.log("Login Successful");
+                    }
+                }
             }
         }
     });
