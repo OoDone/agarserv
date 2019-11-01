@@ -444,7 +444,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                 console.log(message);
                 console.log("xd");
                 var json = JSON.parse(message);
-                console.log(message['console']);
+                console.log(json['console']);
             }
         }
     });
