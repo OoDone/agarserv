@@ -198,6 +198,7 @@
         //setTimeout(keepAlive(), 10000);
       });
       ws.addEventListener("open", function(data) {
+        console.log("COnnection Opened");
         var jsondata = {"console": "true"}
         ws.send(jsondata);
       });
