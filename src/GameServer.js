@@ -331,8 +331,13 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     function pingClient() {
         ws.ping();
     }
+    function fakeData() {
+        ws.send('KEEPALIVE');
+    }
 
     var self = this;
+    var ping = setInterval(pingClient(), 10000);
+    //var keepalive = setInterval(fakeData(), 10000);
     const command = require('./modules/CommandList');
     const index = require('./index');
     var int = false;
