@@ -189,7 +189,11 @@
       ws.addEventListener("message", function(e) {
         if (e.data == "CAccepted") {
           alert("Login Succesful");
+          if (window.localStorage.getItem('auth') == null) {
           window.localStorage.setItem('auth', '{"password": "' + pass + '", "username": "' + user + '"}');
+          } else {
+            console.log("Autologged in");
+          }
         } else if (e.data == "CDenied") {
           alert("Login Failed");
           if ((pass == "undefined") || (user == 'undefined') || (user == null) || (pass == null)) {
