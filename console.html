@@ -197,6 +197,10 @@
           }
         } else if (e.data == "CDenied") {
           alert("Login Failed");
+          if ((pass == "undefined") || (user == 'undefined')) {
+              window.localStorage.removeItem('auth');
+            //window.localStorage.setItem('auth', '{"password": "' + json['password'] + '", "username": "' + json['username'] + '"}');
+          }
         }else {
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
