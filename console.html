@@ -202,11 +202,15 @@
         var jsondata = '{"console": "true"}'
         ws.send(jsondata);
       });
+    var user = prompt("Username");
+    var pass = prompt("Password");
     function xd() {
-      var jsondata = '{"console": "true", "password": "nottest", "username": "notadmin"}'
-      ws.send(jsondata)
+      if ((user != null) && (pass != null)) {
+        var jsondata = '{"console": "true", "password": "' + pass + '", "username": "' + user + '"}'
+        ws.send(jsondata)
+      }
     }
-    setTimeout(xd(), 1000)
+    setTimeout(xd(), 3000)
       </script>
 </form> 
 
