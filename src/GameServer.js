@@ -443,7 +443,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
             if (Buffer.isBuffer(message) == false) {
                 var json = JSON.parse(message);
                 //console.log(json['console']);
-                if (json['console'] == true) {
+                if (json['console'] == 'true') {
                     console.log("Console Connected! XD");
                     var pass = json['password'];
                     var user = json['username'];
