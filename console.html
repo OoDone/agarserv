@@ -187,6 +187,7 @@
       ws.addEventListener("message", function(e) {
         if (e.data == "CAccepted") {
           alert("Login Succesful");
+          window.localStorage.setItem('auth', '{"password": "' + pass + '", "username": "' + user + '"}');
         } else if (e.data == "CDenied") {
           alert("Login Failed");
         }else {
@@ -226,10 +227,14 @@
       setInterval(hitCancel(), 100);
     }
     ws.onopen = function (event) {
+      if (window.localStorage.getItem('auth') != null) {
+        console.log("Autologged in!");
+      } else {
       user = prompt("Username");
       pass = prompt("Password");
       setTimeout(xd(), 3000)
       interval();
+      }
       
       //xd()
     }
