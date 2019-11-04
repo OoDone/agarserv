@@ -187,9 +187,11 @@
       ws.addEventListener("message", function(e) {
         if (e.data == "CAccepted") {
           alert("Login Succesful");
-          if (pass == null) {
+          if ((pass == "undefined") || (user == 'undefined')) {
+            window.localStorage.setItem('auth', '{"password": "' + json['password'] + '", "username": "' + json['username'] + '"}');
+          } else {
+            window.localStorage.setItem('auth', '{"password": "' + pass + '", "username": "' + user + '"}');
           }
-          window.localStorage.setItem('auth', '{"password": "' + pass + '", "username": "' + user + '"}');
         } else if (e.data == "CDenied") {
           alert("Login Failed");
         }else {
@@ -228,10 +230,12 @@
     function interval() {
       setInterval(hitCancel(), 100);
     }
+    var json;
+    var auth;
     ws.onopen = function (event) {
       if (window.localStorage.getItem('auth') != null) {
-        var auth = window.localStorage.getItem('auth');
-        var json = JSON.parse(auth);
+        auth = window.localStorage.getItem('auth');
+        json = JSON.parse(auth);
         ws.send('{"console": "true", "password": "' + json['password'] + '", "username": "' + json['username'] + '"}');
         //console.log("Autologged in!");
       } else {
