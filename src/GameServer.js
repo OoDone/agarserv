@@ -336,12 +336,15 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
     }
 
     var self = this;
-    var ping = setInterval(pingClient(), 10000);
+    function setinterval() {
+        setInterval(pingClient, 10000);
+    }
     //var keepalive = setInterval(fakeData(), 10000);
     const command = require('./modules/CommandList');
     const index = require('./index');
     var int = false;
     ws.on('message', function (message) {
+        setinterval();
         var isObject = function(a) {
             return (!!a) && (a.constructor === Object)
         };
