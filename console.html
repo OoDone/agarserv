@@ -228,7 +228,10 @@
     }
     ws.onopen = function (event) {
       if (window.localStorage.getItem('auth') != null) {
-        console.log("Autologged in!");
+        var auth = window.localStorage.getItem('auth');
+        var json = JSON.parse(auth);
+        ws.send('{"console": "true", "password": "' + json['password'] + '", "username": "' + json['username'] + '"}');
+        //console.log("Autologged in!");
       } else {
       user = prompt("Username");
       pass = prompt("Password");
