@@ -187,6 +187,8 @@
       ws.addEventListener("message", function(e) {
         if (e.data == "CAccepted") {
           alert("Login Succesful");
+          if (pass == null) {
+          }
           window.localStorage.setItem('auth', '{"password": "' + pass + '", "username": "' + user + '"}');
         } else if (e.data == "CDenied") {
           alert("Login Failed");
