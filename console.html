@@ -210,7 +210,7 @@
         ws.send(jsondata)
       }
     }
-    $( document ).ready(function() {
+    ws.onopen = function (event) {
       user = prompt("Username");
       pass = prompt("Password");
       xd()
