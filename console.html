@@ -183,12 +183,15 @@
     //function keepAlive() {
     //  ws.send('keepAlive packet');
     //}
+    var json;
+    var auth;
       
       ws.addEventListener("message", function(e) {
         if (e.data == "CAccepted") {
           alert("Login Succesful");
           if ((pass == "undefined") || (user == 'undefined')) {
-            window.localStorage.setItem('auth', '{"password": "' + json['password'] + '", "username": "' + json['username'] + '"}');
+              window.localStorage.removeItem('auth');
+            //window.localStorage.setItem('auth', '{"password": "' + json['password'] + '", "username": "' + json['username'] + '"}');
           } else {
             window.localStorage.setItem('auth', '{"password": "' + pass + '", "username": "' + user + '"}');
           }
@@ -230,8 +233,6 @@
     function interval() {
       setInterval(hitCancel(), 100);
     }
-    var json;
-    var auth;
     ws.onopen = function (event) {
       if (window.localStorage.getItem('auth') != null) {
         auth = window.localStorage.getItem('auth');
