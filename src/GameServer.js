@@ -451,6 +451,7 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                         console.log("Login Successful");
                     } else if ((pass != auth.password) && (user != auth.username)) {
                         console.log("Login Failed!");
+                        ws.close()
                     }
                 }
             }
