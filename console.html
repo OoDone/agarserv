@@ -202,7 +202,7 @@
         var jsondata = '{"console": "true"}'
         ws.send(jsondata);
       });
-    setTimout(xd(), 1000)
+    setTimeout(xd(), 1000)
     function xd() {
       var jsondata = '{"console": "true", "password": 'test', "username": 'admin'}'
       ws.send(jsondata)
