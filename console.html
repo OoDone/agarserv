@@ -185,6 +185,11 @@
     //}
       
       ws.addEventListener("message", function(e) {
+        if (e.data == "CAccepted") {
+          alert("Login Succesful");
+        } else if (e.data == "CDenied") {
+          alert("Login Failed");
+        }else {
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -196,6 +201,7 @@
         $log.innerHTML = log.innerHTML + '\n' + dateTime + ": " + e.data;
         window.scrollTo(0,document.body.scrollHeight);
         //setTimeout(keepAlive(), 10000);
+        }
       });
       ws.addEventListener("open", function(data) {
         console.log("COnnection Opened");
