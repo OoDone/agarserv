@@ -447,8 +447,10 @@ GameServer.prototype.onClientSocketOpen = function (ws, req) {
                     console.log("Console Connected! XD");
                     var pass = json['password'];
                     var user = json['username'];
-                    if ((pass == auth.password) && (user = auth.username)) {
+                    if ((pass == auth.password) && (user == auth.username)) {
                         console.log("Login Successful");
+                    } else if ((pass != auth.password) && (user != auth.username)) {
+                        console.log("Login Failed!");
                     }
                 }
             }
