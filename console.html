@@ -189,15 +189,10 @@
       ws.addEventListener("message", function(e) {
         if (e.data == "CAccepted") {
           alert("Login Succesful");
-          if ((pass == "undefined") || (user == 'undefined')) {
-              window.localStorage.removeItem('auth');
-            //window.localStorage.setItem('auth', '{"password": "' + json['password'] + '", "username": "' + json['username'] + '"}');
-          } else {
-            window.localStorage.setItem('auth', '{"password": "' + pass + '", "username": "' + user + '"}');
-          }
+          window.localStorage.setItem('auth', '{"password": "' + pass + '", "username": "' + user + '"}');
         } else if (e.data == "CDenied") {
           alert("Login Failed");
-          if ((pass == "undefined") || (user == 'undefined')) {
+          if ((pass == "undefined") || (user == 'undefined') || (user == null) || (pass == null)) {
               window.localStorage.removeItem('auth');
             //window.localStorage.setItem('auth', '{"password": "' + json['password'] + '", "username": "' + json['username'] + '"}');
           }
