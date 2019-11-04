@@ -6,7 +6,7 @@ var Entity = require('./entity');
 var Vec2 = require('./modules/Vec2');
 var Logger = require('./modules/Logger');
 var index = require('./index');
-//const auth = require('./auth.json');
+const auth = require('./auth.json');
 
 var fs = require('fs');
 var fillChar = function (data, char, fieldLength, rTL) {
