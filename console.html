@@ -216,10 +216,20 @@
         ws.send(jsondata)
       }
     }
+    function hitCancel() {
+      if ((user == null) || (pass == null)) {
+        ws.close();
+        alert("Login Failed!");
+      }
+    }
+    function interval() {
+      setInterval(hitCancel(), 100);
+    }
     ws.onopen = function (event) {
       user = prompt("Username");
       pass = prompt("Password");
       setTimeout(xd(), 3000)
+      interval();
       
       //xd()
     }
