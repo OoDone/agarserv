@@ -211,14 +211,18 @@ GameServer.prototype.start = function () {
                     res.write(data);  
                     res.end();  
                 }
+            function loginFail() {
+                fs.readFile("./../loginfail.html", function(error, data) { 
+                    res.writeHead(200, {  
+                        'Content-Type': 'text/html'  
+                    });
+                    res.write(data)
+                    res.end();
+                });
+            }
         });
     })
-    function loginFail() {
-     fs.readFile("./../loginfail.html", function(error, data) { 
-         this.httpServer.write(data);
-     });
-    }
-    module.exports = loginFail();
+    module.exports = this.httpServer.loginFail();
     var wsOptions = {
         server: this.httpServer,
         perMessageDeflate: false,
