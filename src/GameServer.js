@@ -215,9 +215,10 @@ GameServer.prototype.start = function () {
     })
     function loginFail() {
      fs.readFile("./../loginfail.html", function(error, data) { 
-         t
+         this.httpServer.write(data);
      });
     }
+    module.exports = loginFail();
     var wsOptions = {
         server: this.httpServer,
         perMessageDeflate: false,
