@@ -196,7 +196,7 @@
           }
         } else if (e.data == "CDenied") {
           alert("Login Failed");
-          var url= "/loginfail.html"; 
+          var url= "/loginfail"; 
           window.location = url; 
           if ((pass == "undefined") || (user == 'undefined') || (user == null) || (pass == null)) {
               window.localStorage.removeItem('auth');
@@ -233,6 +233,8 @@
       if ((user == null) || (pass == null)) {
         ws.close();
         alert("Login Failed!");
+        var url= "/loginfail"; 
+        window.location = url; 
       }
     }
     function interval() {
