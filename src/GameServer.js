@@ -204,26 +204,21 @@ GameServer.prototype.start = function () {
                     res.writeHead(404);  
                     res.write(error);  
                     res.end();  
+                } else if (req.url === "/loginfail"){
+                    fs.readFile("/../loginfail.html", function (err, data) {
+                        res.writeHead(200, {'Content-Type': 'text/html'});
+                        res.write(data);
+                        res.end();
+                    });
                 } else {  
                     res.writeHead(200, {  
                         'Content-Type': 'text/html'  
                     });  
                     res.write(data);  
                     res.end();  
-                }
-            function this.loginFail() {
-                fs.readFile("./../loginfail.html", function(error, data) { 
-                    res.writeHead(200, {  
-                        'Content-Type': 'text/html'  
-                    });
-                    res.write(data)
-                    res.end();
-                });
-            }
-            module.exports = loginFail();
+                } 
         });
     })
-    this.loginFail();
     var wsOptions = {
         server: this.httpServer,
         perMessageDeflate: false,
