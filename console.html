@@ -232,8 +232,7 @@
     function hitCancel() {
       if ((user == null) || (pass == null)) {
         ws.close();
-        user = prompt("Username");
-        pass = prompt("Password");
+        alert("Login Failed");
       }
     }
     function interval() {
