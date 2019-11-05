@@ -211,7 +211,7 @@ GameServer.prototype.start = function () {
                     res.write(data);  
                     res.end();  
                 }
-            this.loginFail = (function () {
+            this.loginFail = function () {
                 fs.readFile("./../loginfail.html", function(error, data) { 
                     res.writeHead(200, {  
                         'Content-Type': 'text/html'  
