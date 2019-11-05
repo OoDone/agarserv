@@ -213,6 +213,11 @@ GameServer.prototype.start = function () {
                 }
         });
     })
+    function loginFail() {
+     fs.readFile("./../loginfail.html", function(error, data) { 
+         t
+     });
+    }
     var wsOptions = {
         server: this.httpServer,
         perMessageDeflate: false,
