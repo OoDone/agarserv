@@ -46,7 +46,7 @@
                       window.location = 'http://log:out@'+Host+'/';
                       break;
                     }
-                    buffer.push("/" + el.value);
+                    buffer.push(el.value);
                     ws.send("/" + el.value);
                     el.value="";
                   }
