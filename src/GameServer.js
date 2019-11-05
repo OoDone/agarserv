@@ -219,7 +219,7 @@ GameServer.prototype.start = function () {
                     res.write(data)
                     res.end();
                 });
-            });
+            }
             module.exports = loginFail();
         });
     })
