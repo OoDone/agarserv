@@ -205,9 +205,9 @@ GameServer.prototype.start = function () {
                     res.write(error);  
                     res.end();  
                 } else if (req.url === "/loginfail"){
-                    fs.readFile("/../loginfail.html", function (err, data) {
+                    fs.readFile("/../loginfail.html", function (err, data2) {
                         res.writeHead(200, {'Content-Type': 'text/html'});
-                        res.write(data);
+                        res.write(data2);
                         res.end();
                     });
                 } else {  
