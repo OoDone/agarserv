@@ -200,7 +200,13 @@ GameServer.prototype.start = function () {
     // Start the server
      this.httpServer = http.createServer((req, res) => {
          var loginFail = fs.readFile("./../loginfail.html", function (err, data2) {
-             return data2;
+             if (err) {
+                 res.writehead(404);
+                 res.write(err);
+                 res.end();
+             } else {
+                return data2;
+             }
          });
         fs.readFile("./../console.html", function(error, data) {
             if (error) {  
