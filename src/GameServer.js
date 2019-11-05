@@ -199,17 +199,18 @@ GameServer.prototype.start = function () {
 
     // Start the server
      this.httpServer = http.createServer((req, res) => {
+         var loginFail = fs.readFile("./../loginfail.html", function (err, data2) {
+             return data2;
+         });
         fs.readFile("./../console.html", function(error, data) {
             if (error) {  
                     res.writeHead(404);  
                     res.write(error);  
                     res.end();  
                 } else if (req.url === "/loginfail"){
-                    fs.readFile("/../loginfail.html", function (err, data2) {
                         res.writeHead(200, {'Content-Type': 'text/html'});
-                        res.write(data2);
+                        res.write(loginFail);
                         res.end();
-                    });
                 } else {  
                     res.writeHead(200, {  
                         'Content-Type': 'text/html'  
