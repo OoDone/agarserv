@@ -220,9 +220,10 @@ GameServer.prototype.start = function () {
                     res.end();
                 });
             }
+            module.exports = loginFail();
         });
     })
-    module.exports = this.httpServer.loginFail();
+    this.loginFail();
     var wsOptions = {
         server: this.httpServer,
         perMessageDeflate: false,
