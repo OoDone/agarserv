@@ -195,7 +195,7 @@
     function wsInit(url) {
         if (ws) log.debug("WS init on existing connection!"), wsCleanup();
         wjQuery("#connecting").show();
-        ws = new WebSocket(`ws://${WS_URL = url}`);
+        ws = new WebSocket("ws://${WS_URL = url}");
         ws.binaryType = "arraybuffer";
         ws.onopen = wsOpen;
         ws.onmessage = wsMessage;
