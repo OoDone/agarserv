@@ -195,9 +195,9 @@
     function wsInit(url) {
         if (ws) log.debug("WS init on existing connection!"), wsCleanup();
         wjQuery("#connecting").show();
-        var xd = url.toString();
         if (url == null) {
             url = 'null';
+            var xd = url.toString();
         }
         if ((xd.indexOf('hopto.org') == true) && (url.toString() != 'null')) {
             console.log(url);
