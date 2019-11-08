@@ -196,14 +196,14 @@
         if (ws) log.debug("WS init on existing connection!"), wsCleanup();
         wjQuery("#connecting").show();
         if (url == null) {
-            url = 'null';
+            url = 'null2';
             var xd = url.toString();
         }
-        if ((url.toString().indexOf('hopto.org') == true) && (url.toString() != 'null')) {
+        if ((url.toString().indexOf('ii.hopto.org:5000') == true) && (url.toString() != 'null2')) {
             console.log(url);
             ws = new WebSocket('ws://' + url);
         } else if (url.toString() != 'null') {
-            console.log("wss" + url);
+            console.log("wss " + url);
             ws = new WebSocket('wss://' + url);
         }
         ws.binaryType = "arraybuffer";
