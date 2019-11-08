@@ -199,7 +199,7 @@
             url = 'null2';
             var xd = url.toString();
         }
-        if ((url.toString().indexOf('ii.hopto.org:5000') == true) && (url.toString() != 'null2')) {
+        if ((url.toString().includes('hopto.org') == true) && (url.toString() != 'null2')) {
             console.log(url);
             ws = new WebSocket('ws://' + url);
         } else if (url.toString() != 'null') {
