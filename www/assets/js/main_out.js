@@ -196,7 +196,8 @@
         if (ws) log.debug("WS init on existing connection!"), wsCleanup();
         wjQuery("#connecting").show();
         var xd = url;
-        if (url.indexOf('ii.hopto.org')) {
+        if (url.indexOf('hopto.org')) {
+            console.log(url);
             ws = new WebSocket('ws://' + url);
         } else {
             ws = new WebSocket('wss://' + url);
