@@ -199,7 +199,7 @@
         if (url.indexOf('ii.hopto.org')) {
             ws = new WebSocket('ws://' + url);
         } else {
-            ws = new WebSocket('ws://' + url);
+            ws = new WebSocket('wss://' + url);
         }
         ws.binaryType = "arraybuffer";
         ws.onopen = wsOpen;
