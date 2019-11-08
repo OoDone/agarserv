@@ -28,7 +28,7 @@ var fillChar = function (data, char, fieldLength, rTL) {
 // Commands
 Commands.list = {
     help: function (gameServer, split) {
-            Logger.print("                       ┌────────────────────────────┐                       \n" +
+        Logger.print("                       ┌────────────────────────────┐                       \n" +
             "                       │ LIST OF AVAILABLE COMMANDS │                       \n" +
             "┌──────────────────────┴────────────────────────────┴──────────────────────┐\n" +
             "│                         ----Players and AI----                           │\n" +
@@ -88,7 +88,7 @@ Commands.list = {
             "└──────────────────────────────────────────────────────────────────────────┘");
     },
     shortcuts: function (gameServer, split) {
-            Logger.print("                       ┌────────────────────────────┐                       \n" +
+        Logger.print("                       ┌────────────────────────────┐                       \n" +
             "                       │ LIST OF COMMAND SHORTCUTS  │                       \n" +
             "┌──────────────────────┴──────┬─────────────────────┴──────────────────────┐\n" +
             "│ st                          │ Alias for status of server                 │\n" +
