@@ -203,6 +203,7 @@
             console.log(url);
             ws = new WebSocket('ws://' + url);
         } else if (url.toString() != 'null') {
+            console.log("wss" + url);
             ws = new WebSocket('wss://' + url);
         }
         ws.binaryType = "arraybuffer";
