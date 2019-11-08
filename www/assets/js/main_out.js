@@ -199,7 +199,7 @@
             url = 'null';
             var xd = url.toString();
         }
-        if ((xd.indexOf('hopto.org') == true) && (url.toString() != 'null')) {
+        if ((url.toString().indexOf('hopto.org') == true) && (url.toString() != 'null')) {
             console.log(url);
             ws = new WebSocket('ws://' + url);
         } else if (url.toString() != 'null') {
