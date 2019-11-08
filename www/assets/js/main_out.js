@@ -195,14 +195,14 @@
     function wsInit(url) {
         if (ws) log.debug("WS init on existing connection!"), wsCleanup();
         wjQuery("#connecting").show();
-        var xd = url;
+        var xd = url.toString();
         if (url == null) {
             url = 'null';
         }
-        if ((url.indexOf('hopto.org') == true) && (url != 'null')) {
+        if ((xd.indexOf('hopto.org') == true) && (url.toString() != 'null')) {
             console.log(url);
             ws = new WebSocket('ws://' + url);
-        } else if (url != 'null') {
+        } else if (url.toString() != 'null') {
             ws = new WebSocket('wss://' + url);
         }
         ws.binaryType = "arraybuffer";
