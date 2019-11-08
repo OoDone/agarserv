@@ -28,7 +28,7 @@ var fillChar = function (data, char, fieldLength, rTL) {
 // Commands
 Commands.list = {
     help: function (gameServer, split) {
-            return "                       ┌────────────────────────────┐                       \n" +
+            var help = "                       ┌────────────────────────────┐                       \n" +
             "                       │ LIST OF AVAILABLE COMMANDS │                       \n" +
             "┌──────────────────────┴────────────────────────────┴──────────────────────┐\n" +
             "│                         ----Players and AI----                           │\n" +
@@ -86,6 +86,8 @@ Commands.list = {
             "├──────────────────────────────────────────────────────────────────────────┤\n" +
             '│         Psst! Do "shortcuts" for a list of command shortcuts!            │\n' +
             "└──────────────────────────────────────────────────────────────────────────┘";
+        Logger.info(help):
+        return help;
     },
     shortcuts: function (gameServer, split) {
             "                       ┌────────────────────────────┐                       \n" +
@@ -131,6 +133,7 @@ Commands.list = {
             "Moving nodes:   " + fillChar(gameServer.movingNodes.length, " ", 4, true) + "\n" +
             "Quad nodes:     " + fillChar(scanNodeCount(gameServer.quadTree), " ", 4, true) + "\n" +
             "Quad items:     " + fillChar(scanItemCount(gameServer.quadTree), " ", 4, true);
+        Logger.info(global.debug);
         return global.debug;
     },
     reset: function (gameServer, split) {
@@ -143,24 +146,28 @@ Commands.list = {
             global.reset1 = "Removed " + gameServer.nodes.length + " nodes";
             reset1t = true;
             for (; gameServer.nodes.length;) gameServer.removeNode(gameServer.nodes[0]);
+            Logger.info(global.reset1);
             return global.reset1;
         }
         if (ent == "ejected") {
             global.reset2 = "Removed " + gameServer.nodesEjected.length + " ejected nodes";
             reset2t = true;
             for (; gameServer.nodesEjected.length;) gameServer.removeNode(gameServer.nodesEjected[0]);
+            Logger.info(global.reset2);
             return global.reset2;
         }
         if (ent == "food") {
             global.reset3 = "Removed " + gameServer.nodesFood.length + " food nodes";
             reset3t = true;
             for (; gameServer.nodesFood.length;) gameServer.removeNode(gameServer.nodesFood[0]);
+            Logger.info(global.reset3);
             return global.reset3;
         }
         if (ent == "virus") {
             global.reset4 = "Removed " + gameServer.nodesVirus.length + " virus nodes";
             reset4t = true;
             for (; gameServer.nodesVirus.length;) gameServer.removeNode(gameServer.nodesVirus[0]);
+            Logger.info(global.reset4);
             return global.reset4;
         }
     },
@@ -171,8 +178,9 @@ Commands.list = {
 
         // Error! ID is NaN
         if (isNaN(id)) {
-            return "Please specify a valid player id!";
-            //return;
+            var m = "Please specify a valid player id!";
+            Logger.info(m);
+            return m;
         }
 
         // Find ID specified and add/remove minions for them
@@ -183,15 +191,18 @@ Commands.list = {
 
                 // Prevent the user from giving minions, to minions
                 if (client.isMi) {
-                    return "You cannot give minions to a minion!";
-                    //return;
+                    var m1 = "You cannot give minions to a minion!";
+                    Logger.info(m1);
+                    return m1;
                 };
 
                 // Remove minions
                 if (client.minionControl === true && isNaN(add)) {
                     client.minionControl = false;
                     client.miQ = 0;
-                    return "Successfully removed minions for " + getName(client._name);
+                    var m2 = "Successfully removed minions for " + getName(client._name);
+                    Logger.info(m2);
+                    return m2;
                     // Add minions
                 } else {
                     client.minionControl = true;
@@ -200,7 +211,9 @@ Commands.list = {
                     for (var i = 0; i < add; i++) {
                         gameServer.bots.addMinion(client, name);
                     }
-                    return "added " + add + " minions for " + getName(client._name);
+                    var m3 = "added " + add + " minions for " + getName(client._name);
+                    Logger.info(m3);
+                    return m3;
                 }
                 break;
             }
