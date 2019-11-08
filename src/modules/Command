@@ -5,12 +5,12 @@ var GameMode = require('../gamemodes');
 var Logger = require('./Logger');
 var Entity = require('../entity');
 
-function Command() {
+function Commands() {
     this.list = {}; // Empty
 }
 
 
-module.exports = Command;
+module.exports = Commands;
 
 // Utils
 var fillChar = function (data, char, fieldLength, rTL) {
@@ -26,7 +26,7 @@ var fillChar = function (data, char, fieldLength, rTL) {
 };
 
 // Commands
-Command.list = {
+Commands.list = {
     help: function (gameServer, split) {
             return "                       ┌────────────────────────────┐                       \n" +
             "                       │ LIST OF AVAILABLE COMMANDS │                       \n" +
