@@ -86,7 +86,7 @@ Commands.list = {
             "├──────────────────────────────────────────────────────────────────────────┤\n" +
             '│         Psst! Do "shortcuts" for a list of command shortcuts!            │\n' +
             "└──────────────────────────────────────────────────────────────────────────┘";
-        Logger.info(help):
+        Logger.info(help);
         return help;
     },
     shortcuts: function (gameServer, split) {
