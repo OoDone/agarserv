@@ -28,7 +28,7 @@ var fillChar = function (data, char, fieldLength, rTL) {
 // Commands
 Commands.list = {
     help: function (gameServer, split) {
-            var h = "                       ┌────────────────────────────┐                       \n" +
+            Logger.print("                       ┌────────────────────────────┐                       \n" +
             "                       │ LIST OF AVAILABLE COMMANDS │                       \n" +
             "┌──────────────────────┴────────────────────────────┴──────────────────────┐\n" +
             "│                         ----Players and AI----                           │\n" +
@@ -85,11 +85,10 @@ Commands.list = {
             "│                                                                          │\n" +
             "├──────────────────────────────────────────────────────────────────────────┤\n" +
             '│         Psst! Do "shortcuts" for a list of command shortcuts!            │\n' +
-            "└──────────────────────────────────────────────────────────────────────────┘";
-        Logger.info(h);
+            "└──────────────────────────────────────────────────────────────────────────┘");
     },
     shortcuts: function (gameServer, split) {
-            Logger.info("                       ┌────────────────────────────┐                       \n" +
+            Logger.print("                       ┌────────────────────────────┐                       \n" +
             "                       │ LIST OF COMMAND SHORTCUTS  │                       \n" +
             "┌──────────────────────┴──────┬─────────────────────┴──────────────────────┐\n" +
             "│ st                          │ Alias for status of server                 │\n" +
@@ -132,7 +131,7 @@ Commands.list = {
             "Moving nodes:   " + fillChar(gameServer.movingNodes.length, " ", 4, true) + "\n" +
             "Quad nodes:     " + fillChar(scanNodeCount(gameServer.quadTree), " ", 4, true) + "\n" +
             "Quad items:     " + fillChar(scanItemCount(gameServer.quadTree), " ", 4, true);
-        Logger.info(global.debug);
+        Logger.print(global.debug);
     },
     reset: function (gameServer, split) {
         var ent = split[1];
@@ -144,25 +143,25 @@ Commands.list = {
             global.reset1 = "Removed " + gameServer.nodes.length + " nodes";
             reset1t = true;
             for (; gameServer.nodes.length;) gameServer.removeNode(gameServer.nodes[0]);
-            Logger.info(global.reset1);
+            Logger.print(global.reset1);
         }
         if (ent == "ejected") {
             global.reset2 = "Removed " + gameServer.nodesEjected.length + " ejected nodes";
             reset2t = true;
             for (; gameServer.nodesEjected.length;) gameServer.removeNode(gameServer.nodesEjected[0]);
-            Logger.info(global.reset2);
+            Logger.print(global.reset2);
         }
         if (ent == "food") {
             global.reset3 = "Removed " + gameServer.nodesFood.length + " food nodes";
             reset3t = true;
             for (; gameServer.nodesFood.length;) gameServer.removeNode(gameServer.nodesFood[0]);
-            Logger.info(global.reset3);
+            Logger.print(global.reset3);
         }
         if (ent == "virus") {
             global.reset4 = "Removed " + gameServer.nodesVirus.length + " virus nodes";
             reset4t = true;
             for (; gameServer.nodesVirus.length;) gameServer.removeNode(gameServer.nodesVirus[0]);
-            Logger.info(global.reset4);
+            Logger.print(global.reset4);
         }
     },
     minion: function (gameServer, split) {
@@ -173,7 +172,7 @@ Commands.list = {
         // Error! ID is NaN
         if (isNaN(id)) {
             var m = "Please specify a valid player id!";
-            Logger.info(m);
+            Logger.print(m);
         }
 
         // Find ID specified and add/remove minions for them
@@ -185,7 +184,7 @@ Commands.list = {
                 // Prevent the user from giving minions, to minions
                 if (client.isMi) {
                     var m1 = "You cannot give minions to a minion!";
-                    Logger.info(m1);
+                    Logger.print(m1);
                 };
 
                 // Remove minions
@@ -193,7 +192,7 @@ Commands.list = {
                     client.minionControl = false;
                     client.miQ = 0;
                     var m2 = "Successfully removed minions for " + getName(client._name);
-                    Logger.info(m2);
+                    Logger.print(m2);
                     // Add minions
                 } else {
                     client.minionControl = true;
@@ -203,7 +202,7 @@ Commands.list = {
                         gameServer.bots.addMinion(client, name);
                     }
                     var m3 = "added " + add + " minions for " + getName(client._name);
-                    Logger.info(m3);
+                    Logger.print(m3);
                 }
                 break;
             }
