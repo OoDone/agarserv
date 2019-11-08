@@ -196,7 +196,11 @@
         if (ws) log.debug("WS init on existing connection!"), wsCleanup();
         wjQuery("#connecting").show();
         var xd = url;
-        ws = new WebSocket('ws://' + url);
+        if (url.indexOf('ii.hopto.org')) {
+            ws = new WebSocket('ws://' + url);
+        } else {
+            ws = new WebSocket('ws://' + url);
+        }
         ws.binaryType = "arraybuffer";
         ws.onopen = wsOpen;
         ws.onmessage = wsMessage;
