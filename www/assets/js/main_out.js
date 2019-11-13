@@ -202,6 +202,7 @@
         if ((url.toString().includes('hopto.org') == true) && (url.toString() != 'null2')) {
             console.log(url);
             ws = new WebSocket('ws://' + url);
+            WS_URL = url;
         } else if (url.toString() != 'null') {
             console.log("wss " + url);
             ws = new WebSocket('wss://' + url);
