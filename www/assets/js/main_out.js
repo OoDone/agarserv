@@ -205,6 +205,7 @@
         } else if (url.toString() != 'null') {
             console.log("wss " + url);
             ws = new WebSocket('wss://' + url);
+            WS_URL = url;
         }
         ws.binaryType = "arraybuffer";
         ws.onopen = wsOpen;
